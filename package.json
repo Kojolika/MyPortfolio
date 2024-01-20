@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "chai": "^5.0.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "mocha": "^10.2.0",
     "nodemon": "^3.0.3",
     "pixi.js": "^7.3.3"
   },
@@ -11,8 +13,11 @@
   "engines": {
     "npm": "10.2.4",
     "node": "21.5.0"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 1553f459a6f7f4e010ca1fa51763373590e722ea
   },
   "scripts": {
     "start": "node server",
@@ -20,6 +25,7 @@
   },
   "type": "module",
   "devDependencies": {
+<<<<<<< HEAD
     "@types/chai": "^4.3.11",
     "eslint": "^8.56.0",
     "eslint-config-google": "^0.14.0",
@@ -28,5 +34,8 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1"
 >>>>>>> Stashed changes
+=======
+    "@types/chai": "^4.3.11"
+>>>>>>> 1553f459a6f7f4e010ca1fa51763373590e722ea
   }
 }
