@@ -1,4 +1,4 @@
-name: Eslint.js check
+name: Eslint check
 
 on:
   push:
