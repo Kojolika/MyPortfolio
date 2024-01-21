@@ -1,9 +1,9 @@
 import express from 'express';
 import * as PIXI from 'pixi.js';
-import { renderFile } from 'ejs';
+import {renderFile} from 'ejs';
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
 
 const app = express();
 // set ejs as our view engine
@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.all('/views/sample.png', (req, res) => {
-    console.log(__dirname + req.path);
-    res.sendFile(__dirname + req.path);
+  console.log(__dirname + req.path);
+  res.sendFile(__dirname + req.path);
 });
 
 app.listen(port, () => {
