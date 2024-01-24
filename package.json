@@ -19,6 +19,7 @@
     "test": "mocha",
     "lint": "eslint --ext .js,.jsx ./src"
   },
+  "private": true,
   "type": "module",
   "devDependencies": {
     "@types/chai": "^4.3.11",
