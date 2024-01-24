@@ -17,6 +17,7 @@
   },
   "scripts": {
     "start": "node ./src/index",
+    "dev": "nodemon start",
     "test": "mocha",
     "lint": "eslint --ext .js,.jsx ./src"
   },
