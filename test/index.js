@@ -4,6 +4,6 @@ import fs from 'fs';
 
 describe('Space Ship Image', function () {
     it('should exist in this repository', function () {
-        should.equal(true, fs.existsSync("./views/sample.png"));
+        should.equal(true, fs.existsSync("./public/views/sample.png"));
     });
 });
