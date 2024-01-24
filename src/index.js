@@ -17,13 +17,13 @@ const app = express();
 // set ejs as our view engine
 app.engine('html', renderFile);
 app.set('view engine', 'html');
-app.set('views', './views');
+app.set('views', './public/views');
 
 app.get('/', (req, res) => {
   res.render('./index', { pixi: PIXI });
 });
 
-app.all('/views/sample.png', (req, res) => {
+app.all('./public/views/sample.png', (req, res) => {
   console.log(__dirname + req.path);
   res.sendFile(__dirname + req.path);
 });
