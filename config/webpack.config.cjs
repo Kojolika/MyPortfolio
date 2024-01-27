@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = (env) => {
     return {
         context: __dirname,
-        entry: path.resolve(__dirname, '../src/index.js') ,
+        entry: path.resolve(__dirname, '../src/index.js'),
         output: {
             path: path.resolve(__dirname, '../dist'),
             filename: 'portfolio.bundle.js',
@@ -19,6 +19,9 @@ module.exports = (env) => {
         mode: env?.mode == 'production' ? 'production' : 'development',
         resolve: {
             modules: ['../node_modules']
+        },
+        externals: {
+            express: 'express',
         },
     };
 };
