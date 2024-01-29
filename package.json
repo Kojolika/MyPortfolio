@@ -17,9 +17,12 @@
     "node": "v21.6.1"
   },
   "scripts": {
-    "start": "node ./src/index",
-    "build": "webpack build --config ./config/webpack.config.cjs --stats-error-details --env mode=%npm_config_mode%",
+    "start": "node ./dist/portfolio.node.bundle",
+    "about:start": "When running this server for the first time, make sure to build the application first with the build script",
+    "build": "webpack build --config ./config/webpack.config.cjs --config-name server --stats-error-details --env mode=%npm_config_mode% && webpack build --config ./config/webpack.config.cjs --config-name client --stats-error-details --env mode=%npm_config_mode%",
+    "about:build": "Builds the server and then the client bundles. When running 'npm run build' use '--mode=<production or development>' to specify build mode. Defaults to development.",
     "dev": "nodemon start",
+    "about:dev": "Runs the server, but watches for changes in files and restarts when detected any.",
     "test": "mocha",
     "lint": "eslint --ext .js, ./src"
   },
@@ -36,6 +39,7 @@
     "html-webpack-plugin": "^5.6.0",
     "path-browserify": "^1.0.1",
     "webpack": "^5.90.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
   }
 }

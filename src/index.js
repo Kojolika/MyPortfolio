@@ -1,7 +1,5 @@
 import express from 'express';
-import * as PIXI from 'pixi.js';
 import { renderFile } from 'ejs';
-import * as url from 'url';
 import * as dotEnv from 'dotenv';
 
 // attach .env variables to process.env
@@ -9,8 +7,6 @@ dotEnv.config();
 
 const port = process.env.PORT;
 const directory = new URL('', import.meta.url).pathname;
-console.log(directory);
-console.log(import.meta.url);
 
 const app = express();
 
@@ -20,12 +16,12 @@ app.set('view engine', 'html');
 app.set('views', './dist');
 
 app.get('/', (req, res) => {
-  res.render('./index', { pixi: PIXI });
+  res.render('./index');
 });
 
-app.all('./public/views/sample.png', (req, res) => {
-  console.log(directory + req.path);
-  res.sendFile(directory + req.path);
+app.get('*portfolio.bundle.js', (req, res) => {
+  console.log("trying to get bundle");
+  res.sendFile(`${process.cwd()}/dist/portfolio.bundle.js`);
 });
 
 app.listen(port, () => {
