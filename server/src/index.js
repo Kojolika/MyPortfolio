@@ -1,5 +1,5 @@
 import express from 'express';
-import { renderFile } from 'ejs';
+import {renderFile} from 'ejs';
 import * as dotEnv from 'dotenv';
 import path from 'path';
 
