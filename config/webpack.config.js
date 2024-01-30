@@ -1,14 +1,15 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const nodeExternals = require('webpack-node-externals')
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import nodeExternals from 'webpack-node-externals';
+import path from 'path';
+
+const dirname = path.resolve();
 
 const clientConfig = (env) => {
     return {
         name: "client",
-        context: __dirname,
-        entry: path.resolve(__dirname, '../src/pixi/spaceship.js'),
+        entry: path.resolve(dirname, './src/pixi/spaceship.js'),
         output: {
-            path: path.resolve(__dirname, '../dist'),
+            path: path.resolve(dirname, './dist'),
             filename: 'portfolio.bundle.js',
             //clean: true, // commented out since we are building the server first and then the client
             module: true,
@@ -25,8 +26,8 @@ const clientConfig = (env) => {
 
         plugins: [
             new HtmlWebpackPlugin({
-                title: 'Portofolilo Main',
-                template: '../public/views/index.html'
+                title: 'Portfolio Main',
+                template: './public/views/index.html'
             }),
         ],
         target: 'web',
@@ -44,10 +45,9 @@ const clientConfig = (env) => {
 const serverConfig = (env) => {
     return {
         name: "server",
-        context: __dirname,
-        entry: path.resolve(__dirname, '../src/index.js'),
+        entry: path.resolve(dirname, './src/index.js'),
         output: {
-            path: path.resolve(__dirname, '../dist'),
+            path: path.resolve(dirname, './dist'),
             filename: 'portfolio.node.bundle.js',
             clean: true, // remove previous files before each use,
             module: true,
@@ -64,4 +64,4 @@ const serverConfig = (env) => {
     };
 }
 
-module.exports = [clientConfig, serverConfig];
+export default [clientConfig, serverConfig];

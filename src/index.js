@@ -6,8 +6,6 @@ import * as dotEnv from 'dotenv';
 dotEnv.config();
 
 const port = process.env.PORT;
-const directory = new URL('', import.meta.url).pathname;
-
 const app = express();
 
 // set ejs as our view engine
