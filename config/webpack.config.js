@@ -7,27 +7,16 @@ const dirname = path.resolve();
 const clientConfig = (env) => {
     return {
         name: "client",
-        entry: path.resolve(dirname, './src/pixi/spaceship.js'),
+        entry: path.resolve(dirname, './client/src/pixi/spaceship.js'),
         output: {
             path: path.resolve(dirname, './dist'),
-            filename: 'portfolio.bundle.js',
+            filename: 'portfolio.[contenthash].bundle.js',
             //clean: true, // commented out since we are building the server first and then the client
-            module: true,
-            chunkFormat: 'module',
-            library: {
-                type: "module",
-            },
-            environment: {
-                dynamicImport: true,
-                dynamicImportInWorker: true,
-                module: true
-            }
         },
-
         plugins: [
             new HtmlWebpackPlugin({
                 title: 'Portfolio Main',
-                template: './public/views/index.html'
+                template: './client/public/views/index.html'
             }),
         ],
         target: 'web',
@@ -36,19 +25,16 @@ const clientConfig = (env) => {
             modules: ['../node_modules']
         },
         externals: [nodeExternals(), 'express'],
-        experiments: {
-            outputModule: true,
-        },
     };
 };
 
 const serverConfig = (env) => {
     return {
         name: "server",
-        entry: path.resolve(dirname, './src/index.js'),
+        entry: path.resolve(dirname, './server/src/index.js'),
         output: {
             path: path.resolve(dirname, './dist'),
-            filename: 'portfolio.node.bundle.js',
+            filename: 'portfolio.[contenthash].node.bundle.js',
             clean: true, // remove previous files before each use,
             module: true,
             chunkFormat: 'module',

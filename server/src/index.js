@@ -11,15 +11,10 @@ const app = express();
 // set ejs as our view engine
 app.engine('html', renderFile);
 app.set('view engine', 'html');
-app.set('views', './dist');
+app.set('views', '../../client/public/views/dist');
 
 app.get('/', (req, res) => {
   res.render('./index');
-});
-
-app.get('*portfolio.bundle.js', (req, res) => {
-  console.log("trying to get bundle");
-  res.sendFile(`${process.cwd()}/dist/portfolio.bundle.js`);
 });
 
 app.listen(port, () => {
