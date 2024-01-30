@@ -1,24 +1,33 @@
 {
   "dependencies": {
     "chai": "^5.0.0",
+    "dotenv": "^16.4.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.3",
-    "pixi.js": "^7.3.3"
+    "pixi.js": "^7.3.3",
+    "util": "^0.12.5"
   },
   "nodemonConfig": {
     "ext": "js,json,html"
   },
   "engines": {
     "npm": "10.2.4",
-    "node": "v21.6.0"
+    "node": "v21.6.1"
   },
   "scripts": {
-    "start": "node server",
+    "start": "node ./server/src/index",
+    "startBuild": "node ./dist/portfolio.node.bundle",
+    "about:startBuild": "Rememeber to build the application first with the build script before using this command.",
+    "build": "webpack build --config ./config/webpack.config.js --config-name server --stats-error-details --env mode=%npm_config_mode% && webpack build --config ./config/webpack.config.js --config-name client --stats-error-details --env mode=%npm_config_mode%",
+    "about:build": "Builds the server and then the client bundles. When running 'npm run build' use '--mode=<production or development>' to specify build mode. Defaults to development.",
+    "dev": "nodemon start",
+    "about:dev": "Runs the server, but watches for changes in files and restarts when detected any.",
     "test": "mocha",
-    "lint": "eslint --ext .js,.jsx ./src"
+    "lint": "eslint --ext .js, ./server/src && eslint --ext .js, ./client/src"
   },
+  "private": true,
   "type": "module",
   "devDependencies": {
     "@types/chai": "^4.3.11",
@@ -27,6 +36,11 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.1.1"
+    "eslint-plugin-promise": "^6.1.1",
+    "html-webpack-plugin": "^5.6.0",
+    "path-browserify": "^1.0.1",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
   }
 }
