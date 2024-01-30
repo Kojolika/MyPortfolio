@@ -10,7 +10,7 @@ const clientConfig = (env) => {
         entry: path.resolve(dirname, './client/src/pixi/spaceship.js'),
         output: {
             path: path.resolve(dirname, './dist'),
-            filename: 'portfolio.[contenthash].bundle.js',
+            filename: 'portfolio.bundle.js',
             //clean: true, // commented out since we are building the server first and then the client
         },
         plugins: [
@@ -34,7 +34,7 @@ const serverConfig = (env) => {
         entry: path.resolve(dirname, './server/src/index.js'),
         output: {
             path: path.resolve(dirname, './dist'),
-            filename: 'portfolio.[contenthash].node.bundle.js',
+            filename: 'portfolio.node.bundle.js',
             clean: true, // remove previous files before each use,
             module: true,
             chunkFormat: 'module',
@@ -47,6 +47,7 @@ const serverConfig = (env) => {
         experiments: {
             outputModule: true,
         },
+        externals: ['express'],
     };
 }
 
