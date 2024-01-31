@@ -1,13 +1,14 @@
-name: Node.js CI & Tests
+name: build node application
 
+# Only trigger, when the build workflow succeeded
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  workflow_run:
+    workflows: ["Node.js CI & Tests"]
+    types:
+      - completed
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,4 +19,5 @@ jobs:
           node-version-file: "package.json"
           cache: "npm"
       - run: npm ci
+      - run: npm run build --if-present
       - run: npm test
