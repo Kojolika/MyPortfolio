@@ -2,5 +2,5 @@ FROM node:alpine3.18
 WORKDIR /app
 COPY . .
 RUN npm ci
-CMD ["node", "src/index.js"]
+CMD ["npm", "run startBuild"]
 EXPOSE 3000

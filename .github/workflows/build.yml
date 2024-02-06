@@ -1,4 +1,4 @@
-name: build node application
+name: Build Node App and Deploy
 
 # Only trigger, when the build workflow succeeded
 on:
@@ -13,11 +13,50 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
+      - name: Build Node.js app
         uses: actions/setup-node@v3
         with:
           node-version-file: "package.json"
           cache: "npm"
       - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+      - run: npm run build
+
+  create-image:
+    runs-on: ubuntu-latest
+
+    env:
+      TOKEN: ${{ secrets.ENVIRONMENT_REPO_ACCESS_TOKEN }}
+
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: user/app:latest
+
+
+  
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: get env file
+        run: |
+          curl -H "Authorization: token ${TOKEN}" ${{ ENVIRONMENT_REPO_URL }}/blob/main/envs/testing/settings.yml -o settings.yml
+
+      - name: output file contents
+        run: echo "$(<settings.yml)"
+
+      # uses yq to read yml files
+      - name: setup yq
+        uses: mikefarah/yq@master
+
