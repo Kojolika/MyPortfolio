@@ -59,10 +59,12 @@ jobs:
         run: |
           curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}/blob/main/envs/testing/settings.yml -o ${ENV_CONFIG}
 
-      - name: output file contents
-        run: yq '.resources' ${ENV_CONFIG}
-
       # uses yq to read yml files
       - name: setup yq
         uses: mikefarah/yq@master
+
+      - name: output file contents
+        run: yq '.resources' ${ENV_CONFIG}
+
+
 
