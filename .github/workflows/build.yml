@@ -4,8 +4,7 @@ name: Build Node App and Deploy
 on:
   workflow_run:
     workflows: ["Node.js CI & Tests"]
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   build:
@@ -48,13 +47,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      ENV_CONFIG: settings.yml
+
     steps:
       - name: get env file
         run: |
-          curl -H "Authorization: token ${TOKEN}" ${{ ENVIRONMENT_REPO_URL }}/blob/main/envs/testing/settings.yml -o settings.yml
+          curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}/blob/main/envs/testing/settings.yml -o ${ENV_CONFIG}
 
       - name: output file contents
-        run: echo "$(<settings.yml)"
+        run: echo "$(<${ENV_CONFIG})"
 
       # uses yq to read yml files
       - name: setup yq
