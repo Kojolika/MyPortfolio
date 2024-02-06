@@ -2,9 +2,14 @@ name: Build Node App and Deploy
 
 # Only trigger, when the build workflow succeeded
 on:
-  workflow_run:
-    workflows: ["Node.js CI & Tests"]
-    types: [completed]
+  push:
+    branches:
+      - "main"
+  # For now on main push for testing
+
+  #workflow_run:
+  #  workflows: ["Node.js CI & Tests"]
+  #  types: [completed]
 
 jobs:
   build:
