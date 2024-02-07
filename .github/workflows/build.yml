@@ -51,28 +51,34 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ENV_CONFIG: settings.yml
+      ENV_CONFIG_PATH: envs/testing/
+      ENV_CONFIG_FILE: settings.yml
+      PATH_SOURCE_CHECKOUT: temp_folder
 
     steps:
       # uses yq to read yml files
       - name: setup yq
         uses: mikefarah/yq@master
 
-     # - name: get env file
-       # run: |
-       #   curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}envs/testing/settings.yml | cat
-        #-o ${ENV_CONFIG}
+      # - name: get env file
+      # run: |
+      #   curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}envs/testing/settings.yml | cat
+      #-o ${ENV_CONFIG}
 
       #- name: output file contents
-       # run: echo ${{ steps.get_resources.outputs.result }}
+      # run: echo ${{ steps.get_resources.outputs.result }}
       - name: checkout settings file
         uses: actions/checkout@v4
         with:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
-          ref: 'main'
+          ref: "main"
           sparse-checkout: |
-            envs/testing/settings.yml
+            ${ENV_CONFIG_PATH}${ENV_CONFIG_FILE}
           sparse-checkout-cone-mode: false
-      
+          path: ${PATH_SOURCE_CHECKOUT}
+
       - name: output workspace
-        run: echo ${{ github.workspace }}
+        run: |
+          cd ${PATH_SOURCE_CHECKOUT}
+          cat ${ENV_CONFIG_FILE}
+      
