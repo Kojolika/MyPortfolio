@@ -81,5 +81,6 @@ jobs:
         run: |
           ls
           cd $PATH_SOURCE_CHECKOUT
+          ls
           cat $ENV_CONFIG_FILE
       
