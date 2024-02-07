@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build Node.js app
         uses: actions/setup-node@v3
         with:
@@ -58,10 +58,21 @@ jobs:
       - name: setup yq
         uses: mikefarah/yq@master
 
-      - name: get env file
-        run: |
-          curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}/blob/main/envs/testing/settings.yml | cat
+     # - name: get env file
+       # run: |
+       #   curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}envs/testing/settings.yml | cat
         #-o ${ENV_CONFIG}
 
       #- name: output file contents
        # run: echo ${{ steps.get_resources.outputs.result }}
+      - name: checkout settings file
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
+          ref: 'main'
+          sparse-checkout: |
+            envs/testing/settings.yml
+          sparse-checkout-cone-mode: false
+      
+      - name: output workspace
+        run: echo ${{ github.workspace }}
