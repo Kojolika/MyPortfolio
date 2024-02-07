@@ -73,13 +73,12 @@ jobs:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
           ref: "main"
           sparse-checkout: |
-            ${ENV_CONFIG_PATH}${ENV_CONFIG_FILE}
+            ${{ env.ENV_CONFIG_PATH }}${{ env.ENV_CONFIG_FILE }}
           sparse-checkout-cone-mode: false
-          path: $PATH_SOURCE_CHECKOUT
+          path: ${{ env.PATH_SOURCE_CHECKOUT }}
 
       - name: output workspace
         run: |
-          ls
           cd $PATH_SOURCE_CHECKOUT
           cat $ENV_CONFIG_FILE
       
