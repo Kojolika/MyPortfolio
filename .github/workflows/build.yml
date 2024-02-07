@@ -60,10 +60,10 @@ jobs:
 
       - name: checkout repo
         uses: actions/checkout@v4
-          with:
-            sparse-checkout: |
-              ${{ env.VERSION_CONFIG }}
-            sparse-checkout-cone-mode: false
+        with:
+          sparse-checkout: |
+            ${{ env.VERSION_CONFIG }}
+          sparse-checkout-cone-mode: false
 
       - name: update version
         run: |
