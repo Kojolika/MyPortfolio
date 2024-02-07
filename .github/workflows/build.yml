@@ -40,14 +40,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: myshoka/portfolio:latest-${{ github.sha }}
 
-  
   deploy:
     runs-on: ubuntu-latest
 
@@ -55,19 +54,14 @@ jobs:
       ENV_CONFIG: settings.yml
 
     steps:
-      - name: get env file
-        run: |
-          curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}/blob/main/envs/testing/settings.yml -o ${ENV_CONFIG}
-
       # uses yq to read yml files
       - name: setup yq
-        id: get_resources
         uses: mikefarah/yq@master
-        with:
-          cmd: yq '.resources' ${ENV_CONFIG}
 
-      - name: output file contents
-        run: echo ${{ steps.get_resources.outputs.result }}
+      - name: get env file
+        run: |
+          curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}/blob/main/envs/testing/settings.yml | cat
+        #-o ${ENV_CONFIG}
 
-
-
+      #- name: output file contents
+       # run: echo ${{ steps.get_resources.outputs.result }}
