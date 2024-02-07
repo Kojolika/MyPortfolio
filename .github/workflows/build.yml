@@ -61,10 +61,13 @@ jobs:
 
       # uses yq to read yml files
       - name: setup yq
+        id: get_resources
         uses: mikefarah/yq@master
+        with:
+          cmd: yq '.resources' ${ENV_CONFIG}
 
       - name: output file contents
-        run: cat ${ENV_CONFIG} | yq '.resources'
+        run: echo ${{ steps.get_resources.outputs.result }}
 
 
 
