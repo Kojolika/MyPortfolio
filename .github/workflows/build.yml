@@ -47,6 +47,22 @@ jobs:
           push: true
           tags: myshoka/portfolio:latest-${{ github.sha }}
 
+  update-build-version:
+    runs-on: ubuntu-latest
+
+    env:
+      BUILD_CONFIG: version.yml
+
+    steps:
+      # uses yq to read yml files
+      - name: setup yq
+        uses: mikefarah/yq@master
+      
+      - name: update version
+        run: |
+          yq '.app-version' ${{ env.ENV_CONFIG_FILE }}
+          yq -i 'build' ${{ env.ENV_CONFIG_FILE }}
+
   deploy:
     runs-on: ubuntu-latest
 
@@ -56,26 +72,18 @@ jobs:
       PATH_SOURCE_CHECKOUT: temp_folder
 
     steps:
-      # uses yq to read yml files
       - name: setup yq
         uses: mikefarah/yq@master
 
-      # - name: get env file
-      # run: |
-      #   curl -H "Authorization: token ${TOKEN}" ${{ secrets.ENVIRONMENT_REPO_URL }}envs/testing/settings.yml | cat
-      #-o ${ENV_CONFIG}
-
-      #- name: output file contents
-      # run: echo ${{ steps.get_resources.outputs.result }}
       - name: checkout settings file
         uses: actions/checkout@v4
         with:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
+          path: ${{ env.PATH_SOURCE_CHECKOUT }}
           ref: "main"
           sparse-checkout: |
             ${{ env.ENV_CONFIG_PATH }}${{ env.ENV_CONFIG_FILE }}
           sparse-checkout-cone-mode: false
-          path: ${{ env.PATH_SOURCE_CHECKOUT }}
 
       - name: output workspace
         run: |
