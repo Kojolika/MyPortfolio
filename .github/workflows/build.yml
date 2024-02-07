@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BUILD_CONFIG: version.yml
+      VERSION_CONFIG: version.yml
 
     steps:
       # uses yq to read yml files
@@ -60,8 +60,8 @@ jobs:
       
       - name: update version
         run: |
-          yq '.app-version' ${{ env.ENV_CONFIG_FILE }}
-          yq -i 'build' ${{ env.ENV_CONFIG_FILE }}
+          yq '.app-version' ${{ env.VERSION_CONFIG }}
+          yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
 
   deploy:
     runs-on: ubuntu-latest
