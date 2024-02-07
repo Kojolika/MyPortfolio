@@ -57,13 +57,16 @@ jobs:
       # uses yq to read yml files
       - name: setup yq
         uses: mikefarah/yq@master
-      
+
+      - name: checkout repo
+        uses: actions/checkout@v4
+          with:
+            sparse-checkout: |
+              ${{ env.VERSION_CONFIG }}
+            sparse-checkout-cone-mode: false
+
       - name: update version
         run: |
-          cd ..
-          cd ..
-          ls
-          echo "$PWD"
           yq '.app-version' ${{ env.VERSION_CONFIG }}
           yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
 
