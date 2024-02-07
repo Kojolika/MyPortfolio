@@ -64,7 +64,7 @@ jobs:
         uses: mikefarah/yq@master
 
       - name: output file contents
-        run: cat ${ENV_CONFIG}
+        run: cat ${ENV_CONFIG} | yq '.resources'
 
 
 
