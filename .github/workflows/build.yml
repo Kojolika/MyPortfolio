@@ -67,6 +67,7 @@ jobs:
 
       - name: update version
         run: |
+          ls
           yq '.app-version' ${{ env.VERSION_CONFIG }}
           yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
 
