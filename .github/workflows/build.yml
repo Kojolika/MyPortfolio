@@ -45,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: myshoka/portfolio:latest-${{GITHUB_SHA}}
+          tags: myshoka/portfolio:latest-${{ github.sha }}
 
   
   deploy:
