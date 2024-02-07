@@ -79,6 +79,6 @@ jobs:
 
       - name: output workspace
         run: |
-          cd ${PATH_SOURCE_CHECKOUT}
-          cat ${ENV_CONFIG_FILE}
+          cd $PATH_SOURCE_CHECKOUT
+          cat $ENV_CONFIG_FILE
       
