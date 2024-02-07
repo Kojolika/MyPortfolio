@@ -75,7 +75,7 @@ jobs:
           sparse-checkout: |
             ${ENV_CONFIG_PATH}${ENV_CONFIG_FILE}
           sparse-checkout-cone-mode: false
-          path: ${PATH_SOURCE_CHECKOUT}
+          path: $PATH_SOURCE_CHECKOUT
 
       - name: output workspace
         run: |
