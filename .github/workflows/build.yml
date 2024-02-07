@@ -69,6 +69,7 @@ jobs:
         run: |
           ls
           yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
+          yq '.build' ${{ env.VERSION_CONFIG }}
 
   deploy:
     runs-on: ubuntu-latest
