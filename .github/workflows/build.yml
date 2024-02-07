@@ -60,6 +60,7 @@ jobs:
       
       - name: update version
         run: |
+          ls
           echo "$PWD"
           yq '.app-version' ${{ env.VERSION_CONFIG }}
           yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
