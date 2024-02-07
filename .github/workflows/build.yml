@@ -61,6 +61,7 @@ jobs:
       - name: update version
         run: |
           cd ..
+          cd ..
           ls
           echo "$PWD"
           yq '.app-version' ${{ env.VERSION_CONFIG }}
