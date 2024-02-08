@@ -1,0 +1,36 @@
+name: Update Build Version
+
+# Only trigger, when the build workflow succeeded
+on:
+  push:
+    branches:
+      - main
+jobs:
+  update-build-version:
+    runs-on: ubuntu-latest
+
+    env:
+      VERSION_CONFIG: version.yml
+      BRANCH: main
+
+    steps:
+      # uses yq to read yml files
+      - name: setup yq
+        uses: mikefarah/yq@master
+
+      - name: checkout repo
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            ${{ env.VERSION_CONFIG }}
+          sparse-checkout-cone-mode: false
+
+      # Update the version and build by 1
+      # Major update versions are manually updated
+      - name: update version
+        run: |
+          UPDATED_VER=$(yq '.app-verison' ${{ env.VERSION_CONFIG }} | awk -F . '{ print $1"."$2"."$3+1 }')
+          updated_ver=$UPDATED_VER yq -i '.app-verison = env(updated_ver)' ${{ env.VERSION_CONFIG }}
+          yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
+          git commit -m "Updated version via Github Actions"
+          git push origin ${{ env.BRANCH }}
