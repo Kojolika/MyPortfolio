@@ -68,7 +68,7 @@ jobs:
           UPDATED_VER=$(yq '.app-verison' ${{ env.VERSION_CONFIG }} | awk -F . '{ print $1"."$2"."$3+1 }')
           updated_ver=$UPDATED_VER yq -i '.app-verison = env(updated_ver)' ${{ env.VERSION_CONFIG }}
           yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
-          git -m commit "Updated version"
+          git commit -m "Updated version via Github Actions"
           git push origin ${{ env.BRANCH }}
 
   deploy:
