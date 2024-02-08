@@ -2,14 +2,9 @@ name: Build Node App and Deploy
 
 # Only trigger, when the build workflow succeeded
 on:
-  push:
-    branches:
-      - "main"
-  # For now on main push for testing
-
-  #workflow_run:
-  #  workflows: ["Node.js CI & Tests"]
-  #  types: [completed]
+  workflow_run:
+    workflows: ["Node.js CI & Tests"]
+    types: [completed]
 
 jobs:
   build:
@@ -52,6 +47,7 @@ jobs:
 
     env:
       VERSION_CONFIG: version.yml
+      BRANCH: main
 
     steps:
       # uses yq to read yml files
@@ -72,6 +68,8 @@ jobs:
           UPDATED_VER=$(yq '.app-verison' ${{ env.VERSION_CONFIG }} | awk -F . '{ print $1"."$2"."$3+1 }')
           updated_ver=$UPDATED_VER yq -i '.app-verison = env(updated_ver)' ${{ env.VERSION_CONFIG }}
           yq -i '.build |= . + 1' ${{ env.VERSION_CONFIG }}
+          git -m commit "Updated version"
+          git push origin ${{ env.BRANCH }}
 
   deploy:
     runs-on: ubuntu-latest
