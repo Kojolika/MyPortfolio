@@ -1,6 +1,8 @@
 FROM node:alpine3.18
+ENV PORT=3000
 WORKDIR /app
 COPY . .
 RUN npm ci
-CMD ["npm", "run startBuild"]
-EXPOSE 3000
+RUN npm run build
+CMD ["npm", "run start"]
+EXPOSE $PORT
