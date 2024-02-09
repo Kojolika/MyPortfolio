@@ -13,12 +13,6 @@ const clientConfig = (env) => {
             filename: 'portfolio.bundle.js',
             //clean: true, // commented out since we are building the server first and then the client
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                title: 'Portfolio Main',
-                template: './client/public/views/index.html'
-            }),
-        ],
         target: 'web',
         mode: env?.mode == 'production' ? 'production' : 'development',
         resolve: {
