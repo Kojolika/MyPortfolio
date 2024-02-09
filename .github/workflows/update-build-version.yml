@@ -2,15 +2,18 @@ name: Update Build Version
 
 # Only trigger, when the build workflow succeeded
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types:
+      - closed
 
 permissions:
   contents: write
 
 jobs:
   update-build-version:
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
 
     env:

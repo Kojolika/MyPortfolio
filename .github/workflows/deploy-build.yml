@@ -1,0 +1,58 @@
+name: Deploy Build
+
+on:
+  workflow_run:
+    workflows: ["Update Build Version"]
+    types: [completed]
+
+jobs:
+  create-image:
+    runs-on: ubuntu-latest
+
+    env:
+      TOKEN: ${{ secrets.ENVIRONMENT_REPO_ACCESS_TOKEN }}
+
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: myshoka/portfolio:latest-${{ github.sha }}
+
+  deploy:
+    needs: create-image
+    runs-on: ubuntu-latest
+
+    env:
+      ENV_CONFIG_PATH: envs/testing/
+      ENV_CONFIG_FILE: settings.yml
+      PATH_SOURCE_CHECKOUT: temp_folder
+
+    steps:
+      - name: setup yq
+        uses: mikefarah/yq@master
+
+      - name: checkout settings file
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
+          path: ${{ env.PATH_SOURCE_CHECKOUT }}
+          ref: "main"
+          sparse-checkout: |
+            ${{ env.ENV_CONFIG_PATH }}${{ env.ENV_CONFIG_FILE }}
+          sparse-checkout-cone-mode: false
+
+      - name: output workspace
+        run: |
+          cd $PATH_SOURCE_CHECKOUT
+          cd $ENV_CONFIG_PATH
+          yq '.resources' $ENV_CONFIG_FILE
