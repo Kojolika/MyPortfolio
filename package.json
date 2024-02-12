@@ -17,15 +17,14 @@
     "node": "v21.6.1"
   },
   "scripts": {
-    "start": "node ./server/src/index",
-    "startBuild": "node ./dist/portfolio.node.bundle",
-    "about:startBuild": "Rememeber to build the application first with the build script before using this command.",
+    "start": "node ./dist/portfolio.node.bundle",
+    "about:start": "Rememeber to build the application first with the build script before using this command.",
     "build": "webpack build --config ./config/webpack.config.js --config-name server --stats-error-details --env mode=%npm_config_mode% && webpack build --config ./config/webpack.config.js --config-name client --stats-error-details --env mode=%npm_config_mode%",
     "about:build": "Builds the server and then the client bundles. When running 'npm run build' use '--mode=<production or development>' to specify build mode. Defaults to development.",
     "dev": "nodemon start",
     "about:dev": "Runs the server, but watches for changes in files and restarts when detected any.",
     "test": "mocha",
-    "lint": "eslint --ext .js, ./server/src && eslint --ext .js, ./client/src"
+    "lint": "eslint --ext .js, ./"
   },
   "private": true,
   "type": "module",
