@@ -5,6 +5,9 @@ on:
     workflows: ["Update Build Version"]
     types: [completed]
 
+env:
+  LATEST_IMAGE: ${{ secrets.DOCKER_REPO_URL }}:latest-${{ github.sha }}
+
 jobs:
   create-image:
     runs-on: ubuntu-latest
@@ -26,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: myshoka/portfolio:latest-${{ github.sha }}
+          tags: ${{ env.LATEST_IMAGE }}
 
   deploy:
     needs: create-image
@@ -47,9 +50,6 @@ jobs:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
           path: ${{ env.PATH_SOURCE_CHECKOUT }}
           ref: "main"
-          sparse-checkout: |
-            ${{ env.ENV_CONFIG_PATH }}${{ env.ENV_CONFIG_FILE }}
-          sparse-checkout-cone-mode: false
 
       - name: output workspace
         run: |
