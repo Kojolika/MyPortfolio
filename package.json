@@ -24,7 +24,7 @@
     "dev": "nodemon start",
     "about:dev": "Runs the server, but watches for changes in files and restarts when detected any.",
     "test": "mocha",
-    "lint": "eslint --ext .js, ./server/src && eslint --ext .js, ./client/src"
+    "lint": "eslint --ext .js, ./"
   },
   "private": true,
   "type": "module",
