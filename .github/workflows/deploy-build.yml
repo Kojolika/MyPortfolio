@@ -87,4 +87,4 @@ jobs:
 
       - name: run commands
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "bash $COMMAND_FILE"
+          cat $COMMAND_FILE | ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP
