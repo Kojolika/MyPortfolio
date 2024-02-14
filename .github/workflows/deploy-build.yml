@@ -77,7 +77,7 @@ jobs:
 
       - name: pull docker image
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP 'sudo docker pull $LATEST_IMAGE'
+          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP 'sudo docker pull ${LATEST_IMAGE}'
 
       - name: stop running container
         run: |
