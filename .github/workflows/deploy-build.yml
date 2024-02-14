@@ -83,7 +83,7 @@ jobs:
           echo "sudo docker pull $LATEST_IMAGE" >> $COMMAND_FILE
           echo "sudo docker stop $CONTAINER_NAME || true" >> $COMMAND_FILE
           echo "sudo docker rm $CONTAINER_NAME || true" >> $COMMAND_FILE
-          echo "sudo docker run --name $CONTAINER_NAME -d -e PORT=$PORT -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE" >> $COMMAND_FILE
+          echo "sudo docker run --name $CONTAINER_NAME -d -e PORT=${PORT} -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE" >> $COMMAND_FILE
           cat $COMMAND_FILE
 
       - name: run commands
