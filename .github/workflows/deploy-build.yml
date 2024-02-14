@@ -42,6 +42,7 @@ jobs:
       CONTAINER_NAME: portfolio
       EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
       EC2_IP: ${{ secrets.EC2_DEV_IP }}
+      COMMAND_FILE: pull_and_run_container.sh
 
     steps:
       - name: setup yq
@@ -75,16 +76,15 @@ jobs:
           chmod 600 key.pem
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
-
-      - name: pull docker image
+      
+      -name: create command file
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker pull $LATEST_IMAGE"
+          touch $COMMAND_FILE
+          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker pull $LATEST_IMAGE"" >> $COMMAND_FILE
+          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker stop $CONTAINER_NAME || true"" >> $COMMAND_FILE
+          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker rm $CONTAINER_NAME || true"" >> $COMMAND_FILE
+          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker run --name $CONTAINER_NAME -d -e PORT=$PORT -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE"" >> $COMMAND_FILE
 
-      - name: stop running container
+      - name: run commands
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker stop $CONTAINER_NAME || true"
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker rm $CONTAINER_NAME || true"
-
-      - name: run new container
-        run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker run --name $CONTAINER_NAME -d -e PORT=$PORT -p $FULL_DOCKER_CONTAINER_PORT_ARG ${{ env.LATEST_IMAGE }}"
+          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "bash $COMMAND_FILE"
