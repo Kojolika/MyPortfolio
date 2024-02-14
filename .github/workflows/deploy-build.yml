@@ -77,13 +77,13 @@ jobs:
 
       - name: pull docker image
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP 'sudo docker pull ${LATEST_IMAGE}'
+          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker pull $LATEST_IMAGE"
 
       - name: stop running container
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP 'sudo docker stop $CONTAINER_NAME || true'
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP 'sudo docker rm $CONTAINER_NAME || true'
+          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker stop $CONTAINER_NAME || true"
+          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker rm $CONTAINER_NAME || true"
 
       - name: run new container
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP 'sudo docker run -d --name $CONTAINER_NAME -e PORT=$PORT -p 80:$PORT/$NETWORK_PROTOCOL $LATEST_IMAGE'
+          ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker run -d --name $CONTAINER_NAME -e PORT=$PORT -p 80:$PORT/$NETWORK_PROTOCOL $LATEST_IMAGE"
