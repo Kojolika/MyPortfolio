@@ -19,6 +19,7 @@ app.set('views', path.resolve(dirname, './client/public/views'));
 app.set('x-powered-by', false); // disable express advertisment in html header
 
 app.get('/', (req, res) => {
+  console.log('Accessed index');
   res.render('./index');
 });
 
