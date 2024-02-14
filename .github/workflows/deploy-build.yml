@@ -76,8 +76,8 @@ jobs:
           chmod 600 key.pem
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
-      
-      -name: create command file
+
+      - name: create command file
         run: |
           touch $COMMAND_FILE
           echo "sudo docker pull $LATEST_IMAGE" >> $COMMAND_FILE
