@@ -82,4 +82,4 @@ jobs:
 
       - name: run new container
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_DEV_IP }} 'sudo docker run -d - name ${{ env.CONTAINER_NAME }} --env PORT=$PORT -p 80:$PORT/$NETWORK_PROTOCOL ${{ env.LATEST_IMAGE }}'
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_DEV_IP }} 'sudo docker run -d --name ${{ env.CONTAINER_NAME }} -e PORT=$PORT -p 80:$PORT/$NETWORK_PROTOCOL ${{ env.LATEST_IMAGE }}'
