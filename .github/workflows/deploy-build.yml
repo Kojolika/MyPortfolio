@@ -80,10 +80,10 @@ jobs:
       -name: create command file
         run: |
           touch $COMMAND_FILE
-          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker pull $LATEST_IMAGE"" >> $COMMAND_FILE
-          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker stop $CONTAINER_NAME || true"" >> $COMMAND_FILE
-          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker rm $CONTAINER_NAME || true"" >> $COMMAND_FILE
-          echo "ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP "sudo docker run --name $CONTAINER_NAME -d -e PORT=$PORT -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE"" >> $COMMAND_FILE
+          echo "sudo docker pull $LATEST_IMAGE" >> $COMMAND_FILE
+          echo "sudo docker stop $CONTAINER_NAME || true" >> $COMMAND_FILE
+          echo "sudo docker rm $CONTAINER_NAME || true" >> $COMMAND_FILE
+          echo "sudo docker run --name $CONTAINER_NAME -d -e PORT=$PORT -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE" >> $COMMAND_FILE
 
       - name: run commands
         run: |
