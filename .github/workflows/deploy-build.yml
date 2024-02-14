@@ -84,6 +84,7 @@ jobs:
       - name: create command file
         run: |
           touch $COMMAND_FILE
+          echo "sudo ufw allow $PORT/$NETWORK_PROTOCOL" >> $COMMAND_FILE
           echo "sudo docker pull $LATEST_IMAGE" >> $COMMAND_FILE
           echo "sudo docker stop $CONTAINER_NAME || true" >> $COMMAND_FILE
           echo "sudo docker rm $CONTAINER_NAME || true" >> $COMMAND_FILE
