@@ -51,7 +51,7 @@ jobs:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
           path: ${{ env.PATH_SOURCE_CHECKOUT }}
           ref: "main"
-      
+
       - name: get port and protocol settings
         run: |
           cd $PATH_SOURCE_CHECKOUT
@@ -68,13 +68,13 @@ jobs:
 
       - name: Set permissions for private key
         run: |
-          echo "${{ env.AWS_PRIVATE_KEY }}" > key.pem
+          echo "${{ env.DEV_SSH_PRIVATE_KEY }}" > key.pem
           chmod 600 key.pem
 
       - name: pull docker image
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_DEV_IP }} 'sudo docker pull ${{ env.LATEST_IMAGE }}'
-          
+
       - name: stop running container
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_DEV_IP }} 'sudo docker stop ${{ env.CONTAINER_NAME }} || true'
