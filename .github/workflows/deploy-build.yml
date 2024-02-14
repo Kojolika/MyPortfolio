@@ -60,9 +60,9 @@ jobs:
           cd $PATH_SOURCE_CHECKOUT
           cd $ENV_CONFIG_PATH
           BASE_SETTINGS=$(yq '.resources' $ENV_CONFIG_FILE)
-          PORT=$(yq '.deployment.ports.port' $BASE_SETTINGS)
-          NETWORK_PROTOCOL=$(yq '.deployment.ports.protocol' $BASE_SETTINGS)
-          FULL_DOCKER_CONTAINER_PORT_ARG=80:${PORT}/${NETWORK_PROTOCOL}
+          echo "PORT=$(yq '.deployment.ports.port' $BASE_SETTINGS)" >> "$GITHUB_ENV"
+          echo "NETWORK_PROTOCOL=$(yq '.deployment.ports.protocol' $BASE_SETTINGS)" >> "$GITHUB_ENV"
+          echo "FULL_DOCKER_CONTAINER_PORT_ARG=80:${PORT}/${NETWORK_PROTOCOL}" >> "$GITHUB_ENV"
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -84,7 +84,6 @@ jobs:
           echo "sudo docker stop $CONTAINER_NAME || true" >> $COMMAND_FILE
           echo "sudo docker rm $CONTAINER_NAME || true" >> $COMMAND_FILE
           echo "sudo docker run --name $CONTAINER_NAME -d -e PORT=${PORT} -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE" >> $COMMAND_FILE
-          cat $COMMAND_FILE
 
       - name: run commands
         run: |
