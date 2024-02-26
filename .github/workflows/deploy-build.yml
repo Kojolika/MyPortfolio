@@ -44,6 +44,7 @@ jobs:
       EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
       EC2_IP: ${{ secrets.EC2_DEV_IP }}
       COMMAND_FILE: pull_and_run_container.sh
+      SSH_KEY_FILE: key.pem
 
     steps:
       - name: setup yq
@@ -68,28 +69,39 @@ jobs:
           echo "NETWORK_PROTOCOL=$NETWORK_PROTOCOL" >> "$GITHUB_ENV"
           echo "FULL_DOCKER_CONTAINER_PORT_ARG=$FULL_DOCKER_CONTAINER_PORT_ARG" >> "$GITHUB_ENV"
 
-      - name: Login to Docker Hub
+      - name: login to docker hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Set permissions for private key
+      #- name: add docker commands to ec2
+      #  run: |
+      #    touch $COMMAND_FILE
+      #    echo "sudo docker pull $LATEST_IMAGE" >> $COMMAND_FILE
+      #    echo "sudo docker stop $CONTAINER_NAME || true" >> $COMMAND_FILE
+      #    echo "sudo docker rm $CONTAINER_NAME || true" >> $COMMAND_FILE
+      #    echo "sudo docker run --name $CONTAINER_NAME -d -e PORT=${PORT} -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE" >> $COMMAND_FILE
+
+      - name: set permissions for private key
         run: |
-          echo "$SSH_KEY" > key.pem
-          chmod 600 key.pem
+          echo "$SSH_KEY" > $SSH_KEY_FILE
+          chmod 600 $SSH_KEY_FILE
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
 
-      - name: create command file
+      - name: establish ssh connection to StrictHostKeyChecking
         run: |
-          touch $COMMAND_FILE
-          echo "sudo ufw allow $PORT/$NETWORK_PROTOCOL" >> $COMMAND_FILE
-          echo "sudo docker pull $LATEST_IMAGE" >> $COMMAND_FILE
-          echo "sudo docker stop $CONTAINER_NAME || true" >> $COMMAND_FILE
-          echo "sudo docker rm $CONTAINER_NAME || true" >> $COMMAND_FILE
-          echo "sudo docker run --name $CONTAINER_NAME -d -e PORT=${PORT} -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE" >> $COMMAND_FILE
+          ssh-copy-id $EC2_USERNAME@$EC2_IP -i $SSH_KEY_FILE
+          ssh $EC2_USERNAME@$EC2_IP 
 
-      - name: run commands
+      - name: run commands on ec2 through ssh
         run: |
-          cat $COMMAND_FILE | ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP
+          export DOCKER_HOST="ssh://$EC2_USERNAME@$EC2_IP"
+          docker-compose pull
+          docker-compose down
+          docker-compose up
+          unset DOCKER_HOST
+
+      #  run: |
+      #    cat $COMMAND_FILE | ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP
