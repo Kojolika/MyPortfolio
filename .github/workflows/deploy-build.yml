@@ -98,7 +98,7 @@ jobs:
       
       - name: test ssh connection
         run: |
-          ssh UserKnownHostsFile=~/.ssh/known_hosts ${EC2_USERNAME}@${EC2_IP} "echo hi"
+          ssh -o UserKnownHostsFile=~/.ssh/known_hosts ${EC2_USERNAME}@${EC2_IP} "echo hi"
 
       - name: set env variables for docker-compose
         run: |
