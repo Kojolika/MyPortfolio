@@ -79,7 +79,8 @@ jobs:
 
       - name: set ssh identity on github runner
         run: |
-          mkdir $SSH_DIR
+          cd $SSH_DIR
+          ls
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           echo "$SSH_PUBLIC_KEY" > $SSH_PUBLIC_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
