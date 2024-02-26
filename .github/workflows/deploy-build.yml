@@ -92,9 +92,7 @@ jobs:
 
       - name: establish ssh connection to StrictHostKeyChecking
         run: |
-          ls
-          ssh-copy-id -i $SSH_KEY_FILE $EC2_USERNAME@$EC2_IP
-          ssh $EC2_USERNAME@$EC2_IP 
+          ssh -i $SSH_KEY_FILE $EC2_USERNAME@$EC2_IP 
 
       - name: run commands on ec2 through ssh
         run: |
@@ -105,4 +103,4 @@ jobs:
           unset DOCKER_HOST
 
       #  run: |
-      #    cat $COMMAND_FILE | ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USERNAME@$EC2_IP
+      #    cat $COMMAND_FILE | ssh -o StrictHostKeyChecking=no -i $SSH_KEY_FILE $EC2_USERNAME@$EC2_IP
