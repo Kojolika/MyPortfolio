@@ -87,6 +87,7 @@ jobs:
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
+          echo "SSH_AUTH_SOCK"
           ssh-add $SSH_PRIVATE_KEY_NAME
 
         env:
@@ -98,7 +99,7 @@ jobs:
       
       - name: test ssh connection
         run: |
-          ssh -o UserKnownHostsFile=~/.ssh/known_hosts ${EC2_USERNAME}@${EC2_IP} "echo hi"
+          ssh ${EC2_USERNAME}@${EC2_IP} "echo hi"
 
       - name: set env variables for docker-compose
         run: |
