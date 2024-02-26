@@ -90,7 +90,7 @@ jobs:
 
       - name: run commands on ec2 through ssh
         run: |
-          export DOCKER_HOST="ssh://$EC2_USERNAME@$EC2_IP"
+          export DOCKER_HOST='ssh://$EC2_USERNAME@$EC2_IP'
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker-compose down
           docker-compose up
