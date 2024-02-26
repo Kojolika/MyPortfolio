@@ -58,6 +58,10 @@ jobs:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
           path: ${{ env.ENV_REPO_CHECKOUT_PATH }}
           ref: "main"
+      
+      - name: set current runner path as env var
+        run: |
+          echo "WORK_DIR=$(pwd)" >> "$GITHUB_ENV"
 
       - name: get port and protocol settings
         run: |
@@ -68,33 +72,41 @@ jobs:
           NETWORK_PROTOCOL=$(yq '.deployment.ports.protocol' $BASE_SETTINGS)
           echo "PORT=$PORT" >> "$GITHUB_ENV"
           echo "NETWORK_PROTOCOL=$NETWORK_PROTOCOL" >> "$GITHUB_ENV"
-          cd ..
-          cd ..
 
       - name: login to docker hub
         uses: docker/login-action@v3
         with:
           username: ${{ env.DOCKER_USERNAME }}
           password: ${{ env.DOCKER_PASSWORD }}
+      
+      - name: change permissions for working directory for ssh to work correctly
+        run: |
+          chmod og-rw ~
 
       - name: set ssh identity on github runner
         run: |
           cd $SSH_DIR
-          ls
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           echo "$SSH_PUBLIC_KEY" > $SSH_PUBLIC_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PUBLIC_KEY_NAME
+          touch $SSH_CONFIG
+          echo "" >> $SSH_CONFIG
+          echo "Host ${EC2_IP}" >> $SSH_CONFIG
+          echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}' >> $SSH_CONFIG
+          cat $SSH_CONFIG
+
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
-          SSH_DIR: ./../../../.ssh
-          SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/id_rsa
+          SSH_DIR: ~/.ssh
+          SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/ec2_ssh_key
           SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PRIVATE_KEY_NAME }}.pub
+          SSH_CONFIG: config
 
       - name: change to repo directory
         run: |
-          cd $REPO_CHECKOUT_PATH
+          cd ${WORK_DIR}/${REPO_CHECKOUT_PATH}
 
       - name: set env variables for docker-compose
         run: |
