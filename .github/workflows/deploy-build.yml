@@ -92,6 +92,7 @@ jobs:
 
       - name: establish ssh connection to StrictHostKeyChecking
         run: |
+          ls
           ssh-copy-id -i $SSH_KEY_FILE $EC2_USERNAME@$EC2_IP
           ssh $EC2_USERNAME@$EC2_IP 
 
