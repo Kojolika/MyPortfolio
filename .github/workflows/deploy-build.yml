@@ -51,8 +51,6 @@ jobs:
 
       - name: checkout repo
         uses: actions/checkout@v4
-        with:
-          path: ${{ env.REPO_CHECKOUT_PATH }}
 
       - name: checkout settings file
         uses: actions/checkout@v4
@@ -81,7 +79,9 @@ jobs:
 
       - name: set ssh identity on github runner
         run: |
-          pwd
+          cd ..
+          cd ..
+          cd ..
           mkdir .ssh
           echo "$SSH_KEY" > ./.ssh/id_rsa
           echo "$SSH_PUBLIC_KEY" > ./.ssh/id_rsa.pub
