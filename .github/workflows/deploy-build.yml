@@ -86,20 +86,23 @@ jobs:
       - name: set ssh identity on github runner
         run: |
           chmod og-rw ~
+          mkdir -p ~/.ssh
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
-          chmod 600 $SSH_PRIVATE_KEY_NAME
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_NAME
-          mkdir -p ~/.ssh
           touch ~/.ssh/known_hosts
-          ssh-keyscan -t rsa ${EC2_IP} >> ~/.ssh/known_hosts
+          ssh-keyscan $EC2_IP >> ~/.ssh/known_hosts
+          touch ~/.ssh/config
+          echo "Host Amazon EC2 >> ~/.ssh/config
+          echo $'\HostName ${EC2_IP}'
+          echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}'
           chmod 600 ~/.ssh
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
-          SSH_PRIVATE_KEY_NAME: ec2_ssh_key
-          SSH_PUBLIC_KEY_NAME: ec2_ssh_key.pub
+          SSH_PRIVATE_KEY_NAME: ~/.ssh/ec2_ssh_key
+          SSH_PUBLIC_KEY_NAME: ~/.ssh/ec2_ssh_key.pub
           SSH_CONFIG: config
 
       - name: set env variables for docker-compose
