@@ -85,34 +85,24 @@ jobs:
 
       - name: set ssh identity on github runner
         run: |
-          mkdir -p $SSH_DIR
-          cd $SSH_DIR
+          ssh-add $SSH_PRIVATE_KEY_NAME
+          ssh-add $SSH_PUBLIC_KEY_NAME
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           echo "$SSH_PUBLIC_KEY" > $SSH_PUBLIC_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PUBLIC_KEY_NAME
-          touch $SSH_CONFIG
-          echo "" >> $SSH_CONFIG
-          echo "Host ${EC2_IP}" >> $SSH_CONFIG
-          echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}' >> $SSH_CONFIG
-          cat $SSH_CONFIG
 
         env:
-          RUNNER_HOME_PATH: /home/runner/
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
-          SSH_DIR: ${RUNNER_HOME_PATH}/.ssh
-          SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/ec2_ssh_key
+          SSH_DIR: ~/.ssh
+          SSH_PRIVATE_KEY_NAME: ec2_ssh_key
           SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PRIVATE_KEY_NAME }}.pub
           SSH_CONFIG: config
-          
-
-      - name: change to repo directory
-        run: |
-          cd ${WORK_DIR}/${REPO_CHECKOUT_PATH}
 
       - name: set env variables for docker-compose
         run: |
+          cd ${WORK_DIR}/${REPO_CHECKOUT_PATH}
           echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
           echo "PORT=$PORT" >> .env
           echo "NGINX_ENVSUBST_TEMPLATE_DIR=${ENV_REPO_CHECKOUT_PATH}/nginx-config/" >> .env
