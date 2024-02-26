@@ -98,7 +98,7 @@ jobs:
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
           SSH_DIR: ~/.ssh
           SSH_PRIVATE_KEY_NAME: ec2_ssh_key
-          SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PRIVATE_KEY_NAME }}.pub
+          SSH_PUBLIC_KEY_NAME: ec2_ssh_key.pub
           SSH_CONFIG: config
 
       - name: set env variables for docker-compose
