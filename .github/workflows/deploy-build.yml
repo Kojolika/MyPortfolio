@@ -83,24 +83,19 @@ jobs:
         run: |
           mkdir -p $SSH_DIR
           cd $SSH_DIR
-          touch $SSH_PRIVATE_KEY_NAME
-          echo "$SSH_KEY" >> $SSH_PRIVATE_KEY_NAME
-          eval `ssh-agent -s`
-          ssh-add $SSH_PRIVATE_KEY_NAME
-          touch ~/.ssh/known_hosts
-          ssh-keyscan $EC2_IP >> ${SSH_DIR}/known_hosts
+          echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
+          chmod 600 $SSH_PRIVATE_KEY_NAME
+          ssh-keyscan $EC2_IP > ${SSH_DIR}/known_hosts
           touch $SSH_CONFIG
           echo "Host Amazon EC2 >> $SSH_CONFIG
           echo $'\HostName ${EC2_IP}' >> $SSH_CONFIG
           echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}' >> $SSH_CONFIG
-          chmod 600 ~/.ssh
-          chmod og-rw ~
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
           SSH_DIR: ~/.ssh
-          SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/ec2_ssh_key
+          SSH_PRIVATE_KEY_NAME: ec2_ssh_key
           SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PUBLIC_KEY_NAME }}.pub
           SSH_CONFIG: ${{ env.SSH_DIR }}/config
           
