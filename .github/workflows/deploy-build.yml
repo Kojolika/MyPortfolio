@@ -87,7 +87,7 @@ jobs:
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
-          echo "$SSH_AUTH_SOCK"
+          echo "$(ssh-agent -a $SSH_AUTH_SOCK)"
           ssh-add $SSH_PRIVATE_KEY_NAME
 
         env:
