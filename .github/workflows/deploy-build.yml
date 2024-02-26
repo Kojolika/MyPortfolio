@@ -82,24 +82,27 @@ jobs:
       - name: set ssh identity on github runner
         run: |
           chmod og-rw ~
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" >> $SSH_PRIVATE_KEY_NAME
+          mkdir -p $SSH_DIR
+          cd $SSH_DIR
+          echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_NAME
           touch ~/.ssh/known_hosts
-          ssh-keyscan $EC2_IP >> ~/.ssh/known_hosts
-          touch ~/.ssh/config
-          echo "Host Amazon EC2 >> ~/.ssh/config
-          echo $'\HostName ${EC2_IP}' >> ~/.ssh/config
-          echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}' >> ~/.ssh/config
+          ssh-keyscan $EC2_IP >> ${SSH_DIR}/known_hosts
+          touch $SSH_CONFIG
+          echo "Host Amazon EC2 >> $SSH_CONFIG
+          echo $'\HostName ${EC2_IP}' >> $SSH_CONFIG
+          echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}' >> $SSH_CONFIG
           chmod 600 ~/.ssh
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
-          SSH_PRIVATE_KEY_NAME: ~/.ssh/ec2_ssh_key
-          SSH_PUBLIC_KEY_NAME: ~/.ssh/ec2_ssh_key.pub
-          SSH_CONFIG: config
+          SSH_DIR: ~/.ssh
+          SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/ec2_ssh_key
+          SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PUBLIC_KEY_NAME }}.pub
+          SSH_CONFIG: ${{ env.SSH_DIR }}/config
+          
 
       - name: set env variables for docker-compose
         run: |
