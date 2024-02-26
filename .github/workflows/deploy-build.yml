@@ -92,7 +92,7 @@ jobs:
           ssh-add $SSH_PRIVATE_KEY_NAME
           mkdir -p ~/.ssh
           touch ~/.ssh/known_hosts
-          ssh-keyscan ${EC2_IP} >> ~/.ssh/known_hosts
+          ssh-keyscan -t rsa ${EC2_IP} >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh
 
         env:
