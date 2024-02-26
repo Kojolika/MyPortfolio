@@ -87,7 +87,7 @@ jobs:
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add $SSH_DIR
+          ssh-add $SSH_PRIVATE_KEY_NAME
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
