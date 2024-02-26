@@ -81,7 +81,6 @@ jobs:
       
       - name: set ssh identity on github runner
         run: |
-          chmod og-rw ~
           mkdir -p $SSH_DIR
           cd $SSH_DIR
           touch $SSH_PRIVATE_KEY_NAME
@@ -95,6 +94,7 @@ jobs:
           echo $'\HostName ${EC2_IP}' >> $SSH_CONFIG
           echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}' >> $SSH_CONFIG
           chmod 600 ~/.ssh
+          chmod og-rw ~
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
