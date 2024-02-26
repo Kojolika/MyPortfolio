@@ -92,6 +92,8 @@ jobs:
           mkdir -p ~/.ssh
           touch ~/.ssh/known_hosts
           ssh-keyscan ${EC2_IP} >> ~/.ssh/known_hosts
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/known_hosts
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
