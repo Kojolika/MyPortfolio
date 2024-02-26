@@ -79,10 +79,6 @@ jobs:
           username: ${{ env.DOCKER_USERNAME }}
           password: ${{ env.DOCKER_PASSWORD }}
       
-#      - name: change permissions for working directory for ssh to work correctly
-#        run: |
-#          chmod og-rw ~
-
       - name: set ssh identity on github runner
         run: |
           chmod og-rw ~
