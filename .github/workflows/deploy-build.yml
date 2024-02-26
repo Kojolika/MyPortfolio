@@ -99,7 +99,7 @@ jobs:
 
       - name: set env variables for docker-compose
         run: |
-          cd ${WORK_DIR}/${REPO_CHECKOUT_PATH}
+          cd ${WORK_DIR}
           echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
           echo "PORT=$PORT" >> .env
           echo "NGINX_ENVSUBST_TEMPLATE_DIR=${ENV_REPO_CHECKOUT_PATH}/nginx-config/" >> .env
