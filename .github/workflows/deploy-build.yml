@@ -79,14 +79,17 @@ jobs:
 
       - name: set ssh identity on github runner
         run: |
-          mkdir ./../../../.ssh
-          echo "$SSH_KEY" > ./../../../.ssh/id_rsa
-          echo "$SSH_PUBLIC_KEY" > ./../../../.ssh/id_rsa.pub
-          chmod 600 ./.ssh/id_rsa
-          chmod 600 ./.ssh/id_rsa.pub
+          mkdir $SSH_DIR
+          echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
+          echo "$SSH_PUBLIC_KEY" > $SSH_PUBLIC_KEY_NAME
+          chmod 600 $SSH_PRIVATE_KEY_NAME
+          chmod 600 $SSH_PUBLIC_KEY_NAME
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
+          SSH_DIR: ./../../../.ssh
+          SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/id_rsa
+          SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PRIVATE_KEY_NAME }}.pub
 
       - name: change to repo directory
         run: |
