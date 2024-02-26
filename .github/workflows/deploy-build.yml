@@ -85,7 +85,7 @@ jobs:
 
       - name: set ssh identity on github runner
         run: |
-          mkdir -p $SSH_DIR
+          mkdir $SSH_DIR
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           echo "$SSH_PUBLIC_KEY" > $SSH_PUBLIC_KEY_NAME
@@ -98,12 +98,14 @@ jobs:
           cat $SSH_CONFIG
 
         env:
+          RUNNER_HOME_PATH: /home/runner/
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
-          SSH_DIR: ~/.ssh
+          SSH_DIR: ${RUNNER_HOME_PATH}/.ssh
           SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/ec2_ssh_key
           SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PRIVATE_KEY_NAME }}.pub
           SSH_CONFIG: config
+          
 
       - name: change to repo directory
         run: |
