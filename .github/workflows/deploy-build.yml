@@ -85,7 +85,7 @@ jobs:
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
-          ssh-keyscan $EC2_IP > ${SSH_DIR}/known_hosts
+          ssh-keyscan $EC2_IP >> ${SSH_DIR}/known_hosts
           touch $SSH_CONFIG
           echo "Host Amazon EC2 >> $SSH_CONFIG
           echo $'\HostName ${EC2_IP}' >> $SSH_CONFIG
@@ -96,9 +96,7 @@ jobs:
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
           SSH_DIR: ~/.ssh
           SSH_PRIVATE_KEY_NAME: ec2_ssh_key
-          SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PUBLIC_KEY_NAME }}.pub
           SSH_CONFIG: ${{ env.SSH_DIR }}/config
-          
 
       - name: set env variables for docker-compose
         run: |
