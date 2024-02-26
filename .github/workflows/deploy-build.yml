@@ -38,7 +38,8 @@ jobs:
     env:
       ENV_CONFIG_PATH: envs/testing/
       ENV_CONFIG_FILE: settings.yml
-      PATH_SOURCE_CHECKOUT: temp_folder
+      ENV_REPO_CHECKOUT_PATH: temp_folder
+      REPO_CHECKOUT_PATH: portfolio
       EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
       EC2_IP: ${{ secrets.EC2_DEV_IP }}
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -48,16 +49,21 @@ jobs:
       - name: setup yq
         uses: mikefarah/yq@master
 
+      - name: checkout repo
+        uses: actions/checkout
+        with:
+          path: ${{ env.REPO_CHECKOUT_PATH }}
+
       - name: checkout settings file
         uses: actions/checkout@v4
         with:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
-          path: ${{ env.PATH_SOURCE_CHECKOUT }}
+          path: ${{ env.ENV_REPO_CHECKOUT_PATH }}
           ref: "main"
 
       - name: get port and protocol settings
         run: |
-          cd $PATH_SOURCE_CHECKOUT
+          cd $ENV_REPO_CHECKOUT_PATH
           cd $ENV_CONFIG_PATH
           BASE_SETTINGS=$(yq '.resources' $ENV_CONFIG_FILE)
           PORT=$(yq '.deployment.ports.port' $BASE_SETTINGS)
@@ -76,18 +82,22 @@ jobs:
           mkdir .ssh
           echo "$SSH_KEY" > ./.ssh/id_rsa
           echo "$SSH_PUBLIC_KEY" > ./.ssh/id_rsa.pub
-          chmod 600 ./.ssh/id_rsa
-          chmod 600 ./.ssh/id_rsa.pub
+#          chmod 600 ./.ssh/id_rsa
+#          chmod 600 ./.ssh/id_rsa.pub
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
+
+      - name: change to repo directory
+        run: |
+          cd $REPO_CHECKOUT_PATH
 
       - name: set env variables for docker-compose
         run: |
           echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
           echo "PORT=$PORT" >> .env
-          echo "NGINX_ENVSUBST_TEMPLATE_DIR="
-
+          echo "NGINX_ENVSUBST_TEMPLATE_DIR=${ENV_REPO_CHECKOUT_PATH}/nginx-config/" >> .env
+ 
       - name: run commands on ec2 through ssh
         run: |
           export DOCKER_HOST='ssh://$EC2_USERNAME@$EC2_IP'
