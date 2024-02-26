@@ -50,7 +50,7 @@ jobs:
         uses: mikefarah/yq@master
 
       - name: checkout repo
-        uses: actions/checkout
+        uses: actions/checkout@v4
         with:
           path: ${{ env.REPO_CHECKOUT_PATH }}
 
