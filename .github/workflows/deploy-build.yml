@@ -88,7 +88,6 @@ jobs:
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
           ssh-add $SSH_PRIVATE_KEY_NAME
-          ssh-agent
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
@@ -97,6 +96,10 @@ jobs:
           SSH_PRIVATE_KEY_NAME: ec2_ssh_key
           SSH_CONFIG: config
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      
+      - name: test ssh connection
+        run: |
+          ssh ${EC2_USERNAME}@${EC2_IP} "echo hi"
 
       - name: set env variables for docker-compose
         run: |
@@ -107,8 +110,11 @@ jobs:
  
       - name: run commands on ec2 through ssh
         run: |
-          export DOCKER_HOST="ssh://${EC2_USERNAME}@${EC2_IP}"
+          docker context create $EC2_CONTEXT --docker "host=ssh://${EC2_USERNAME}@${EC2_IP}"
+          docker context use $EC2_CONTEXT
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker-compose down
           docker-compose up
-          unset DOCKER_HOST
+
+        env:
+          EC2_CONTEXT: ec2
