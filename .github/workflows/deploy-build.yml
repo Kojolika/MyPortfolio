@@ -46,6 +46,10 @@ jobs:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     steps:
+      - name: set current runner path as env var
+        run: |
+          echo "WORK_DIR=$(pwd)" >> "$GITHUB_ENV"
+
       - name: setup yq
         uses: mikefarah/yq@master
 
@@ -58,10 +62,6 @@ jobs:
           repository: ${{ secrets.ENVIRONMENT_REPO_URL }}
           path: ${{ env.ENV_REPO_CHECKOUT_PATH }}
           ref: "main"
-      
-      - name: set current runner path as env var
-        run: |
-          echo "WORK_DIR=$(pwd)" >> "$GITHUB_ENV"
 
       - name: get port and protocol settings
         run: |
