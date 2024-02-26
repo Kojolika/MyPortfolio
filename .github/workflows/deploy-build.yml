@@ -95,11 +95,10 @@ jobs:
           SSH_DIR: ~/.ssh
           SSH_PRIVATE_KEY_NAME: ec2_ssh_key
           SSH_CONFIG: config
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       
       - name: test ssh connection
         run: |
-          ssh ${EC2_USERNAME}@${EC2_IP} "echo hi"
+          ssh UserKnownHostsFile=~/.ssh/known_hosts ${EC2_USERNAME}@${EC2_IP} "echo hi"
 
       - name: set env variables for docker-compose
         run: |
