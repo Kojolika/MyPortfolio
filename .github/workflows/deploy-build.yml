@@ -85,6 +85,7 @@ jobs:
 
       - name: set ssh identity on github runner
         run: |
+          chmod og-rw ~
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
           eval `ssh-agent -s`
@@ -92,8 +93,7 @@ jobs:
           mkdir -p ~/.ssh
           touch ~/.ssh/known_hosts
           ssh-keyscan ${EC2_IP} >> ~/.ssh/known_hosts
-          chmod 700 ~/.ssh
-          chmod 600 ~/.ssh/known_hosts
+          chmod 600 ~/.ssh
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
