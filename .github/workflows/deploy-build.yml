@@ -81,13 +81,14 @@ jobs:
       
       - name: set ssh identity on github runner
         run: |
+          eval $(ssh-agent -s)
           mkdir -p $SSH_DIR
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add $SSH_PRIVATE_KEY_NAME
+          ssh-agent
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
