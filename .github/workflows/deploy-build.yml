@@ -89,6 +89,7 @@ jobs:
           chmod 600 $SSH_PRIVATE_KEY_NAME
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_NAME
+          touch ~/.ssh/known_hosts
           ssh-keyscan ${EC2_IP} >> ~/.ssh/known_hosts
 
         env:
