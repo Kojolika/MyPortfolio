@@ -83,8 +83,8 @@ jobs:
         run: |
           echo "$SSH_KEY" > ./id_rsa
           echo "$SSH_PUBLIC_KEY" > ./id_rsa.pub
-          chmod 600 ./.ssh/id_rsa
-          chmod 600 ./.ssh/id_rsa.pub
+          chmod 600 ./id_rsa
+          chmod 600 ./id_rsa.pub
           ssh-add ./id_rsa
           ssh-add ./id_rsa.pub
         env:
