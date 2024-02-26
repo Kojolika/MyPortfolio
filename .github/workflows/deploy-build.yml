@@ -79,13 +79,13 @@ jobs:
           username: ${{ env.DOCKER_USERNAME }}
           password: ${{ env.DOCKER_PASSWORD }}
       
-      - name: change permissions for working directory for ssh to work correctly
-        run: |
-          chmod og-rw ~
+#      - name: change permissions for working directory for ssh to work correctly
+#        run: |
+#          chmod og-rw ~
 
       - name: set ssh identity on github runner
         run: |
-          mkdir $SSH_DIR
+          mkdir -p $SSH_DIR
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           echo "$SSH_PUBLIC_KEY" > $SSH_PUBLIC_KEY_NAME
@@ -100,7 +100,7 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
-          SSH_DIR: ~/.ssh/
+          SSH_DIR: ~/.ssh
           SSH_PRIVATE_KEY_NAME: ${{ env.SSH_DIR }}/ec2_ssh_key
           SSH_PUBLIC_KEY_NAME: ${{ env.SSH_PRIVATE_KEY_NAME }}.pub
           SSH_CONFIG: config
