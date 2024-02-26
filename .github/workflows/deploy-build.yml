@@ -84,7 +84,8 @@ jobs:
           chmod og-rw ~
           mkdir -p $SSH_DIR
           cd $SSH_DIR
-          echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
+          touch $SSH_PRIVATE_KEY_NAME
+          echo "$SSH_KEY" >> $SSH_PRIVATE_KEY_NAME
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_NAME
           touch ~/.ssh/known_hosts
