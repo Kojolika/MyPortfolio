@@ -82,7 +82,7 @@ jobs:
       - name: set ssh identity on github runner
         run: |
           chmod og-rw ~
-          mkdir -p ~/.ssh
+          mkdir -p ~/.ssh/
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_NAME
