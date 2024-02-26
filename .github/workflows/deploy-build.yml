@@ -73,6 +73,7 @@ jobs:
 
       - name: set ssh identity on github runner
         run: |
+          mkdir .ssh
           echo "$SSH_KEY" > ./.ssh/id_rsa
           echo "$SSH_PUBLIC_KEY" > ./.ssh/id_rsa.pub
           chmod 600 ./.ssh/id_rsa
