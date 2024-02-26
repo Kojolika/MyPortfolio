@@ -87,7 +87,7 @@ jobs:
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
           touch $SSH_CONFIG
-          echo "Host Amazon EC2 >> $SSH_CONFIG
+          echo "Host Amazon EC2" >> $SSH_CONFIG
           echo $'\HostName ${EC2_IP}' >> $SSH_CONFIG
           echo $'\tIdentityFile ${SSH_PRIVATE_KEY_NAME}' >> $SSH_CONFIG
 
