@@ -13,9 +13,6 @@ jobs:
   create-image:
     runs-on: ubuntu-latest
 
-    env:
-      TOKEN: ${{ secrets.ENVIRONMENT_REPO_ACCESS_TOKEN }}
-
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -32,6 +29,8 @@ jobs:
           push: true
           tags: ${{ env.LATEST_IMAGE }}
 
+  # For this deploy to work correctly, the EC2 instance needs to have docker and docker-compose installed
+  # Then make sure the docker daemon is running
   EC2-deploy:
     needs: create-image
     runs-on: ubuntu-latest
@@ -40,11 +39,10 @@ jobs:
       ENV_CONFIG_PATH: envs/testing/
       ENV_CONFIG_FILE: settings.yml
       PATH_SOURCE_CHECKOUT: temp_folder
-      CONTAINER_NAME: portfolio
       EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
       EC2_IP: ${{ secrets.EC2_DEV_IP }}
-      COMMAND_FILE: pull_and_run_container.sh
-      SSH_KEY_FILE: key.pub
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     steps:
       - name: setup yq
@@ -64,43 +62,35 @@ jobs:
           BASE_SETTINGS=$(yq '.resources' $ENV_CONFIG_FILE)
           PORT=$(yq '.deployment.ports.port' $BASE_SETTINGS)
           NETWORK_PROTOCOL=$(yq '.deployment.ports.protocol' $BASE_SETTINGS)
-          FULL_DOCKER_CONTAINER_PORT_ARG=80:${PORT}/${NETWORK_PROTOCOL}
           echo "PORT=$PORT" >> "$GITHUB_ENV"
           echo "NETWORK_PROTOCOL=$NETWORK_PROTOCOL" >> "$GITHUB_ENV"
-          echo "FULL_DOCKER_CONTAINER_PORT_ARG=$FULL_DOCKER_CONTAINER_PORT_ARG" >> "$GITHUB_ENV"
 
       - name: login to docker hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_PASSWORD }}
 
-      #- name: add docker commands to ec2
-      #  run: |
-      #    touch $COMMAND_FILE
-      #    echo "sudo docker pull $LATEST_IMAGE" >> $COMMAND_FILE
-      #    echo "sudo docker stop $CONTAINER_NAME || true" >> $COMMAND_FILE
-      #    echo "sudo docker rm $CONTAINER_NAME || true" >> $COMMAND_FILE
-      #    echo "sudo docker run --name $CONTAINER_NAME -d -e PORT=${PORT} -p $FULL_DOCKER_CONTAINER_PORT_ARG $LATEST_IMAGE" >> $COMMAND_FILE
-
-      - name: set permissions for private key
+      - name: set ssh identity on github runner
         run: |
-          echo "$SSH_KEY" > $SSH_KEY_FILE
-          chmod 600 $SSH_KEY_FILE
+          echo "$SSH_KEY" > ./.ssh/id_rsa
+          echo "$SSH_PUBLIC_KEY" > ./.ssh/id_rsa.pub
+          chmod 600 ./.ssh/id_rsa
+          chmod 600 ./.ssh/id_rsa.pub
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+          SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
 
-      - name: establish ssh connection to StrictHostKeyChecking
+      - name: set env variables for docker-compose
         run: |
-          ssh -i $SSH_KEY_FILE $EC2_USERNAME@$EC2_IP 
+          echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
+          echo "PORT=$PORT" >> .env
+          echo "NGINX_ENVSUBST_TEMPLATE_DIR="
 
       - name: run commands on ec2 through ssh
         run: |
           export DOCKER_HOST="ssh://$EC2_USERNAME@$EC2_IP"
-          docker-compose pull
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker-compose down
           docker-compose up
           unset DOCKER_HOST
-
-      #  run: |
-      #    cat $COMMAND_FILE | ssh -o StrictHostKeyChecking=no -i $SSH_KEY_FILE $EC2_USERNAME@$EC2_IP
