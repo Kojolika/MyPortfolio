@@ -1,0 +1,8 @@
+services:
+  web:
+    image: ${LATEST_IMAGE}
+    pull_policy: always
+    env_file: .env
+  nginx:
+    image: nginx
+    pull_policy: always
