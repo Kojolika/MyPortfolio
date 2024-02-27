@@ -83,22 +83,20 @@ jobs:
       
       - name: set ssh identity on github runner
         run: |
-          eval `ssh-agent -s`
           mkdir -p $SSH_DIR
           chmod 700 $SSH_DIR
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           chmod 600 $SSH_PRIVATE_KEY_FILE
           echo "$KNOWN_HOSTS" > known_hosts
+          chmod 600 known_hosts
+          eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_FILE
-          ls
-          cat known_hosts
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
-          SSH_DIR: ~/.ssh
+          SSH_DIR: ~/.ssh/
           SSH_PRIVATE_KEY_FILE: id_rsa.pem
-          KNOWN_HOSTS_DIR: ~/etc/ssh/
           KNOWN_HOSTS: ${{ secrets.DEV_KNOWN_HOSTS }}
 
       - name: set env variables for docker-compose
