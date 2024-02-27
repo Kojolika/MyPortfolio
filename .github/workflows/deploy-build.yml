@@ -95,7 +95,7 @@ jobs:
           echo -n $'\tIdentityFile ' >> config && echo "${SSH_DIR}/${SSH_PRIVATE_KEY_FILE}" >> config
           cat config
           ssh-add -l
-          ssh ${EC2_USERNAME}@${EC2_IP} echo "test"
+          ssh -i $SSH_PRIVATE_KEY_FILE ${EC2_USERNAME}@${EC2_IP} echo "test"
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
