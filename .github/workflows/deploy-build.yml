@@ -83,13 +83,13 @@ jobs:
       
       - name: set ssh identity on github runner
         run: |
+          set -x
           mkdir -p $SSH_DIR
           chmod 700 $SSH_DIR
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           chmod 600 $SSH_PRIVATE_KEY_FILE
           echo "$KNOWN_HOSTS" > known_hosts
-          chmod 600 known_hosts
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_FILE
           ssh ${EC2_USERNAME}@${EC2_IP} "echo Test is this working"
