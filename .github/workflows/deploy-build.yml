@@ -92,6 +92,7 @@ jobs:
           touch config
           echo "Host EC2" >> config
           echo $'\tIdentityFile ${SSH_DIR}/${SSH_PRIVATE_KEY_FILE}' >> config
+          cat config
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
