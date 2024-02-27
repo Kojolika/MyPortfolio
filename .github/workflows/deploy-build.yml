@@ -83,6 +83,7 @@ jobs:
         run: |
           eval `ssh-agent -s`
           mkdir -p $SSH_DIR
+          chmod 700 $SSH_DIR
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           chmod 600 $SSH_PRIVATE_KEY_FILE
@@ -97,7 +98,7 @@ jobs:
 
       - name: test ssh connection
         run: |
-          ssh -o StrictHostKeyChecking=no ${EC2_USERNAME}@${EC2_IP} "echo hi"
+          ssh ${EC2_USERNAME}@${EC2_IP} "echo hi"
 
       - name: set env variables for docker-compose
         run: |
