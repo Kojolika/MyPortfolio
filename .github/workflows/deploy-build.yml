@@ -82,8 +82,7 @@ jobs:
           cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           chmod 600 $SSH_PRIVATE_KEY_FILE
-          echo "|1|f2Q+M0ihj1DBvHKYb8b4ooKzAzE=|D/zE3yl8wcqVDtgfz0eQHWMd9rA= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDofC1Ial3a6WbbWTOC6s4Lb4dSMtFGSHMSCoP53i9S9" > known_hosts
-          echo "|1|eGrNfOGB/mBJqNJGbO1Wm63wa84=|qFcT/6LNTVPDjrB+XAJOZLSciMo= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHVy87lFFSZXYfq19GYpMQC534nQyHyQFTxe+uMaxvy2JcJf22Hyi55IfcIZZg8KJrZWCZuuQpu0fW7m2k2LGJ8=" >> known_hosts
+          echo "$KNOWN_HOSTS" > known_hosts
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_FILE
           ssh ${EC2_USERNAME}@${EC2_IP} "echo Test is this working"
