@@ -89,24 +89,13 @@ jobs:
           chmod 600 $SSH_PRIVATE_KEY_FILE
           ssh-keyscan -H $EC2_IP > known_hosts
           ssh-add $SSH_PRIVATE_KEY_FILE
-          touch config
-          echo "Host EC2" >> config
-          echo -n $'\tHostName ' >> config && echo "${EC2_IP}" >> config
-          echo -n $'\tIdentityFile ' >> config && echo "${SSH_DIR}/${SSH_PRIVATE_KEY_FILE}" >> config
-          cat config
-          ssh-add -l
-          ssh -i $SSH_PRIVATE_KEY_FILE ${EC2_USERNAME}@${EC2_IP} echo "test"
+          ssh ${EC2_USERNAME}@${EC2_IP} echo "test"
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_DIR: ~/.ssh
           SSH_PRIVATE_KEY_FILE: id_rsa.pem
           KNOWN_HOSTS_DIR: ~/etc/ssh/
-
-      - name: test ssh connection
-        run: |
-          ssh-add -l
-          ssh ${EC2_USERNAME}@${EC2_IP} echo "test"
 
       - name: set env variables for docker-compose
         run: |
