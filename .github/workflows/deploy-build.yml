@@ -89,7 +89,6 @@ jobs:
           chmod 600 $SSH_PRIVATE_KEY_FILE
           echo "$KNOWN_HOSTS" > known_hosts
           ssh-add $SSH_PRIVATE_KEY_FILE
-          ssh ${EC2_USERNAME}@${EC2_IP} echo "test"
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
@@ -107,6 +106,9 @@ jobs:
  
       - name: run commands on ec2 through ssh
         run: |
+          sudo groupadd docker
+          sudo usermod -aG docker $EC2_USERNAME
+          newgrp docker
           docker context create $EC2_CONTEXT --docker "host=ssh://${EC2_USERNAME}@${EC2_IP}"
           docker context use $EC2_CONTEXT
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
