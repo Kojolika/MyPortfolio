@@ -87,8 +87,8 @@ jobs:
           chmod 700 $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           chmod 600 $SSH_PRIVATE_KEY_FILE
-          echo "$KNOWN_HOSTS" > KNOWN_HOSTS_FILE
-          chmod 600 KNOWN_HOSTS_FILE
+          echo "$KNOWN_HOSTS" > $KNOWN_HOSTS_FILE
+          chmod 600 $KNOWN_HOSTS_FILE
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_FILE
 
