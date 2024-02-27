@@ -90,7 +90,7 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_DIR: ~/.ssh/
-          SSH_PRIVATE_KEY_FILE: dev_keys.pem
+          SSH_PRIVATE_KEY_FILE: id_rsa
           KNOWN_HOSTS: ${{ secrets.DEV_KNOWN_HOSTS }}
 
       - name: set env variables for docker-compose
