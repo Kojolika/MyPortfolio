@@ -92,6 +92,7 @@ jobs:
           chmod 600 known_hosts
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_FILE
+          ssh ${EC2_USERNAME}@${EC2_IP} "echo Test is this working"
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
