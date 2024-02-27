@@ -88,6 +88,7 @@ jobs:
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
           ssh-add $SSH_PRIVATE_KEY_NAME
+          ssh ${EC2_USERNAME}@${EC2_IP} "echo hi1"
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
