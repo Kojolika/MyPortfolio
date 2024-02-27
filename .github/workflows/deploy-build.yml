@@ -87,16 +87,14 @@ jobs:
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_NAME
           chmod 600 $SSH_PRIVATE_KEY_NAME
           ssh-keyscan $EC2_IP >> known_hosts
-          echo "$(ssh-agent -a $SSH_AUTH_SOCK)"
           ssh-add $SSH_PRIVATE_KEY_NAME
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.DEV_SSH_PUBLIC_KEY }}
           SSH_DIR: ~/.ssh
-          SSH_PRIVATE_KEY_NAME: ec2_ssh_key
-          SSH_CONFIG: config
-      
+          SSH_PRIVATE_KEY_NAME: id_rsa
+
       - name: test ssh connection
         run: |
           ssh ${EC2_USERNAME}@${EC2_IP} "echo hi"
