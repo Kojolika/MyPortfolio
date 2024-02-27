@@ -94,10 +94,11 @@ jobs:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_DIR: ~/.ssh
           SSH_PRIVATE_KEY_FILE: id_rsa
+          KNOWN_HOSTS_DIR: ~/etc/ssh/
 
       - name: test ssh connection
         run: |
-          ssh ${EC2_USERNAME}@${EC2_IP} "echo hi"
+          ssh -o GlobalKnownHostsFile=known_hosts ${EC2_USERNAME}@${EC2_IP} "echo hi"
 
       - name: set env variables for docker-compose
         run: |
