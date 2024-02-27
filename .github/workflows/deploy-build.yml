@@ -101,7 +101,7 @@ jobs:
 
       - name: test ssh connection
         run: |
-          ssh ${EC2_USERNAME}@${EC2_IP}
+          ssh ${EC2_USERNAME}@${EC2_IP} echo "test"
 
       - name: set env variables for docker-compose
         run: |
