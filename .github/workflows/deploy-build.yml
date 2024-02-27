@@ -85,19 +85,19 @@ jobs:
         run: |
           mkdir -p $SSH_DIR
           chmod 700 $SSH_DIR
+          cd $SSH_DIR
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           chmod 600 $SSH_PRIVATE_KEY_FILE
-          echo "$KNOWN_HOSTS" > $KNOWN_HOSTS_FILE
-          chmod 600 $KNOWN_HOSTS_FILE
+          echo "$KNOWN_HOSTS" > known_hosts
+          chmod 600 known_hosts
           eval `ssh-agent -s`
           ssh-add $SSH_PRIVATE_KEY_FILE
 
         env:
           SSH_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           SSH_DIR: ~/.ssh/
-          SSH_PRIVATE_KEY_FILE: ~/.ssh/id_rsa.pem
+          SSH_PRIVATE_KEY_FILE: id_rsa.pem
           KNOWN_HOSTS: ${{ secrets.DEV_KNOWN_HOSTS }}
-          KNOWN_HOSTS_FILE: $~/.ssh/known_hosts
 
       - name: set env variables for docker-compose
         run: |
