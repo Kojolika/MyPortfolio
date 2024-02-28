@@ -86,7 +86,7 @@ jobs:
           echo "Host *" > $CONFIG_FILE
           echo "GlobalKnownHostsFile ${SSH_DIR}/known_hosts" >> $CONFIG_FILE
           echo "HostName $EC2_IP" >> $CONFIG_FILE
-          echo "IdentityFile $SSH_PRIVATE_KEY_FILE" >> $CONFIG_FILE
+          echo "IdentityFile ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE" >> $CONFIG_FILE
           cat $CONFIG_FILE
           chmod 600 *
           ssh ${EC2_USERNAME}@${EC2_IP} "echo Test is this working"
