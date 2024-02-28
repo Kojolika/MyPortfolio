@@ -81,15 +81,15 @@ jobs:
           chmod 700 $SSH_DIR
           cd $SSH_DIR
           ssh-keyscan $EC2_IP > known_hosts
-          eval `ssh-agent -s`
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           echo "Host *" > $CONFIG_FILE
           echo "GlobalKnownHostsFile ${SSH_DIR}/known_hosts" >> $CONFIG_FILE
           echo "HostName $EC2_IP" >> $CONFIG_FILE
           echo "IdentityFile ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE" >> $CONFIG_FILE
           cat $CONFIG_FILE
-          ssh-add ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE"
           chmod 600 *
+          eval `ssh-agent -s`
+          ssh-add ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE
           ssh ${EC2_USERNAME}@${EC2_IP} "echo Test is this working"
 
         env:
