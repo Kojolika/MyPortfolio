@@ -1,9 +1,6 @@
 # node modules can be installed via npm install or npm ci
 **/node_modules/
 
-# for my testing purposes only
-**/vm_setup/
-
 # do not commit env variables
 **.env
 
