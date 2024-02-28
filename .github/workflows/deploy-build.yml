@@ -78,8 +78,8 @@ jobs:
       - name: set ssh identity on github runner
         run: |
           chmod og-rw ~
+          echo $HOST
           cd ~
-          pwd
           mkdir -p $SSH_DIR
           chmod 700 $SSH_DIR
           cd $SSH_DIR
