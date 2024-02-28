@@ -78,24 +78,21 @@ jobs:
       - name: set ssh identity on github runner
         run: |
           chmod og-rw ~
-          echo $HOST
-          cd ~
-          mkdir -p $SSH_DIR
-          chmod 700 $SSH_DIR
-          cd $SSH_DIR
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          cd ~/.ssh
           ssh-keyscan $EC2_IP > known_hosts
           echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           echo "Host *" > $CONFIG_FILE
-          echo "GlobalKnownHostsFile ${SSH_DIR}/known_hosts" >> $CONFIG_FILE
+          echo "GlobalKnownHostsFile ~/.ssh/known_hosts" >> $CONFIG_FILE
           echo "HostName $EC2_IP" >> $CONFIG_FILE
-          echo "IdentityFile ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE" >> $CONFIG_FILE
+          echo "IdentityFile ~/.ssh/${SSH_PRIVATE_KEY_FILE}" >> $CONFIG_FILE
           cat $CONFIG_FILE
-          echo ~
           pwd
           ls -a -l
           chmod 600 *
           eval `ssh-agent -s`
-          ssh-add ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE
+          ssh-add ~/.ssh/${SSH_PRIVATE_KEY_FILE}
           ssh ${EC2_USERNAME}@${EC2_IP} "echo Test is this working"
 
         env:
