@@ -1,0 +1,14 @@
+services:
+  web:
+    image: ${LATEST_IMAGE}
+    pull_policy: always
+    env_file: .env
+    ports:
+      - ${PORT}
+  nginx:
+    image: nginx:latest
+    pull_policy: always
+    ports:
+      - 80:80
+    environment:
+      - PORT=${PORT}

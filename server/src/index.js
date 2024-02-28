@@ -8,6 +8,7 @@ dotEnv.config();
 
 const dirname = path.resolve();
 
+const host = '0.0.0.0';
 const port = process.env.PORT;
 const app = express();
 
@@ -23,6 +24,6 @@ app.get('/', (req, res) => {
   res.render('./index');
 });
 
-app.listen(port, () => {
-  console.log(`Portfolio server is listening on port ${port}`);
+app.listen(port, host, () => {
+  console.log(`Portfolio server is listening on port ${host}:${port}`);
 });
