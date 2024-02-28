@@ -87,6 +87,7 @@ jobs:
           echo "HostName $EC2_IP" >> $CONFIG_FILE
           echo "IdentityFile ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE" >> $CONFIG_FILE
           cat $CONFIG_FILE
+          ls -a -l
           chmod 600 *
           eval `ssh-agent -s`
           ssh-add ${SSH_DIR}/$SSH_PRIVATE_KEY_FILE
