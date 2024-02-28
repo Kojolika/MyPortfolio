@@ -84,7 +84,7 @@ jobs:
           eval `ssh-agent -s`
           echo "$SSH_KEY" | tr -d '\r' | ssh-add -
           echo "Host $EC2_IP" > CONFIG_FILE
-          echo -n '\tGlobalKnownHostsFile ' >> CONFIG_FILE
+          echo -n $'\tGlobalKnownHostsFile ' >> CONFIG_FILE
           echo "${SSH_DIR}/known_hosts" >> CONFIG_FILE
           cat CONFIG_FILE
           chmod 600 *
