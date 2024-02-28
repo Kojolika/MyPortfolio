@@ -77,7 +77,8 @@ jobs:
       
       - name: set ssh identity on github runner
         run: |
-          mkdir -p $SSH_DIR
+          chmod og-rw ~
+          mkdir $SSH_DIR
           chmod 700 $SSH_DIR
           cd $SSH_DIR
           ssh-keyscan $EC2_IP > known_hosts
