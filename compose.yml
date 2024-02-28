@@ -9,6 +9,6 @@ services:
     image: nginx:latest
     pull_policy: always
     ports:
-      - ${PORT}:80
+      - 80:${PORT}
     environment:
       - PORT=${PORT}
