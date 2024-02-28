@@ -1,9 +1,11 @@
 name: Deploy Build
 
 on:
-  workflow_run:
-    workflows: ["Update Build Version"]
-    types: [completed]
+  push:
+
+#  workflow_run:
+#    workflows: ["Update Build Version"]
+#    types: [completed]
 
 env:
   LATEST_IMAGE: ${{ secrets.DOCKER_REPO_URL }}:latest-${{ github.sha }}
@@ -95,7 +97,6 @@ jobs:
           cd ${WORK_DIR}
           echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
           echo "PORT=$PORT" >> .env
-          echo "NGINX_ENVSUBST_TEMPLATE_DIR=${ENV_REPO_CHECKOUT_PATH}/nginx-config/" >> .env
  
       - name: run commands on ec2 through ssh
         run: |

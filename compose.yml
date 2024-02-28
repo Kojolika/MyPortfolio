@@ -6,8 +6,7 @@ services:
     ports:
       - ${PORT}
   nginx:
-    image: nginx:latest
-    pull_policy: always
+    build: Dockerfile.nginx
     ports:
       - 80:80
     environment:
