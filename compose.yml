@@ -6,7 +6,9 @@ services:
     ports:
       - ${PORT}
   nginx:
-    build: ./Dockerfile.nginx
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.nginx
     ports:
       - 80:80
     environment:
