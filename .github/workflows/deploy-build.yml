@@ -77,19 +77,10 @@ jobs:
       
       - name: set ssh identity on github runner
         run: |
-          chmod og-rw ~
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           cd ~/.ssh
           ssh-keyscan $EC2_IP > known_hosts
-          echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
-          echo "Host *" > $CONFIG_FILE
-          echo "GlobalKnownHostsFile ~/.ssh/known_hosts" >> $CONFIG_FILE
-          echo "HostName $EC2_IP" >> $CONFIG_FILE
-          echo "IdentityFile ~/.ssh/${SSH_PRIVATE_KEY_FILE}" >> $CONFIG_FILE
-          cat $CONFIG_FILE
-          pwd
-          ls -a -l
           chmod 600 *
           eval `ssh-agent -s`
           ssh-add ~/.ssh/${SSH_PRIVATE_KEY_FILE}
@@ -115,7 +106,7 @@ jobs:
           docker context use $EC2_CONTEXT
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker-compose down
-          docker-compose up
+          docker-compose up -d
 
         env:
           EC2_CONTEXT: ec2
