@@ -80,7 +80,7 @@ jobs:
           chmod og-rw ~
           cd ~
           pwd
-          mkdir $SSH_DIR
+          mkdir -p $SSH_DIR
           chmod 700 $SSH_DIR
           cd $SSH_DIR
           ssh-keyscan $EC2_IP > known_hosts
