@@ -29,6 +29,7 @@ jobs:
         with:
           push: true
           tags: ${{ env.LATEST_IMAGE }}
+          file: /Dockerfile.web
 
   # For this deploy to work correctly, the EC2 instance needs to have docker and docker-compose installed
   # Then make sure the docker daemon is running
