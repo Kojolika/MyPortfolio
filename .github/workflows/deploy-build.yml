@@ -81,7 +81,7 @@ jobs:
           chmod 700 ~/.ssh
           cd ~/.ssh
           ssh-keyscan $EC2_IP > known_hosts
-          echo $SSH_KEY > $SSH_PRIVATE_KEY_FILE
+          echo "$SSH_KEY" > $SSH_PRIVATE_KEY_FILE
           chmod 600 *
           eval `ssh-agent -s`
           ssh-add ~/.ssh/${SSH_PRIVATE_KEY_FILE}
