@@ -5,8 +5,9 @@ services:
     env_file: .env
     volumes:
       - type: bind
-        source: /.env
+        source: ./.env
         target: /.env
+        read_only: true
     ports:
       - ${PORT}:${PORT}
   nginx:
