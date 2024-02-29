@@ -1,2 +1,3 @@
 FROM nginx:latest
+RUN mkdir /etc/nginx/templates
 COPY config/nginx.conf.template /etc/nginx/templates/nginx.conf.template
