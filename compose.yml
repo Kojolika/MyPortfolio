@@ -4,7 +4,7 @@ services:
     pull_policy: always
     env_file: .env
     ports:
-      - ${PORT}
+      - ${PORT}:${PORT}
   nginx:
     build: 
       context: .
