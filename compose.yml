@@ -3,6 +3,10 @@ services:
     image: ${LATEST_IMAGE}
     pull_policy: always
     env_file: .env
+    volumes:
+      - type: bind
+        source: ./.env
+        target: ./.env
     ports:
       - ${PORT}:${PORT}
   nginx:
