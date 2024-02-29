@@ -9,7 +9,6 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile.nginx
-      no_cache: true
     ports:
       - 80:80
     environment:
