@@ -9,8 +9,6 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile.nginx
-    volumes:
-      - ./config:/etc/nginx/templates
     ports:
       - 80:80
     environment:
