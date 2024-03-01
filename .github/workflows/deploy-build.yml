@@ -1,10 +1,9 @@
 name: Deploy Build
 
 on:
-  push:
-#  workflow_run:
-#    workflows: ["Update Build Version"]
-#    types: [completed]
+  workflow_run:
+    workflows: ["Update Build Version"]
+    types: [completed]
 
 jobs:
   create-image:
