@@ -7,9 +7,6 @@ on:
 #    workflows: ["Update Build Version"]
 #    types: [completed]
 
-env:
-  LATEST_IMAGE: ${{ secrets.DOCKER_REPO_URL }}:latest-${{ github.sha }}
-
 jobs:
   create-image:
     runs-on: ubuntu-latest
@@ -24,12 +21,30 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: setup yq
+        uses: mikefarah/yq@master
+
+      - name: get current build version
+        id: get_build_version
+        run: |
+          wget https://raw.githubusercontent.com/Kojolika/Portfolio/${GITHUB_REF_NAME}/${VERSION_FILE}
+          BUILD=$(echo -n "$(yq '.app-verison' ./${VERSION_FILE})+" && yq '.build' ./${VERSION_FILE})
+          echo "BUILD=$BUILD" >> "$GITHUB_OUTPUT"
+          echo "LATEST_IMAGE=${ENV_REPO}:latest-${BUILD}" >> "$GITHUB_OUTPUT"
+        
+        env:
+          VERSION_FILE: version.yml
+          ENV_REPO: ${{ secrets.DOCKER_REPO_URL }}
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: ${{ env.LATEST_IMAGE }}
           file: ./Dockerfile.web
+        
+        env:
+          LATEST_IMAGE: ${{ steps.get_build_version.outputs.LATEST_IMAGE }}
 
   # For this deploy to work correctly, the EC2 instance needs to have docker and docker-compose installed
   # Then make sure the docker daemon is running
@@ -97,7 +112,11 @@ jobs:
           echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
           echo "PORT=$PORT" >> .env
           echo "AWS_ZONE=$AWS_ZONE" >> .env
-          echo -n "BUILD=" >> .env && echo -n "$(yq '.app-verison' ./version.yml)+" >> .env && yq '.build' ./version.yml >> .env
+          echo "BUILD=$BUILD" >> .env
+
+        env:
+          LATEST_IMAGE: ${{ needs.create-image.outputs.LATEST_IMAGE }}
+          BUILD: ${{ needs.create-image.outputs.BUILD }}
  
       - name: run commands on ec2 through ssh
         run: |
