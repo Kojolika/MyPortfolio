@@ -27,9 +27,11 @@ jobs:
         id: get_build_version
         run: |
           wget https://raw.githubusercontent.com/Kojolika/Portfolio/${GITHUB_REF_NAME}/${VERSION_FILE}
-          BUILD=$(echo -n "$(yq '.app-verison' ./${VERSION_FILE})+" && yq '.build' ./${VERSION_FILE})
+          VERSION=$(yq '.app-verison' ./${VERSION_FILE})
+          BUILD=$(yq '.build' ./${VERSION_FILE})
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
           echo "BUILD=$BUILD" >> "$GITHUB_OUTPUT"
-          echo "LATEST_IMAGE=${ENV_REPO}:latest-${BUILD}" >> "$GITHUB_OUTPUT"
+          echo "LATEST_IMAGE=${ENV_REPO}:latest-${BUILD}-${VERSION}" >> "$GITHUB_OUTPUT"
         
         env:
           VERSION_FILE: version.yml
@@ -111,10 +113,11 @@ jobs:
           echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
           echo "PORT=$PORT" >> .env
           echo "AWS_ZONE=$AWS_ZONE" >> .env
-          echo "BUILD=$BUILD" >> .env
+          echo "BUILD=${VERSION}+${BUILD}" >> .env
 
         env:
           LATEST_IMAGE: ${{ needs.create-image.outputs.LATEST_IMAGE }}
+          VERSION: ${{ needs.create-image.outputs.VERSION }}
           BUILD: ${{ needs.create-image.outputs.BUILD }}
  
       - name: run commands on ec2 through ssh
