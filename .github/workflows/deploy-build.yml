@@ -72,10 +72,9 @@ jobs:
           cd $ENV_REPO_CHECKOUT_PATH
           cd $ENV_CONFIG_PATH
           BASE_SETTINGS=$(yq '.resources' $ENV_CONFIG_FILE)
-          SPECIFICS=$(yq '.specifics' $ENV_CONFIG_FILE)
-          echo -n "PORT=" >> "$GITHUB_ENV" && yq '.deployment.ports.port' $BASE_SETTINGS >> "$GITHUB_ENV"
-          echo -n "AWS_ZONE=" >> "$GITHUB_ENV" && yq '.deployment | .select(.name == "dev") | .ec2-zone' $SPECIFICS >> "$GITHUB_ENV"
-          echo -n "NODE_ENV=" >> "$GITHUB_ENV" && yq '.deployment | .select(.name == "dev") | .environment' $SPECIFICS >> "$GITHUB_ENV"
+          echo -n "PORT=" >> "$GITHUB_ENV" && yq 'load(.resources[0]) | .deployment.ports.port' $BASE_SETTINGS >> "$GITHUB_ENV"
+          echo -n "AWS_ZONE=" >> "$GITHUB_ENV" && yq '.specifics | load(.deployment) | .containers[] | select(.name == "dev") | .ec2-zone' $ENV_CONFIG_FILE >> "$GITHUB_ENV"
+          echo -n "NODE_ENV=" >> "$GITHUB_ENV" && yq '.specifics | load(.deployment) | .containers[] | select(.name == "dev") | .environment' $ENV_CONFIG_FILE >> "$GITHUB_ENV"
       
       - name: set ssh identity on github runner
         run: |
