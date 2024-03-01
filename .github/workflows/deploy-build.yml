@@ -104,7 +104,6 @@ jobs:
           docker context create $EC2_CONTEXT --docker "host=ssh://${EC2_USERNAME}@${EC2_IP}"
           docker context use $EC2_CONTEXT
           echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
-          docker compose build
           docker-compose down
           docker-compose up -d
 
