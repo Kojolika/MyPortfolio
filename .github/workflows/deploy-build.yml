@@ -5,12 +5,13 @@ on:
     workflows: ["Update Build Version"]
     types: [completed]
 
-env:
-  LATEST_IMAGE: ${{ secrets.DOCKER_REPO_URL }}:latest-${{ github.sha }}
-
 jobs:
   create-image:
     runs-on: ubuntu-latest
+
+    outputs:
+      build: ${{ steps.get_build_version.outputs.BUILD }}
+      version: ${{ steps.get_build_version.outputs.VERSION }}
 
     steps:
       - name: Set up Docker Buildx
@@ -22,11 +23,32 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: setup yq
+        uses: mikefarah/yq@master
+
+      - name: get current build version
+        id: get_build_version
+        run: |
+          wget https://raw.githubusercontent.com/Kojolika/Portfolio/${GITHUB_REF_NAME}/${VERSION_FILE}
+          VERSION=$(yq '.app-verison' ./${VERSION_FILE})
+          BUILD=$(yq '.build' ./${VERSION_FILE})
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "BUILD=$BUILD" >> "$GITHUB_OUTPUT"
+          echo "LATEST_IMAGE=${ENV_REPO}:latest-${VERSION}-${BUILD}" >> "$GITHUB_OUTPUT"
+        
+        env:
+          VERSION_FILE: version.yml
+          ENV_REPO: ${{ secrets.DOCKER_REPO_URL }}
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: ${{ env.LATEST_IMAGE }}
+          file: ./Dockerfile.web
+        
+        env:
+          LATEST_IMAGE: ${{ steps.get_build_version.outputs.LATEST_IMAGE }}
 
   # For this deploy to work correctly, the EC2 instance needs to have docker and docker-compose installed
   # Then make sure the docker daemon is running
@@ -68,11 +90,9 @@ jobs:
         run: |
           cd $ENV_REPO_CHECKOUT_PATH
           cd $ENV_CONFIG_PATH
-          BASE_SETTINGS=$(yq '.resources' $ENV_CONFIG_FILE)
-          PORT=$(yq '.deployment.ports.port' $BASE_SETTINGS)
-          NETWORK_PROTOCOL=$(yq '.deployment.ports.protocol' $BASE_SETTINGS)
-          echo "PORT=$PORT" >> "$GITHUB_ENV"
-          echo "NETWORK_PROTOCOL=$NETWORK_PROTOCOL" >> "$GITHUB_ENV"
+          echo -n "PORT=" >> "$GITHUB_ENV" && yq 'load(.resources[0]) | .deployment.ports.port' $ENV_CONFIG_FILE >> "$GITHUB_ENV"
+          echo -n "AWS_ZONE=" >> "$GITHUB_ENV" && yq '.specifics | load(.deployment) | .containers[] | select(.name == "dev") | .ec2-zone' $ENV_CONFIG_FILE >> "$GITHUB_ENV"
+          echo -n "NODE_ENV=" >> "$GITHUB_ENV" && yq '.specifics | load(.deployment) | .containers[] | select(.name == "dev") | .environment' $ENV_CONFIG_FILE >> "$GITHUB_ENV"
       
       - name: set ssh identity on github runner
         run: |
@@ -93,16 +113,24 @@ jobs:
       - name: set env variables for docker-compose
         run: |
           cd ${WORK_DIR}
-          echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
+          echo "NODE_ENV=$NODE_ENV" >> .env
           echo "PORT=$PORT" >> .env
-          echo "NGINX_ENVSUBST_TEMPLATE_DIR=${ENV_REPO_CHECKOUT_PATH}/nginx-config/" >> .env
+          echo "AWS_ZONE=$AWS_ZONE" >> .env
+          echo "BUILD=${VERSION}+${BUILD}" >> .env
+          echo "LATEST_IMAGE=${ENV_REPO}:latest-${VERSION}-${BUILD}" >> .env
+          
+        env:
+          VERSION: ${{ needs.create-image.outputs.version }}
+          BUILD: ${{ needs.create-image.outputs.build }}
+          ENV_REPO: ${{ secrets.DOCKER_REPO_URL }}
  
       - name: run commands on ec2 through ssh
         run: |
           docker context create $EC2_CONTEXT --docker "host=ssh://${EC2_USERNAME}@${EC2_IP}"
           docker context use $EC2_CONTEXT
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
           docker-compose down
+          docker system prune -a -f
           docker-compose up -d
 
         env:

@@ -6,6 +6,12 @@
 
 <body>
     <h1>Insert portfolio here.</h1>
+    <% if (locals) { %>
+        <p>Running <%= locals.environment %> environment.</p>
+        <p>On port <%= locals.port %></p>
+        <p>AWS zone <%= locals.zone %></p>
+        <p>Build <%= locals.build %></p>
+    <% } %>
 </body>
 
 </html>

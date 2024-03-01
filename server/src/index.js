@@ -19,9 +19,16 @@ app.set('views', path.resolve(dirname, './client/public/views'));
 
 app.set('x-powered-by', false); // disable express advertisment in html header
 
+const envLocals = {
+  environment: process.env.NODE_ENV,
+  port: process.env.PORT,
+  zone: process.env.AWS_ZONE,
+  build: process.env.BUILD,
+};
+
 app.get('/', (req, res) => {
   console.log('Accessed index');
-  res.render('./index');
+  res.render('./index', envLocals);
 });
 
 app.listen(port, host, () => {
