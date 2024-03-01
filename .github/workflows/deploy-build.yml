@@ -72,10 +72,10 @@ jobs:
           cd $ENV_REPO_CHECKOUT_PATH
           cd $ENV_CONFIG_PATH
           BASE_SETTINGS=$(yq '.resources' $ENV_CONFIG_FILE)
-          PORT=$(yq '.deployment.ports.port' $BASE_SETTINGS)
-          NETWORK_PROTOCOL=$(yq '.deployment.ports.protocol' $BASE_SETTINGS)
-          echo "PORT=$PORT" >> "$GITHUB_ENV"
-          echo "NETWORK_PROTOCOL=$NETWORK_PROTOCOL" >> "$GITHUB_ENV"
+          SPECIFICS=$(yq '.specifics' $ENV_CONFIG_FILE)
+          echo -n "PORT=" >> "$GITHUB_ENV" && yq '.deployment.ports.port' $BASE_SETTINGS >> "$GITHUB_ENV"
+          echo -n "AWS_ZONE=" >> "$GITHUB_ENV" && yq '.deployment | .select(.name == "dev") | .ec2-zone' $SPECIFICS >> "$GITHUB_ENV"
+          echo -n "NODE_ENV=" >> "$GITHUB_ENV" && yq '.deployment | .select(.name == "dev") | .environment' $SPECIFICS >> "$GITHUB_ENV"
       
       - name: set ssh identity on github runner
         run: |
@@ -98,11 +98,11 @@ jobs:
           cd ${WORK_DIR}
           echo "LATEST_IMAGE=$LATEST_IMAGE" >> .env
           echo "PORT=$PORT" >> .env
+          echo "AWS_ZONE=$AWS_ZONE" >> .env
+          echo -n "BUILD=" >> .env && echo -n "$(yq '.app-verison' ./version.yml)+" >> .env && yq '.build' ./version.yml >> .env
  
       - name: run commands on ec2 through ssh
         run: |
-          pwd
-          ls -a
           docker context create $EC2_CONTEXT --docker "host=ssh://${EC2_USERNAME}@${EC2_IP}"
           docker context use $EC2_CONTEXT
           echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
