@@ -14,7 +14,7 @@ const clientConfig = (env) => {
       // clean: true,
     },
     target: 'web',
-    mode: env?.mode == 'production' ? 'production' : 'development',
+    mode: env?.environment == 'production' ? 'production' : 'development',
     resolve: {
       modules: ['../node_modules'],
     },
@@ -34,7 +34,7 @@ const serverConfig = (env) => {
       chunkFormat: 'module',
     },
     target: 'node',
-    mode: env?.mode == 'production' ? 'production' : 'development',
+    mode: env?.environment == 'production' ? 'production' : 'development',
     resolve: {
       modules: ['../node_modules'],
     },
