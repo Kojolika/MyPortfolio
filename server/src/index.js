@@ -31,6 +31,10 @@ app.get('/', (req, res) => {
   res.render('./index', envLocals);
 });
 
+app.get('./client/src/*.js', (req, res) =>{
+  res.sendFile('./client/src/*.js');
+});
+
 app.listen(port, host, () => {
   console.log(`Portfolio server is listening on port ${host}:${port}`);
 });
