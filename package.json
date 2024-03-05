@@ -20,7 +20,7 @@
   "scripts": {
     "start": "node ./server/src/index",
     "about:start": "Runs the node server.",
-    "start:build" : "node ./dist/portfolio.node.bundle",
+    "start:build": "node ./dist/portfolio.node.bundle",
     "about:start:build": "Rememeber to build the application first with the build script before using this command.",
     "build": "webpack build --config ./config/webpack.config.js --config-name server --stats-error-details --env mode=%npm_config_environment% && webpack build --config ./config/webpack.config.js --config-name client --stats-error-details --env mode=%npm_config_environment%",
     "about:build": "Builds the server and then the client bundles. When running 'npm run build' use '--environment=<production or development>' to specify build mode. Defaults to development.",
@@ -39,7 +39,6 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
-    "html-webpack-plugin": "^5.6.0",
     "path-browserify": "^1.0.1",
     "webpack": "^5.90.0",
     "webpack-cli": "^5.1.4",
