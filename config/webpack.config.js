@@ -6,10 +6,10 @@ const dirname = path.resolve();
 const clientConfig = (env) => {
   return {
     name: 'client',
-    entry: path.resolve(dirname, './client/src/pixi/spaceship.js'),
+    entry: path.resolve(dirname, './client/src/index.js'),
     output: {
       path: path.resolve(dirname, './dist'),
-      filename: 'portfolio.bundle.js',
+      filename: 'portfolio.web.bundle.js',
       // commented out since we are building the server first then the client
       // clean: true,
     },

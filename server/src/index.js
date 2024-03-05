@@ -2,6 +2,7 @@ import express from 'express';
 import {renderFile} from 'ejs';
 import * as dotEnv from 'dotenv';
 import path from 'path';
+import {setMiddleware} from './middleware/index.js';
 
 // attach .env variables to process.env
 dotEnv.config();
@@ -17,7 +18,11 @@ app.engine('html', renderFile);
 app.set('view engine', 'html');
 app.set('views', path.resolve(dirname, './client/public/views'));
 
-app.set('x-powered-by', false); // disable express advertisment in html header
+// disable express advertisment in html header
+app.set('x-powered-by', false);
+
+// install our middleware functions
+setMiddleware(process.env.NODE_ENV, app);
 
 const envLocals = {
   environment: process.env.NODE_ENV,
@@ -27,12 +32,10 @@ const envLocals = {
 };
 
 app.get('/', (req, res) => {
-  console.log('Accessed index');
+  //const resourcePath = path.resolve(dirname, 'client/src/index.js');
+  //console.log(`Redirecting to ${resourcePath}`)
   res.render('./index', envLocals);
-});
-
-app.get('./client/src/*.js', (req, res) =>{
-  res.sendFile('./client/src/*.js');
+  //res.sendFile(resourcePath);
 });
 
 app.listen(port, host, () => {
