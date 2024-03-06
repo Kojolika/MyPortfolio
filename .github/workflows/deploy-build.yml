@@ -119,6 +119,7 @@ jobs:
           echo "AWS_ZONE=$AWS_ZONE" >> .env
           echo "BUILD=${VERSION}+${BUILD}" >> .env
           echo "LATEST_IMAGE=${ENV_REPO}:latest-${VERSION}-${BUILD}" >> .env
+          echo "USE_BUILD='true'" >> .env
           
         env:
           VERSION: ${{ needs.create-image.outputs.version }}
