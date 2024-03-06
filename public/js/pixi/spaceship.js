@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const app = new PIXI.Application({width: 640, height: 360});
   document.body.appendChild(app.view);
 
-  const sprite = PIXI.Sprite.from('../../public/views/sample.png');
+  const sprite = PIXI.Sprite.from('../../views/sample.png');
   app.stage.addChild(sprite);
 
-  const elapsed = 0.0;
+  let elapsed = 0.0;
 
   // Tell our application's ticker to run a new callback every frame, passing
   // in the amount of time that has passed since the last tick
