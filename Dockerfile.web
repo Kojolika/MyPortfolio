@@ -12,7 +12,7 @@ COPY ./package-lock.json .
 COPY ./package.json .
 RUN npm ci
 RUN mkdir -p /app/client/public/
-COPY --from=build /build/dist/ .
+COPY --from=build /build/dist/ ./dist
 COPY ./client/public ./client/public
-CMD ["node", "./portfolio.node.bundle"]
+CMD ["node", "./dist/portfolio.node.bundle"]
 EXPOSE $PORT
