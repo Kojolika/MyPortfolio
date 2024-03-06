@@ -16,27 +16,23 @@ const app = express();
 // set ejs as our view engine
 app.engine('html', renderFile);
 app.set('view engine', 'html');
-app.set('views', path.resolve(dirname, './client/public/views'));
+app.set('views', path.resolve(dirname, './public/views'));
 
-// disable express advertisment in html header
+// disable express advertisement in html header
 app.set('x-powered-by', false);
 
+app.use(express.static(path.resolve('public')));
 // install our middleware functions
 setMiddleware(process.env.NODE_ENV, app);
-
-const clientPath = process.env.USE_BUILD === 'true'
-  ? dirname + '/dist/portfolio.web.bundle.js'
-  : dirname + '/client/src/index.js';
 
 const envLocals = {
   environment: process.env.NODE_ENV,
   port: process.env.PORT,
   zone: process.env.AWS_ZONE,
-  build: process.env.BUILD,
-  clientPath: clientPath
+  build: process.env.BUILD
 };
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.render('./index', envLocals);
 });
 

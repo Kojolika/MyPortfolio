@@ -2,3 +2,4 @@
 // we'll use this script to import any neccesary scripts for our client app
 
 import './lit/elements/mainpage.js';
+import './pixi/spaceship.js';
