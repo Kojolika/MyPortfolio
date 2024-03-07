@@ -133,6 +133,9 @@ jobs:
           docker system prune -a -f
           docker-compose up -d
 
+        env:
+          EC2_CONTEXT: ec2
+
       - name: check if both containers are running
         # We subtract 1 since we're counting the lines of the stdin, the first line is the table header
         run: |
@@ -141,5 +144,3 @@ jobs:
             exit 1;
           fi
 
-        env:
-          EC2_CONTEXT: ec2
