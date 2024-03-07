@@ -15,9 +15,9 @@ RUN mkdir -p /app/public/
 RUN mkdir /app/public/views
 RUN mkdir /app/public/styles
 RUN mkdir /app/public/dist
-COPY --from=build /build/src/dist/node-bundle.js ./src/dist
-COPY --from=build /build/public/dist/web-bundle.js ./public/dist
+COPY --from=build /build/src/dist/ ./src/dist
+COPY --from=build /build/public/dist/ ./public/dist
 COPY ./public/views ./public/views
 COPY ./public/styles ./public/styles
-CMD ["node", "./dist/node-bundle"]
+CMD ["node", "./src/dist/node-bundle"]
 EXPOSE $PORT
