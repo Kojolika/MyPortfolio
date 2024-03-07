@@ -22,7 +22,7 @@
     "dev": "nodemon --ignore '*/dist/*.js' --config config/nodemon.json start",
     "about:dev": "Runs the server, but watches for changes in files and restarts when detected any. You'll need to rebuild to see changes as well.",
     "test": "mocha",
-    "lint": "eslint --ext .js, ./"
+    "lint": "eslint ./"
   },
   "private": true,
   "type": "module",

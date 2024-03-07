@@ -1,8 +1,15 @@
 import {LitElement, html} from 'lit';
 
+/**
+ * Test element
+ */
 export class MainPage extends LitElement {
-    render(){
-        return html`<main> I am in the main element. </main>`;
-    }
+  /**
+   *
+   * @return {html} html for the main page
+   */
+  render() {
+    return html`<main> I am in the main element. </main>`;
+  }
 };
-customElements.define("main-page", MainPage);
+customElements.define('main-page', MainPage);

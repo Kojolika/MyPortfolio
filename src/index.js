@@ -1,8 +1,8 @@
 import express from 'express';
-import { renderFile } from 'ejs';
+import {renderFile} from 'ejs';
 import * as dotEnv from 'dotenv';
 import path from 'path';
-import { setMiddleware } from './middleware/index.js';
+import {setMiddleware} from './middleware/index.js';
 
 // attach .env variables to process.env
 dotEnv.config();
@@ -29,7 +29,7 @@ const envLocals = {
   environment: process.env.NODE_ENV,
   port: process.env.PORT,
   zone: process.env.AWS_ZONE,
-  build: process.env.BUILD
+  build: process.env.BUILD,
 };
 
 app.get('/', (req, res) => {
