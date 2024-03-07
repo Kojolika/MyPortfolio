@@ -19,5 +19,5 @@ COPY --from=build /build/src/dist/node-bundle.js ./src/dist
 COPY --from=build /build/public/dist/web-bundle.js ./public/dist
 COPY ./public/views ./public/views
 COPY ./public/styles ./public/styles
-CMD ["node", "./src/dist/node-bundle"]
+CMD ["node", "./dist/node-bundle"]
 EXPOSE $PORT
