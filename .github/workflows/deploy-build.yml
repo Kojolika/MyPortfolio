@@ -1,10 +1,9 @@
 name: Deploy Build
 
 on:
-  push:
-#  workflow_run:
-#    workflows: ["Update Build Version"]
-#    types: [completed]
+  workflow_run:
+    workflows: ["Update Build Version"]
+    types: [completed]
 
 jobs:
   create-image:
@@ -133,6 +132,14 @@ jobs:
           docker-compose down
           docker system prune -a -f
           docker-compose up -d
+
+      - name: check if both containers are running
+        # We subtract 1 since we're counting the lines of the stdin, the first line is the table header
+        run: |
+          NUM_CONTAINERS=$(($(docker ps | wc -l) - 1))
+          if(( NUM_CONTAINERS < 2 )); then
+            exit 1;
+          fi
 
         env:
           EC2_CONTEXT: ec2
