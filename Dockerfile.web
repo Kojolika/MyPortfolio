@@ -1,9 +1,23 @@
-FROM node:21.6.1-alpine3.18
-ENV PORT=3000
+FROM node:21.6.1-alpine3.18 as build
 ENV NODE_ENV=development
-WORKDIR /app
+WORKDIR /build
 COPY . .
 RUN npm ci
-RUN npm run build
-CMD ["node", "./dist/portfolio.node.bundle"]
+RUN npm run build --environment=${NODE_ENV}
+
+FROM node:21.6.1-alpine3.18
+ENV PORT=3000
+WORKDIR /app
+COPY ./package-lock.json .
+COPY ./package.json .
+RUN npm ci
+RUN mkdir -p /app/public/
+RUN mkdir /app/public/views
+RUN mkdir /app/public/styles
+RUN mkdir /app/public/dist
+COPY --from=build /build/src/dist/ ./src/dist
+COPY --from=build /build/public/dist/ ./public/dist
+COPY ./public/views ./public/views
+COPY ./public/styles ./public/styles
+CMD ["node", "./src/dist/node-bundle"]
 EXPOSE $PORT
