@@ -8,10 +8,15 @@ import './nav-column.js';
 export class MainPage extends LitElement {
   static styles = css`
     main {
-        display: grid;
-        grid-template-columns: 4fr 1fr;
-        grid-auto-rows: minmax(100px, auto);
-        background-color: lightblue;   
+        display: flex;
+        flex-direction: row;
+        background-color: lightblue;
+        justify-content: center;
+        width: 100%;
+    }
+    info-column{
+      min-width: 1750px;
+      justify-self: center;
     }
   `;
 

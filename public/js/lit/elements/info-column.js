@@ -1,5 +1,6 @@
-import {LitElement, html, css} from 'lit';
-import {centerChildren} from '../styles/centerChildren.js';
+import { LitElement, html, css } from 'lit';
+import { AboutMe } from './about-me-article.js';
+import { centerChildren } from '../styles/centerChildren.js';
 
 /**
  *
@@ -7,18 +8,22 @@ import {centerChildren} from '../styles/centerChildren.js';
 export class InfoColumn extends LitElement {
   static styles = [centerChildren, css`
     :host {
-        display: block;
-        font-family: cursive;
-        background-color: lightgrey;
-        min-height: 3000px;
+      display: block;
+      font-family: cursive;
+      //background-color: lightgrey;
+      min-height: 3000px;
     }
     .main-content {
+      height: 100%;
       width: 70%;
       min-width: 600px;
       background-color: lightblue;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
     }
     .main-margin {
-      background-color: bisque;
+      //background-color: bisque;
     }
     `];
   /**
@@ -27,8 +32,8 @@ export class InfoColumn extends LitElement {
   render() {
     return html`
     <div class='center main-margin'>
-      <div class='center main-content'>
-        <p>I am in the main content.</p>
+      <div class='main-content'>
+        <about-me></about-me>
       </div>
     </div>
     `;
