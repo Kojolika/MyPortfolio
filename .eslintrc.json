@@ -12,6 +12,17 @@
         "**/dist/*.js"
     ],
     "rules": {
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "no-tabs": "off",
+        "indent": [
+            "off",
+            "tab"
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ]
     }
 }

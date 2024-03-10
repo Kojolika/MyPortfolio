@@ -4,7 +4,7 @@ export class AboutMe extends LitElement {
     static styles = css`
     article{
         display: block;
-        background-color: orange;
+        background-color: #55B5DD;
         min-height: 1000px;
     }
     img{

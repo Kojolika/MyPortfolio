@@ -10,7 +10,7 @@ export class MainPage extends LitElement {
     main {
         display: flex;
         flex-direction: row;
-        background-color: lightblue;
+        background-color: whitesmoke;
         justify-content: center;
         width: 100%;
     }
