@@ -5,5 +5,6 @@ export const contentHeader = css`
         font-family: monospace;
         font-size: 72px;
         text-align: center;
+        margin: 0;
     }
 `;

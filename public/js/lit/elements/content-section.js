@@ -1,15 +1,31 @@
-import {LitElement, html, csc} from 'lit';
-import {contentHeader} from '../styles/content-header.js';
+import { LitElement, html, css } from 'lit';
+import { contentHeader } from '../styles/content-header.js';
 
 /**
  *
  */
 export class ContentSection extends LitElement {
-    static styles = [contentHeader];
+    static styles = [contentHeader, css`
+        :host{
+            justify-content: start;
+        }
+        article {
+            width: 1250px;
+            min-height: 1250px;
+            background-color: lightcyan;
+            scroll-snap-type: y mandatory;
+            scroll-snap-align: start;
+        }
+    `];
 
     static properties = {
-        title: {},
+        title: { type: String },
     };
+
+    constructor(title) {
+        super();
+        this.title = title;
+    }
 
     /**
      *
@@ -24,3 +40,4 @@ export class ContentSection extends LitElement {
         `;
     }
 }
+customElements.define('content-section', ContentSection);
