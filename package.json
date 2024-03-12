@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@lit/task": "^1.0.0",
     "chai": "^5.0.0",
     "dotenv": "^16.4.0",
     "ejs": "^3.1.9",
