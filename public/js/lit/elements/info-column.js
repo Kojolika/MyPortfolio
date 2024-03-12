@@ -1,10 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import {LitElement, html, css} from 'lit';
 import './content-section.js';
 import './about-me-article.js';
 import './work-experience.js';
 import './projects.js';
 import './contact-me.js';
-import { centerChildren } from '../styles/centerChildren.js';
+import {centerChildren} from '../styles/centerChildren.js';
 
 /**
  *
@@ -13,7 +13,6 @@ export class InfoColumn extends LitElement {
 	static styles = [centerChildren, css`
     	.main-content {
 			display: flex;
-      		width: 70%;
       		min-width: 600px;
       		flex-direction: column;
 			justify-items: center;
@@ -29,7 +28,7 @@ export class InfoColumn extends LitElement {
 		return html`
     		<div class='center main-margin'>
       			<div class='main-content'>
-					<content-section title="Hi I'm Andrew.">
+					<content-section title="Hi, I'm Andrew.">
 						<about-me></about-me>
 					</content-section>
 					<content-section title="Work Experience" >

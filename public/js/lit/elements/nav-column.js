@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import {LitElement, html, css} from 'lit';
 
 /**
  *
@@ -7,40 +7,25 @@ export class NavColumn extends LitElement {
 	static styles = css`
     	:host{
 			display: flex;
-			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
 			height: 100vh;
     		background-color: #3B85C4;
-    		justify-content: center;
     		align-items: center;
-    		position: fixed;
-    		right: 0;
-    		top: 0;
+			position: sticky;
+			top: 0;
+			padding-left: 25px;
+			padding-right: 25px;
+			box-shadow: black 0px 0px 15px; 
     	}
 		li {
 			color: white;
 			font-size: 36px;
-			list-style-type: none;	
+			list-style-type: none;
 		}
-
 		ul {
+			display: flex;
 			padding-left: 0;
-		}
-		@media screen and (max-width: 1500px){
-			:host{
-				display: none;
-			}
-		}
-		@media screen and (min-width: 1500px){
-			:host{
-				min-width: 8%;
-				max-width: 12%;
-			}
-		}
-		@media screen and (min-width: 1750px){
-			:host{
-				min-width: 8%;
-				max-width: 12%;
-			}
+			flex-direction: column;
+			justify-content: space-evenly;
 		}
   	`;
 

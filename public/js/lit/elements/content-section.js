@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import { contentHeader } from '../styles/content-header.js';
+import {LitElement, html, css} from 'lit';
+import {contentHeader} from '../styles/content-header.js';
 
 /**
  *
@@ -10,18 +10,22 @@ export class ContentSection extends LitElement {
             justify-content: start;
         }
         article {
-            width: 1250px;
+            min-width: 320px;
             min-height: 1250px;
-            background-color: lightcyan;
-            scroll-snap-type: y mandatory;
-            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
         }
     `];
 
     static properties = {
-        title: { type: String },
+        title: {type: String},
     };
 
+    /**
+     *
+     * @param {*} title
+     */
     constructor(title) {
         super();
         this.title = title;
