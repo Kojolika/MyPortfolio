@@ -26,10 +26,6 @@ app.set('x-powered-by', false);
 
 // allow files in public path to be fetched
 app.use(express.static(path.resolve('public')));
-app.use('*', (req, res, next) => {
-  res.json(data);
-  next();
-});
 
 // install our middleware functions
 setMiddleware(process.env.NODE_ENV, app);
@@ -48,11 +44,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/work-experience', (req, res) =>{
-  res.json(projects);
+  res.json(workExperience);
 });
 
 app.get('/projects', (req, res) =>{
-  res.json(workExperience);
+  res.json(projects);
 });
 
 app.listen(port, host, () => {

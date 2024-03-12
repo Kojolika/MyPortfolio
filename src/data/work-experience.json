@@ -1,3 +1,23 @@
 {
-    "work": "I am a test"
+    "jobs": [
+        {
+            "employer": "Kongregate",
+            "title": "Client Software Engineer",
+            "description": [
+                "• Implemented modular UI, developed core systems and features, created REST endpoints, created admin tools and interfaces, fixed critical bugs, and improved performance when navigating menus.",
+                "• Improved developer efficiency and reduced bugs by eliminating boilerplate code across the Unity client application with Dependency Injection and as well as the backend server by identifying and condensing unnecessary REST endpoints.",
+                "• Improved user experience by identifying and implementing methods of data reordering in the backend Node.js admin server dashboard via drag and drop functionality.",
+                "• Solved business requirements by developing custom scripts in relation to scaling and positioning of core UI components and 3D game objects."
+            ]
+        },
+        {
+            "employer": "Ford Motor Company",
+            "title": "Software Developer Intern",
+            "description": [
+                "• Developed an application which predicts the cost of vehicle parts within the FEDEBOM Ford database with respect to various attribute changes in the database using machine learning.",
+                "• Developed a user-friendly and accessible way to view FEDEBOM data in the form of charts, graphs, and tables for an intuitive viewing experience to increase engineer productivity.",
+                "• Improved engineer productivity by developing an application which scanned Ford Vehicle Requirement documents and output a categorized list of vehicle part requirements rules leveraging AI and NLP."
+            ]
+        }
+    ]
 }
