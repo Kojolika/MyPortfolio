@@ -1,30 +1,55 @@
 import {LitElement, html, css} from 'lit';
+import {Task} from '@lit/task';
 import {contentHeader} from '../styles/content-header.js';
 
 /**
  *
  */
 export class WorkExperience extends LitElement {
-    static styles = [contentHeader];
+    static styles = [contentHeader,
+        css`
+            .job-desc{
+                display: flex;
+                flex-direction: column;
+            }
+        `,
+    ];
+    static properties = {
+        workExpArray: {type: Object},
+    };
+
+    _workExpTask = new Task(this, {
+        task: async ([workExpArray], {signal}) =>{
+            const response = await fetch('/work-experience', {signal});
+            if (!response.ok) {
+                throw new Error(response.status);
+            }
+            return response.json();
+        },
+        args: () => [this.workExpArray],
+    });
 
     /**
     *
     * @return {html}
     */
     render() {
-        return html`
-            <p>
-                Lorem ipsum dolor sit amet, consectetur 
-                adipiscing elit, sed do eiusmod tempor incididunt 
-                ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit 
-                esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, 
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        `;
-  }
+        return this._workExpTask.render({
+            pending: () => html`<p>Loading work exp...</p>`,
+            complete: (workArray) => {
+                return workArray.jobs.map((workExp) =>{
+                    const description = workExp.description.map((sentence) => html`<span>${sentence}</span>`);
+                    return html`
+                        <div >
+                            <h2>${workExp.employer}</h2>
+                            <h3>${workExp.title}</h3>
+                            <p class="job-desc">${description}</p>
+                        </div>
+                    `;
+                });
+            },
+            error: (e) => html`<p>Error: ${e}</p>`,
+        });
+    }
 }
 customElements.define('work-experience', WorkExperience);

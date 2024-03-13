@@ -4,4 +4,4 @@
 
 import './lit/elements/main-page.js';
 import './lit/elements/env-var-info.js';
-// import './pixi/spaceship.js';
+import './pixi/spaceship.js';
