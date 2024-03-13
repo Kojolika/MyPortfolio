@@ -1,0 +1,48 @@
+{
+    "projects": [
+        {
+            "media-url": "media/revolving-dawn.gif",
+            "title": "Revolving Dawn",
+            "url" : "https://github.com/Kojolika/Revolving-Dawn",
+            "tech": [
+                "Unity",
+                "C#"
+            ]
+        },
+        {
+            "media-url": "media/the-grid.gif",
+            "title": "The Grid",
+            "url" : "https://github.com/Kojolika/TheGrid",
+            "tech": [
+                "Unity",
+                "ECS",
+                "C#"
+            ]
+        },
+        {
+            "media-url": "media/weather-web.gif",
+            "title": "Fullstack Weather Website",
+            "url" : "https://github.com/Kojolika/fullstackapp",
+            "tech": [
+                "React",
+                "Node.js",
+                "MongoDB",
+                "Express.js",
+                "JavaScript",
+                "HTML",
+                "CSS"
+            ]
+        },
+        {
+            "media-url": "media/cicd.gif",
+            "title": "CI/CD Pipeline",
+            "url" : "https://github.com/Kojolika/Portfolio-devops-environments",
+            "tech": [
+                "Docker",
+                "AWS EC2",
+                "Github Actions",
+                "YML"
+            ]
+        }
+    ]
+}

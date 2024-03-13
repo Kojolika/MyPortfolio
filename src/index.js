@@ -4,6 +4,9 @@ import * as dotEnv from 'dotenv';
 import path from 'path';
 import {setMiddleware} from './middleware/index.js';
 
+import projects from './data/projects.json';
+import workExperience from './data/work-experience.json';
+
 // attach .env variables to process.env
 dotEnv.config();
 
@@ -21,11 +24,13 @@ app.set('views', path.resolve(dirname, './public/views'));
 // disable express advertisement in html header
 app.set('x-powered-by', false);
 
+// allow files in public path to be fetched
 app.use(express.static(path.resolve('public')));
+
 // install our middleware functions
 setMiddleware(process.env.NODE_ENV, app);
 
-const envLocals = {
+const env = {
   environment: process.env.NODE_ENV,
   port: process.env.PORT,
   zone: process.env.AWS_ZONE,
@@ -33,7 +38,17 @@ const envLocals = {
 };
 
 app.get('/', (req, res) => {
-  res.render('./index', envLocals);
+  res.render('./index', {
+    env: JSON.stringify(env),
+  });
+});
+
+app.get('/work-experience', (req, res) =>{
+  res.json(workExperience);
+});
+
+app.get('/projects', (req, res) =>{
+  res.json(projects);
 });
 
 app.listen(port, host, () => {

@@ -3,17 +3,10 @@
 
 <head>
     <script src='dist/web-bundle.js' type="module"></script>
+    <link rel="stylesheet" href="../styles/global-styling.css" type="text/css">
 </head>
 
 <body>
-    <h1>Insert portfolio here.</h1>
-    <% if (locals) { %>
-        <p>Running <%= locals.environment %> environment.</p>
-        <p>On port <%= locals.port %></p>
-        <p>AWS zone <%= locals.zone %></p>
-        <p>Build <%= locals.build %></p>
-    <% } %>
-
     <main-page></main-page>
 </body>
 
