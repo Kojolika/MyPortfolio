@@ -12,6 +12,7 @@ import {centerChildren} from '../styles/centerChildren.js';
 export class InfoColumn extends LitElement {
 	static styles = [centerChildren, css`
     	.main-content {
+			height: 100vh;
 			display: flex;
       		min-width: 320px;
       		flex-direction: column;
@@ -20,7 +21,12 @@ export class InfoColumn extends LitElement {
 			gap: 100px;
 			padding-left: 10px;
 			padding-right: 10px;
+			overflow-y: scroll;
+  			scroll-snap-type: y proximity;
     	}
+		content-section{
+			scroll-snap-align: start;
+		}
     `];
 
 	/**
@@ -33,9 +39,9 @@ export class InfoColumn extends LitElement {
 					<content-section sectionHeader="Hi, I'm Andrew.">
 						<about-me></about-me>
 					</content-section>
-					<content-section sectionHeader="Work Experience" >
+<!-- 					<content-section sectionHeader="Work Experience" >
 						<work-experience></work-experience>
-					</content-section>
+					</content-section> -->
 					<content-section sectionHeader="Projects">
 						<my-projects></my-projects>
 					</content-section>

@@ -43,19 +43,6 @@
                 "Github Actions",
                 "YML"
             ]
-        },
-        {
-            "media-url": "media/portfolio.gif",
-            "title": "This website!",
-            "url" : "https://github.com/Kojolika/Portfolio",
-            "tech": [
-                "Node.js",
-                "Lit",
-                "Pixi.js",
-                "JavaScript",
-                "HTML",
-                "CSS"
-            ]
         }
     ]
 }

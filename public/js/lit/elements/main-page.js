@@ -34,6 +34,11 @@ export class MainPage extends LitElement {
 				margin-right: 10px;
 			}
 		}
+		@media screen and (min-width: 768px) and (max-width: 1024px){
+			div{
+				width: 0;
+			}
+		}
 	`;
 
 	/**

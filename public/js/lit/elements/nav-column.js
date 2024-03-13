@@ -28,6 +28,7 @@ export class NavColumn extends LitElement {
 			padding-left: 0;
 			flex-direction: column;
 			justify-content: space-evenly;
+			white-space: nowrap;
 		}
   	`;
 
@@ -40,7 +41,6 @@ export class NavColumn extends LitElement {
 				<ul>
 					<li>About Me</li>
 					<li>My Work</li>
-					<li>Projects</li>
 					<li>Contact</li>
 				</ul>
     		</nav>
