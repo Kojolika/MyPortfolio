@@ -11,13 +11,8 @@ WORKDIR /app
 COPY ./package-lock.json .
 COPY ./package.json .
 RUN npm ci
-RUN mkdir -p /app/public/
-RUN mkdir /app/public/views
-RUN mkdir /app/public/styles
-RUN mkdir /app/public/dist
+COPY --exclude=/app/dist ./public ./public
 COPY --from=build /build/src/dist/ ./src/dist
 COPY --from=build /build/public/dist/ ./public/dist
-COPY ./public/views ./public/views
-COPY ./public/styles ./public/styles
 CMD ["node", "./src/dist/node-bundle"]
 EXPOSE $PORT
