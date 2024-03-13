@@ -10,8 +10,8 @@ export class ContentSection extends LitElement {
             justify-content: start;
         }
         article {
-            min-width: 320px;
-            min-height: 1250px;
+            min-width: 300px;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -19,16 +19,16 @@ export class ContentSection extends LitElement {
     `];
 
     static properties = {
-        title: {type: String},
+        sectionHeader: {type: String},
     };
 
     /**
      *
-     * @param {*} title
+     * @param {String} sectionHeader
      */
-    constructor(title) {
+    constructor(sectionHeader) {
         super();
-        this.title = title;
+        this.sectionHeader = sectionHeader;
     }
 
     /**
@@ -38,7 +38,7 @@ export class ContentSection extends LitElement {
     render() {
         return html`
             <article>
-                <h2 class="header">${this.title}</h2>
+                <h2 class="header">${this.sectionHeader}</h2>
                 <slot></slot>
             </article>
         `;

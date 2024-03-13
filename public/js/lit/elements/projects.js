@@ -16,12 +16,17 @@ export class Projects extends LitElement {
             height: 100%;
         }
         div{
+            min-height: 150px;
+            min-width: 150px;
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-direction: column;
             text-align: center;
             border-style: solid;
             border-radius: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
     `;
     static properties = {
@@ -52,6 +57,7 @@ export class Projects extends LitElement {
                     return html`
                         <div>
                             <h3>${project.title}</h3>
+                            <img srcset='media/test.gif 150w, media/test.gif 200w' sizes='(max-height: 768px) 150px, (min-height: 769px) 200px'>
                             <ul>${techStack}</ul>
                         </div>
                     `;

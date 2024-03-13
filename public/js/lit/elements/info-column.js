@@ -13,11 +13,13 @@ export class InfoColumn extends LitElement {
 	static styles = [centerChildren, css`
     	.main-content {
 			display: flex;
-      		min-width: 600px;
+      		min-width: 320px;
       		flex-direction: column;
 			justify-items: center;
 			align-items: center;
 			gap: 100px;
+			padding-left: 10px;
+			padding-right: 10px;
     	}
     `];
 
@@ -26,18 +28,18 @@ export class InfoColumn extends LitElement {
 	*/
 	render() {
 		return html`
-    		<div class='center main-margin'>
+    		<div class='center'>
       			<div class='main-content'>
-					<content-section title="Hi, I'm Andrew.">
+					<content-section sectionHeader="Hi, I'm Andrew.">
 						<about-me></about-me>
 					</content-section>
-					<content-section title="Work Experience" >
+					<content-section sectionHeader="Work Experience" >
 						<work-experience></work-experience>
 					</content-section>
-					<content-section title="Projects">
+					<content-section sectionHeader="Projects">
 						<my-projects></my-projects>
 					</content-section>
-					<content-section title="Contact me!">
+					<content-section sectionHeader="Contact me!">
 						<contact-me></contact-me>
 					</content-section>
       			</div>

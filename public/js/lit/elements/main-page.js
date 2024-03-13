@@ -1,4 +1,4 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from 'lit';
 import './info-column.js';
 import './nav-column.js';
 
@@ -13,19 +13,25 @@ export class MainPage extends LitElement {
 			justify-content: center;
 		}
 		div{
-			width: 100%;
+			width: 50%;
 		}
-		#right-margin{
+		#right-margin {
 			display: flex;
-			padding-left: 150px;
 		}
-		@media screen and (max-width: 1500px){
+		info-column {
+			margin-left: 100px;
+			margin-right: 100px;
+		}
+		@media screen and (max-width: 768px){
 			#right-margin{
 				display: none;
-				padding-left: 0;
 			}
 			#left-margin{
 				display: none;
+			}
+			info-column {
+				margin-left: 10px;
+				margin-right: 10px;
 			}
 		}
 	`;

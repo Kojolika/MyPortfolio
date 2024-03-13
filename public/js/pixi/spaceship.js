@@ -1,9 +1,9 @@
 import * as PIXI from 'pixi.js';
-import {CRTFilter} from 'pixi-filters';
+import { CRTFilter } from 'pixi-filters';
 
 document.addEventListener('DOMContentLoaded', async (event) => {
 	const app = new PIXI.Application();
-	await app.init({resizeTo: window, backgroundColor: 'white'});
+	await app.init({ backgroundColor: 'white' });
 
 	document.body.appendChild(app.canvas);
 
@@ -21,10 +21,9 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 		.rect(0, 0, app.canvas.width, app.canvas.height)
 		.fill('white');
 
-	window.addEventListener('resize', () =>{
-		background.width = app.canvas.width;
-		background.height = app.canvas.height;
-	});
+	SetCanvasToViewportSize(app.canvas, background);
+
+	window.addEventListener('resize', () => SetCanvasToViewportSize(app.canvas, background));
 
 	background.filters = new CRTFilter(
 		{
@@ -38,3 +37,15 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 	// sprite is shown on top
 	app.stage.addChild(background);
 });
+
+/**
+ * 
+ * @param {HTMLCanvasElement} canvas 
+ * @param {PIXI.Container} background 
+ */
+function SetCanvasToViewportSize(canvas, background) {
+	canvas.style.setProperty('height', '100vh');
+	canvas.style.setProperty('width', '100vw');
+	background.width = canvas.width;
+	background.height = canvas.height;
+}
