@@ -3,4 +3,5 @@ html {
 }
 body {
     margin: 0;
+    box-shadow: rgba(0 0 0 / 0.6) -50px -50px 150px 50px;
 }
