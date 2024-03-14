@@ -22,8 +22,7 @@ export class Projects extends LitElement {
             align-items: center;
             flex-direction: column;
             text-align: center;
-            border-style: solid;
-            border-radius: 10px;
+            background-color: lightgray;
             padding-left: 10px;
             padding-right: 10px;
         }

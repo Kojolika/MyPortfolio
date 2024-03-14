@@ -1,4 +1,4 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from 'lit';
 
 /**
  *
@@ -21,6 +21,12 @@ export class NavColumn extends LitElement {
 			opacity: 1;
 			font-size: 36px;
 			list-style-type: none;
+			background-color: white;
+			padding: 5px;
+		}
+		li:hover{
+			box-shadow: 15px -15px lightgrey;
+			cursor: cell;
 		}
 		ul {
 			font-weight: bold;
@@ -29,6 +35,7 @@ export class NavColumn extends LitElement {
 			flex-direction: column;
 			justify-content: space-evenly;
 			white-space: nowrap;
+			gap: 20px;
 		}
   	`;
 

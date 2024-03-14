@@ -8,19 +8,13 @@ import './nav-column.js';
 export class MainPage extends LitElement {
 	static styles = css`
 		main{
-			display: flex;
-			flex-direction: row;
+			display: grid;
+			grid-template-columns: 10fr 1fr;
 			justify-content: center;
-		}
-		div{
-			width: 50%;
 		}
 		#right-margin {
 			display: flex;
-		}
-		info-column {
-			margin-left: 100px;
-			margin-right: 100px;
+			justify-content: center;
 		}
 		@media screen and (max-width: 768px){
 			#right-margin{
@@ -34,11 +28,6 @@ export class MainPage extends LitElement {
 				margin-right: 10px;
 			}
 		}
-		@media screen and (min-width: 768px) and (max-width: 1024px){
-			#left-margin{
-				width: 0;
-			}
-		}
 	`;
 
 	/**
@@ -48,7 +37,7 @@ export class MainPage extends LitElement {
 	render() {
 		return html`
     		<main>
-				<div id="left-margin"></div>
+		<!-- 		<div id="left-margin"></div> -->
       			<info-column></info-column>
 				<div id="right-margin">
 					<nav-column></nav-column>

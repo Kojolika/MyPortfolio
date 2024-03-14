@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 		},)
 	];
 
-	app.stage.addChild(background);
+	//app.stage.addChild(background);
 });
 
 /**
