@@ -2,5 +2,5 @@
     "events": {
         "start": "npm run build"
     },
-    "ext": "js,json,html"
+    "ext": "js,json,html,css"
 }
