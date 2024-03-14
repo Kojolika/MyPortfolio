@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import {LitElement, html, css} from 'lit';
 
 /**
  *
@@ -7,26 +7,41 @@ export class NavColumn extends LitElement {
 	static styles = css`
     	:host{
 			display: flex;
-			height: 100vh;
-    		background-color: rgba(20, 200, 255, 0.5);
-    		align-items: center;
-			position: sticky;
+    		align-items: flex-start;
+			position: fixed;
 			top: 0;
-			padding-left: 25px;
-			padding-right: 25px;
-			box-shadow: black 0px 0px 15px;
+
+			height: 100vh;
+
+			padding-left: 24px;
+			padding-right: 24px;
+
+			box-shadow: black 0px 0px 16px;
+			background-color: rgba(0, 0, 0, 0.75);
     	}
 		li {
-			//color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+
 			opacity: 1;
+
 			font-size: 36px;
+
 			list-style-type: none;
+			
 			background-color: white;
-			padding: 5px;
+
+			padding: 4px;
+			border-radius: 8px;
+
+			height: 32px;
+			width: 32px;
 		}
 		li:hover{
-			box-shadow: 15px -15px lightgrey;
-			cursor: cell;
+			background-color: #e76868;
+			cursor: pointer;
 		}
 		ul {
 			font-weight: bold;
@@ -46,9 +61,9 @@ export class NavColumn extends LitElement {
 		return html`
     		<nav>
 				<ul>
-					<li>About Me</li>
-					<li>My Work</li>
-					<li>Contact</li>
+					<li>A</li>
+					<li>W</li>
+					<li>C</li>
 				</ul>
     		</nav>
 		`;

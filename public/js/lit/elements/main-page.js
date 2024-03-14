@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import {LitElement, html, css} from 'lit';
 import './info-column.js';
 import './nav-column.js';
 
@@ -8,24 +8,13 @@ import './nav-column.js';
 export class MainPage extends LitElement {
 	static styles = css`
 		main{
-			display: grid;
-			grid-template-columns: 10fr 1fr;
-			justify-content: center;
-		}
-		#right-margin {
+			box-sizing: border-box;
 			display: flex;
 			justify-content: center;
 		}
 		@media screen and (max-width: 768px){
-			#right-margin{
+			nav-column{
 				display: none;
-			}
-			#left-margin{
-				display: none;
-			}
-			info-column {
-				margin-left: 10px;
-				margin-right: 10px;
 			}
 		}
 	`;
@@ -36,12 +25,9 @@ export class MainPage extends LitElement {
 	 */
 	render() {
 		return html`
+			<nav-column></nav-column>
     		<main>
-		<!-- 		<div id="left-margin"></div> -->
       			<info-column></info-column>
-				<div id="right-margin">
-					<nav-column></nav-column>
-				</div>
     		</main>
 		`;
 	}

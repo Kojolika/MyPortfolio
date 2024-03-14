@@ -73,7 +73,6 @@ export class Projects extends LitElement {
                     return html`
                         <div>
                             <h3>${project.title}</h3>
-                          <!--   <img srcset='media/test.gif 150w, media/test.gif 200w' sizes='(max-height: 768px) 150px, (min-height: 769px) 200px'> -->
                             <img src='media/test.gif' width='150px' height='150px'>
                             <ul>${techStack}</ul>
                         </div>

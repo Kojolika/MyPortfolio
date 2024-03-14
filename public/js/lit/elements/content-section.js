@@ -6,15 +6,19 @@ import {contentHeader} from '../styles/content-header.js';
  */
 export class ContentSection extends LitElement {
     static styles = [contentHeader, css`
-        :host{
-            justify-content: start;
-        }
         article {
-            min-width: 300px;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-direction: column;
+            border-radius: 10px;
+            box-shadow: rgba(0 0 0 / 0.6) 0px 0px 90px 10px;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 20px;
+
+            width: 1024px;
+            height: 80vh
         }
     `];
 

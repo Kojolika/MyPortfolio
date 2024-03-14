@@ -12,21 +12,24 @@ import {centerChildren} from '../styles/centerChildren.js';
 export class InfoColumn extends LitElement {
 	static styles = [centerChildren, css`
     	.main-content {
-			height: 100vh;
+			box-sizing: border-box;
 			display: flex;
-      		min-width: 320px;
-      		flex-direction: column;
+			flex-direction: column;
 			justify-items: center;
-			align-items: center;
-			gap: 100px;
-			padding-left: 10px;
-			padding-right: 10px;
-			overflow-y: scroll;
-  			scroll-snap-type: y proximity;
+			justify-content: start;
+			align-items: center;	
+
+      		min-width: 320px;
+			width: 100%;
+			max-width: 1024px;
+
+			gap: 120px;
+
+			padding-top: 100px;
+			padding-bottom: 100px;
+			padding-left: 8px;
+			padding-right: 8px;
     	}
-		content-section{
-			scroll-snap-align: start;
-		}
     `];
 
 	/**
