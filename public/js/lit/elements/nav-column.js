@@ -31,7 +31,7 @@ export class NavColumn extends LitElement {
 
 			list-style-type: none;
 			
-			background-color: white;
+			background-color: #EDA1AB;
 
 			padding: 4px;
 			border-radius: 8px;
@@ -40,7 +40,7 @@ export class NavColumn extends LitElement {
 			width: 32px;
 		}
 		li:hover{
-			background-color: #e76868;
+			background-color: #e3a4ad5d;
 			cursor: pointer;
 		}
 		ul {
