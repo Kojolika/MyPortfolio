@@ -33,7 +33,7 @@ export class Projects extends LitElement {
         }
         .project-container{
             display: flex;
-            flex-direction:row;
+            flex-direction: column;
             justify-content: center;
             background-color: rgba(0, 0, 0, 0.75);
             border-radius: 8px;

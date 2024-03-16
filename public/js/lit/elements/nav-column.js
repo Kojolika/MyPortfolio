@@ -41,7 +41,7 @@ export class NavColumn extends LitElement {
 		}
 		li:hover{
 			background-color: #e3a4ad;
-			box-shadow: white 0px 0px 15px;
+			box-shadow: white 0px 0px 8px;
 			cursor: pointer;
 		}
 		ul {

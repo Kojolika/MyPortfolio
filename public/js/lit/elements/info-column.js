@@ -16,7 +16,7 @@ export class InfoColumn extends LitElement {
 			display: flex;
 			flex-direction: column;
       		min-width: 320px;
-			width: 1024px;
+			width: 1280px;
 
 			gap: 120px;
 
@@ -34,7 +34,7 @@ export class InfoColumn extends LitElement {
 				padding-right: 4px;
 			}
 		}
-		@media screen and (max-width: 1252px) and (min-width: 832px){
+		@media screen and (max-width: 1468px) and (min-width: 832px){
 			:host {
 				width: 80%;
 			}
