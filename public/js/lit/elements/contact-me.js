@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import {LitElement, html, css} from 'lit';
 
 /**
  *
@@ -73,7 +73,8 @@ export class ContactMe extends LitElement {
                 </div>
                 <div class="input-container">
                     <label for="message">Message:</label>
-                    <textarea class="black-background white-shadow-hover" name="message" id="message" required></textarea>
+                    <textarea class="black-background white-shadow-hover" name="message" id="message" required>
+                    </textarea>
                 </div>
 
                 <div class="h-captcha" data-captcha="true"></div>

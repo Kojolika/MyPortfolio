@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import '@pixi/gif';
-import {KawaseBlurFilter, ReflectionFilter} from 'pixi-filters';
+import {KawaseBlurFilter} from 'pixi-filters';
 
 document.addEventListener('DOMContentLoaded', async (event) => {
 	const app = new PIXI.Application();
@@ -20,14 +20,10 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
 	window.addEventListener('resize', () => setCanvasToViewportSize(app.canvas));
 
-	// gif.animationSpeed = 0.5;
 	gif.width = app.canvas.width;
 	gif.height = app.canvas.height;
 
 	app.stage.filters = [
-/* 		new ReflectionFilter({
-			boundary: 0.25,
-		}), */
 		new KawaseBlurFilter({
 			quality: 5,
 		}),
