@@ -1,53 +1,58 @@
 {
     "projects": [
         {
-            "thumbnail_url" : "media/rd_thumbnail.png",
+            "thumbnail_url": "media/rd_thumbnail.png",
             "media-url": "media/revolving-dawn.gif",
             "title": "Revolving Dawn",
-            "url" : "https://github.com/Kojolika/Revolving-Dawn",
+            "url": "https://github.com/Kojolika/Revolving-Dawn",
             "tech": [
                 "Unity",
                 "C#",
                 "SQLite"
-            ]
+            ],
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
         },
         {
-            "thumbnail_url" : "media/grid_thumbnail.png",
+            "thumbnail_url": "media/grid_thumbnail.png",
             "media-url": "media/the-grid.gif",
             "title": "The Grid",
-            "url" : "https://github.com/Kojolika/TheGrid",
+            "url": "https://github.com/Kojolika/TheGrid",
             "tech": [
                 "Unity",
-                "ECS",
-                "C#"
-            ]
+                "C#",
+                "ECS"
+            ],
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
         },
         {
-            "thumbnail_url" : "media/w_thumbnail.png",
+            "thumbnail_url": "media/w_thumbnail.png",
             "media-url": "media/weather-web.gif",
             "title": "Fullstack Weather Website",
-            "url" : "https://github.com/Kojolika/fullstackapp",
+            "url": "https://github.com/Kojolika/fullstackapp",
             "tech": [
                 "React",
                 "Node.js",
-                "MongoDB",
                 "Express.js",
+                "MongoDB",  
                 "JavaScript",
                 "HTML",
                 "CSS"
-            ]
+            ],
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
         },
         {
-            "thumbnail_url" : "media/cicd_thumbnail.jpg",
+            "thumbnail_url": "media/cicd_thumbnail.jpg",
             "media-url": "media/cicd.gif",
             "title": "CI/CD Pipeline",
-            "url" : "https://github.com/Kojolika/Portfolio-devops-environments",
+            "url": "https://github.com/Kojolika/Portfolio-devops-environments",
             "tech": [
                 "Docker",
                 "AWS EC2",
                 "Github Actions",
-                "YML"
-            ]
+                "Linux",
+                "Bash"
+            ],
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
         }
     ]
 }

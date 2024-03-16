@@ -7,9 +7,8 @@ import {Task} from '@lit/task';
 export class Projects extends LitElement {
     static styles = css`
         :host {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             gap: 28px;
         }
@@ -28,7 +27,24 @@ export class Projects extends LitElement {
                 grid-template-columns: 200px 200px;
             }
 		} */
-        div {
+        h3 {
+            font-size: 28px;
+            color: white;
+        }
+        .project-container{
+            display: flex;
+            flex-direction:row;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.75);
+            border-radius: 8px;
+            gap: 28px;
+            padding-left: 28px;
+            padding-right: 28px;
+        }
+        .project-container:hover{
+            box-shadow: white 0px 0px 15px;
+        }
+        .thumbnail-container{
             min-height: 152px;
             min-width: 152px;
             display: flex;
@@ -36,16 +52,14 @@ export class Projects extends LitElement {
             align-items: center;
             flex-direction: column;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.75);
-            border-radius: 8px;
         }
-        h3 {
-            font-size: 28px;
+        p{
+            display: flex;
             color: white;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
         }
-        div:hover {
-            box-shadow: white 0px 0px 15px;
-        }   
         ul {
             padding: 0;
             display: flex;
@@ -90,10 +104,13 @@ export class Projects extends LitElement {
                     const techStack = project.tech.map((sentence) => html`<li>${sentence}</li>`);
                     console.log(project.thumbnail_url);
                     return html`
-                        <div>
-                            <h3>${project.title}</h3>
-                            <img src=${project.thumbnail_url} width="100%">
-                            <ul>${techStack}</ul>
+                        <div class="project-container">
+                            <div class="thumbnail-container">
+                                <h3>${project.title}</h3>
+                                <img src=${project.thumbnail_url} width="100%">
+                                <ul>${techStack}</ul>
+                            </div>
+                            <p>${project.summary}</p>                        
                         </div>
                     `;
                 });

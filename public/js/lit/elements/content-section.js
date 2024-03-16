@@ -14,6 +14,7 @@ export class ContentSection extends LitElement {
             border-radius: 10px;
             box-shadow: rgba(0 0 0 / 0.6) 0px 0px 90px 10px;
             // background-color: rgba(0, 0, 0, 0.75);
+            //background-color: #ffffffa3;
             background: linear-gradient(#9198e500,#eda1ab84 75%,#ca90bdca 90%, #AB93C9 99%);
             border-image: linear-gradient(to bottom, cyan, blue) 1;
             border-width: 20px;

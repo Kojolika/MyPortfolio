@@ -7,7 +7,7 @@ export class NavColumn extends LitElement {
 	static styles = css`
     	:host{
 			display: flex;
-    		align-items: flex-start;
+    		align-items: center;
 			position: fixed;
 			top: 0;
 
@@ -31,7 +31,7 @@ export class NavColumn extends LitElement {
 
 			list-style-type: none;
 			
-			background-color: #EDA1AB;
+			background-color: white;
 
 			padding: 4px;
 			border-radius: 8px;
@@ -40,7 +40,8 @@ export class NavColumn extends LitElement {
 			width: 32px;
 		}
 		li:hover{
-			background-color: #e3a4ad5d;
+			background-color: #e3a4ad;
+			box-shadow: white 0px 0px 15px;
 			cursor: pointer;
 		}
 		ul {
