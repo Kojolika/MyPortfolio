@@ -19,7 +19,7 @@ export class NavColumn extends LitElement {
 			box-shadow: black 0px 0px 16px;
 			background-color: rgba(0, 0, 0, 0.75);
     	}
-		li {
+		a {
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -29,8 +29,10 @@ export class NavColumn extends LitElement {
 
 			font-size: 36px;
 
-			list-style-type: none;
-			
+			color: black;
+			font-style: normal;
+			text-decoration: none;
+
 			background-color: white;
 
 			padding: 4px;
@@ -39,12 +41,12 @@ export class NavColumn extends LitElement {
 			height: 32px;
 			width: 32px;
 		}
-		li:hover{
+		a:hover{
 			background-color: #e3a4ad;
 			box-shadow: white 0px 0px 8px;
 			cursor: pointer;
 		}
-		ul {
+		div {
 			font-weight: bold;
 			display: flex;
 			padding-left: 0;
@@ -61,11 +63,11 @@ export class NavColumn extends LitElement {
 	render() {
 		return html`
     		<nav>
-				<ul>
-					<li>A</li>
-					<li>W</li>
-					<li>C</li>
-				</ul>
+				<div>
+					<a href="#about">A</a>
+					<a href="#projects">P</a>
+					<a href="#contact">C</a>
+				</div>
     		</nav>
 		`;
 	}

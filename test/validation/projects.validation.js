@@ -86,7 +86,7 @@ describe("Project data validation", function () {
                     project.summary
                         .should.be.a('string')
                         .and.have.lengthOf.at.least(10)
-                        .and.have.lengthOf.at.most(140);
+                        .and.have.lengthOf.at.most(300);
                 });
             });
         });

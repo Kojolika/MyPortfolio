@@ -12,21 +12,6 @@ export class Projects extends LitElement {
             justify-content: center;
             gap: 28px;
         }
-/*         @media screen and (max-width: 1472px){
-            :host{
-                grid-template-columns: 400px 400px;
-            }
-        }
-        @media screen and (max-width: 1182px){
-            :host{
-                grid-template-columns: 252px 252px;
-            }
-        }
-        @media screen and (max-width: 768px){
-            :host{
-                grid-template-columns: 200px 200px;
-            }
-		} */
         h3 {
             font-size: 28px;
             color: white;

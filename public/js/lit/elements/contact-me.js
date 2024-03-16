@@ -18,6 +18,7 @@ export class ContactMe extends LitElement {
             gap: 28px;
             width: 100%;
             max-width: 400px;
+            font-size: 24px;
         }
         .black-background
         {
@@ -35,6 +36,8 @@ export class ContactMe extends LitElement {
         .input-container > input{
             color: white;
             max-width: 252px;
+            border: none;
+            height: 40px;
         }
         textarea {
             max-width: 100%;
@@ -42,9 +45,13 @@ export class ContactMe extends LitElement {
             min-height: 160px;
             max-height: 600px;
             color: white;
+            border: none;
         }
         button {
             font-size: 24px;
+        }
+        .white-shadow-hover:hover {
+            box-shadow: white 0px 0px 8px;
         }
     `;
     /**
@@ -58,15 +65,15 @@ export class ContactMe extends LitElement {
 
                 <div class="input-container">
                     <label for="name">Name:</label>
-                    <input class="black-background" type="text" name="name" id="name" required>
+                    <input class="black-background white-shadow-hover" type="text" name="name" id="name" required>
                 </div>
                 <div class="input-container">
                     <label for="email">Your email:</label>
-                    <input class="black-background" type="email" name="email" id="email" required>
+                    <input class="black-background white-shadow-hover" type="email" name="email" id="email" required>
                 </div>
                 <div class="input-container">
                     <label for="message">Message:</label>
-                    <textarea class="black-background" name="message" id="message" required></textarea>
+                    <textarea class="black-background white-shadow-hover" name="message" id="message" required></textarea>
                 </div>
 
                 <div class="h-captcha" data-captcha="true"></div>

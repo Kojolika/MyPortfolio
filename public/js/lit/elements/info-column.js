@@ -46,13 +46,13 @@ export class InfoColumn extends LitElement {
 	*/
 	render() {
 		return html`
-				<content-section sectionHeader="Hi, I'm Andrew.">
+				<content-section id="about" sectionHeader="Hi, I'm Andrew.">
 					<about-me></about-me>
 				</content-section>
-				<content-section sectionHeader="Projects">
+				<content-section id="projects" sectionHeader="Projects">
 					<my-projects></my-projects>
 				</content-section>
-				<content-section sectionHeader="Contact me!">
+				<content-section id="contact" sectionHeader="Contact me!">
 					<contact-me></contact-me>
 				</content-section>
     	`;

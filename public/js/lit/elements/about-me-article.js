@@ -17,8 +17,6 @@ export class AboutMe extends LitElement {
             justify-content: center;
             align-items: center;
             text-align: center;
-            max-width: 800px;
-            min-width: 300px;
         }
     `;
 
