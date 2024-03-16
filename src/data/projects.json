@@ -1,49 +1,49 @@
 {
     "projects": [
         {
-            "thumbnail_url": "media/rd_thumbnail.png",
-            "media-url": "media/revolving-dawn.gif",
             "title": "Revolving Dawn",
+            "thumbnail_url": "media/rd_thumbnail.png",
+            "media_url": "media/revolving-dawn.gif",
             "url": "https://github.com/Kojolika/Revolving-Dawn",
             "tech": [
                 "Unity",
                 "C#",
                 "SQLite"
             ],
-            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
         {
-            "thumbnail_url": "media/grid_thumbnail.png",
-            "media-url": "media/the-grid.gif",
             "title": "The Grid",
+            "thumbnail_url": "media/grid_thumbnail.png",
+            "media_url": "media/the-grid.gif",
             "url": "https://github.com/Kojolika/TheGrid",
             "tech": [
                 "Unity",
                 "C#",
                 "ECS"
             ],
-            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
         {
-            "thumbnail_url": "media/w_thumbnail.png",
-            "media-url": "media/weather-web.gif",
             "title": "Fullstack Weather Website",
+            "thumbnail_url": "media/w_thumbnail.png",
+            "media_url": "media/weather-web.gif",
             "url": "https://github.com/Kojolika/fullstackapp",
             "tech": [
                 "React",
                 "Node.js",
                 "Express.js",
-                "MongoDB",  
+                "MongoDB",
                 "JavaScript",
                 "HTML",
                 "CSS"
             ],
-            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         },
         {
-            "thumbnail_url": "media/cicd_thumbnail.jpg",
-            "media-url": "media/cicd.gif",
             "title": "CI/CD Pipeline",
+            "thumbnail_url": "media/cicd_thumbnail.jpg",
+            "media_url": "media/cicd.gif",
             "url": "https://github.com/Kojolika/Portfolio-devops-environments",
             "tech": [
                 "Docker",
@@ -52,7 +52,7 @@
                 "Linux",
                 "Bash"
             ],
-            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est sit amet facilisis magna. Sed arcu non odio euismod lacinia at quis. Sem et tortor consequat id porta nibh venenatis. Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Curabitur gravida arcu ac tortor dignissim convallis aenean. Hendrerit dolor magna eget est lorem. Vel pretium lectus quam id leo in vitae turpis massa. "
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         }
     ]
 }

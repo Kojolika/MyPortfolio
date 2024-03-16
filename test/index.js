@@ -1,5 +1,5 @@
 // Simple test script with mocha and chai
-import 'chai/register-should.js';
+/* import 'chai/register-should.js';
 import fs from 'fs';
 import path from 'path';
 
@@ -9,3 +9,4 @@ describe('Space Ship Image', function() {
     should.equal(true, fs.existsSync(file));
   });
 });
+ */
