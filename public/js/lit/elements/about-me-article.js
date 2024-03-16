@@ -6,18 +6,17 @@ export class AboutMe extends LitElement {
     static styles = css`
         img{
             width: 100%;
-            max-width: 800px;
         }
         p{
-            min-width: 300px;
-            font-size: 36px;
-            margin: 0;
+            font-size: 24px;
+            margin: 0 0 30px 0;
         }
         div{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
         }
     `;
 

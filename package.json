@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@lit/task": "^1.0.0",
+    "@pixi/gif": "^3.0.0",
     "chai": "^5.0.0",
     "dotenv": "^16.4.0",
     "ejs": "^3.1.9",
@@ -23,7 +24,7 @@
     "about:build": "Builds the server and then the client bundles. When running 'npm run build' use '--environment=<production or development>' to specify build mode. Defaults to development.",
     "dev": "nodemon --ignore '*/dist/*.js' --config config/nodemon.json start",
     "about:dev": "Runs the server, but watches for changes in files and restarts when detected any. You'll need to rebuild to see changes as well.",
-    "test": "mocha",
+    "test": "mocha --recursive",
     "lint": "eslint ./"
   },
   "private": true,

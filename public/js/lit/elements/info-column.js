@@ -11,21 +11,33 @@ import {centerChildren} from '../styles/centerChildren.js';
  */
 export class InfoColumn extends LitElement {
 	static styles = [centerChildren, css`
-    	.main-content {
-			height: 100vh;
+		:host{
+			box-sizing: border-box;
 			display: flex;
+			flex-direction: column;
       		min-width: 320px;
-      		flex-direction: column;
-			justify-items: center;
-			align-items: center;
-			gap: 100px;
-			padding-left: 10px;
-			padding-right: 10px;
-			overflow-y: scroll;
-  			scroll-snap-type: y proximity;
-    	}
-		content-section{
-			scroll-snap-align: start;
+			width: 1280px;
+
+			gap: 120px;
+
+			padding-top: 100px;
+			padding-bottom: 100px;
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+		@media screen and (max-width: 832px){
+			:host {
+				width: 96%;
+				padding-top: 20px;
+				padding-bottom: 20px;
+				padding-left: 4px;
+				padding-right: 4px;
+			}
+		}
+		@media screen and (max-width: 1468px) and (min-width: 832px){
+			:host {
+				width: 80%;
+			}
 		}
     `];
 
@@ -34,22 +46,15 @@ export class InfoColumn extends LitElement {
 	*/
 	render() {
 		return html`
-    		<div class='center'>
-      			<div class='main-content'>
-					<content-section sectionHeader="Hi, I'm Andrew.">
-						<about-me></about-me>
-					</content-section>
-<!-- 					<content-section sectionHeader="Work Experience" >
-						<work-experience></work-experience>
-					</content-section> -->
-					<content-section sectionHeader="Projects">
-						<my-projects></my-projects>
-					</content-section>
-					<content-section sectionHeader="Contact me!">
-						<contact-me></contact-me>
-					</content-section>
-      			</div>
-    		</div>
+				<content-section id="about" sectionHeader="Hi, I'm Andrew.">
+					<about-me></about-me>
+				</content-section>
+				<content-section id="projects" sectionHeader="Projects">
+					<my-projects></my-projects>
+				</content-section>
+				<content-section id="contact" sectionHeader="Contact me!">
+					<contact-me></contact-me>
+				</content-section>
     	`;
 	};
 }

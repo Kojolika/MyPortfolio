@@ -1,48 +1,58 @@
 {
     "projects": [
         {
-            "media-url": "media/revolving-dawn.gif",
             "title": "Revolving Dawn",
-            "url" : "https://github.com/Kojolika/Revolving-Dawn",
+            "thumbnail_url": "media/rd_thumbnail.png",
+            "media_url": "media/revolving-dawn.gif",
+            "url": "https://github.com/Kojolika/Revolving-Dawn",
             "tech": [
                 "Unity",
-                "C#"
-            ]
+                "C#",
+                "SQLite"
+            ],
+            "summary": "A roguelike deckbuilder card game developed in Unity. The main gameplay loop is battling enemies and adding cards to your deck. The innovates on the genre by adding an interesting magic system with the ability to transmute and destroy cards."
         },
         {
-            "media-url": "media/the-grid.gif",
             "title": "The Grid",
-            "url" : "https://github.com/Kojolika/TheGrid",
+            "thumbnail_url": "media/grid_thumbnail.png",
+            "media_url": "media/the-grid.gif",
+            "url": "https://github.com/Kojolika/TheGrid",
             "tech": [
                 "Unity",
-                "ECS",
-                "C#"
-            ]
+                "C#",
+                "ECS"
+            ],
+            "summary": "A resource management game developed in Unity with ECS. Utilizing ECS and the Burst Compiler we can have 1000's of objects on the screen at once with amazing performance. Automate and watch as your grid grows itself."
         },
         {
-            "media-url": "media/weather-web.gif",
             "title": "Fullstack Weather Website",
-            "url" : "https://github.com/Kojolika/fullstackapp",
+            "thumbnail_url": "media/w_thumbnail.png",
+            "media_url": "media/weather-web.gif",
+            "url": "https://github.com/Kojolika/fullstackapp",
             "tech": [
                 "React",
-                "Node.js",
-                "MongoDB",
-                "Express.js",
+                "Flask",
+                "SQLite",
+                "Python",
                 "JavaScript",
                 "HTML",
                 "CSS"
-            ]
+            ],
+            "summary": "Website created with React and Flask, create an account, login, add locations to your favorites and view weather data in real time by leveraging AirVisual API."
         },
         {
-            "media-url": "media/cicd.gif",
             "title": "CI/CD Pipeline",
-            "url" : "https://github.com/Kojolika/Portfolio-devops-environments",
+            "thumbnail_url": "media/cicd_thumbnail.jpg",
+            "media_url": "media/cicd.gif",
+            "url": "https://github.com/Kojolika/Portfolio-devops-environments",
             "tech": [
                 "Docker",
                 "AWS EC2",
                 "Github Actions",
-                "YML"
-            ]
+                "Linux",
+                "Bash"
+            ],
+            "summary": "Continuous Integration and Development Pipeline where pull request merges automatically trigger pushes to the development server. Rollbacks and promoting builds can easily be done by updating build image names in YML files."
         }
     ]
 }

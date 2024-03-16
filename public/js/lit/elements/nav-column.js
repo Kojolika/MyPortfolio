@@ -7,28 +7,53 @@ export class NavColumn extends LitElement {
 	static styles = css`
     	:host{
 			display: flex;
-			height: 100vh;
-    		background-color: rgba(20, 200, 255, 0.5);
     		align-items: center;
-			position: sticky;
+			position: fixed;
 			top: 0;
-			padding-left: 25px;
-			padding-right: 25px;
-			box-shadow: black 0px 0px 15px;
+
+			height: 100vh;
+
+			padding-left: 24px;
+			padding-right: 24px;
+
+			box-shadow: black 0px 0px 16px;
+			background-color: rgba(0, 0, 0, 0.75);
     	}
-		li {
-			//color: white;
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+
 			opacity: 1;
+
 			font-size: 36px;
-			list-style-type: none;
+
+			color: black;
+			font-style: normal;
+			text-decoration: none;
+
+			background-color: white;
+
+			padding: 4px;
+			border-radius: 8px;
+
+			height: 32px;
+			width: 32px;
 		}
-		ul {
+		a:hover{
+			background-color: #e3a4ad;
+			box-shadow: white 0px 0px 8px;
+			cursor: pointer;
+		}
+		div {
 			font-weight: bold;
 			display: flex;
 			padding-left: 0;
 			flex-direction: column;
 			justify-content: space-evenly;
 			white-space: nowrap;
+			gap: 20px;
 		}
   	`;
 
@@ -38,11 +63,11 @@ export class NavColumn extends LitElement {
 	render() {
 		return html`
     		<nav>
-				<ul>
-					<li>About Me</li>
-					<li>My Work</li>
-					<li>Contact</li>
-				</ul>
+				<div>
+					<a href="#about">A</a>
+					<a href="#projects">P</a>
+					<a href="#contact">C</a>
+				</div>
     		</nav>
 		`;
 	}

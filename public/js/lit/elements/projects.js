@@ -6,44 +6,60 @@ import {Task} from '@lit/task';
  */
 export class Projects extends LitElement {
     static styles = css`
-        :host{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 100%;
-            height: 100%;
-            margin-top: 20px;
+        :host {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 28px;
         }
-        div{
-            min-height: 150px;
-            min-width: 150px;
+        h3 {
+            font-size: 28px;
+            color: white;
+        }
+        .project-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.75);
+            border-radius: 8px;
+            gap: 28px;
+            padding-left: 28px;
+            padding-right: 28px;
+        }
+        .project-container:hover{
+            box-shadow: white 0px 0px 15px;
+        }
+        .thumbnail-container{
+            min-height: 152px;
+            min-width: 152px;
             display: flex;
             justify-content: start;
             align-items: center;
             flex-direction: column;
             text-align: center;
-            border-style: solid;
-            border-radius: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
         }
-        div:hover{
-            box-shadow: black 0px 0px 15px;
-        }   
-        ul{
+        p{
+            display: flex;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        ul {
             padding: 0;
             display: flex;
             list-style-type: none;
-            gap: 5px;
+            gap: 4px;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
         }
-        li{
+        li {
+            font-size: 20px;
             background-color: lightblue;
-            border-radius: 5px;
-            padding-left: 1px;
-            padding-right: 1px;
+            border-radius: 8px;
+            padding-left: 8px;
+            padding-right: 8px;
         }
     `;
     static properties = {
@@ -71,12 +87,15 @@ export class Projects extends LitElement {
             complete: (data) => {
                 return data.projects.map((project) =>{
                     const techStack = project.tech.map((sentence) => html`<li>${sentence}</li>`);
+                    console.log(project.thumbnail_url);
                     return html`
-                        <div>
-                            <h3>${project.title}</h3>
-                          <!--   <img srcset='media/test.gif 150w, media/test.gif 200w' sizes='(max-height: 768px) 150px, (min-height: 769px) 200px'> -->
-                            <img src='media/test.gif' width='150px' height='150px'>
-                            <ul>${techStack}</ul>
+                        <div class="project-container">
+                            <div class="thumbnail-container">
+                                <h3>${project.title}</h3>
+                                <img src=${project.thumbnail_url} width="100%">
+                                <ul>${techStack}</ul>
+                            </div>
+                            <p>${project.summary}</p>                        
                         </div>
                     `;
                 });
