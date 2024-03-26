@@ -5,7 +5,7 @@ import path from 'path';
 import {setMiddleware} from './middleware/index.js';
 
 import projects from './data/projects.json';
-import workExperience from './data/work-experience.json';
+import icons from './data/icons.json';
 
 // attach .env variables to process.env
 dotEnv.config();
@@ -43,8 +43,8 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/work-experience', (req, res) =>{
-  res.json(workExperience);
+app.get('/icons', (req, res) =>{
+  res.json(icons);
 });
 
 app.get('/projects', (req, res) =>{
