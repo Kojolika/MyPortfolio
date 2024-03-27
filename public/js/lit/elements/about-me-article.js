@@ -27,7 +27,7 @@ export class AboutMe extends LitElement {
             text-align: center;
         }
         .icon {
-            max-width: 64   px;
+            max-width: 64px;
         }
         .icon-container{
             display: flex;
@@ -37,7 +37,6 @@ export class AboutMe extends LitElement {
             align-items: center;
             gap: 28px;
             margin-top: 28px;
-            margin-bottom: 28px;
             padding: 28px;
             background-color: rgba(255 255 255);
             border-radius: 10px;
@@ -81,9 +80,6 @@ export class AboutMe extends LitElement {
      */
     iconList = (data) =>
         data.icons.map((iconData) => {
-            if (iconData.name === 'linkedin' || iconData.name === 'github') {
-                return;
-            }
             return html`
                 <img class="icon" src=${iconData.img_url}>
             `;

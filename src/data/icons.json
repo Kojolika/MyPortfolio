@@ -35,15 +35,6 @@
     {
       "name": "css",
       "img_url": "media/icons/css.png"
-    },
-    {
-      "name": "github",
-      "img_url": "media/icons/github.png"
-    }
-    ,
-    {
-      "name": "linkedin",
-      "img_url": "media/icons/linkedin.png"
     }
   ]
 }
