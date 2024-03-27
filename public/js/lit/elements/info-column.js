@@ -20,8 +20,8 @@ export class InfoColumn extends LitElement {
 
 			gap: 120px;
 
-			padding-top: 100px;
-			padding-bottom: 100px;
+			padding-top: 28px;
+			padding-bottom: 28px;
 			padding-left: 8px;
 			padding-right: 8px;
 		}

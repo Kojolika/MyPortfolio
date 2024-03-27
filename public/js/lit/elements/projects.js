@@ -14,13 +14,13 @@ export class Projects extends LitElement {
         }
         h3 {
             font-size: 28px;
-            color: white;
+            color: black;
         }
         .project-container{
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: white;
             border-radius: 8px;
             gap: 28px;
             padding-left: 28px;
@@ -40,7 +40,7 @@ export class Projects extends LitElement {
         }
         p{
             display: flex;
-            color: white;
+            color: black;
             justify-content: center;
             align-items: center;
             font-size: 20px;
@@ -60,6 +60,19 @@ export class Projects extends LitElement {
             border-radius: 8px;
             padding-left: 8px;
             padding-right: 8px;
+            color: black;
+        }
+        a {
+            margin-left: auto;
+        }
+        .github-icon{
+            max-width: 64px;
+        }
+        .title-container{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
         }
     `;
     static properties = {
@@ -91,7 +104,12 @@ export class Projects extends LitElement {
                     return html`
                         <div class="project-container">
                             <div class="thumbnail-container">
-                                <h3>${project.title}</h3>
+                                <div class="title-container">
+                                    <h3>${project.title}</h3>
+                                    <a href="${project.url}">
+                                        <img src="media/icons/github.png" class="github-icon">
+                                    </a>  
+                                </div>
                                 <img src=${project.thumbnail_url} width="100%">
                                 <ul>${techStack}</ul>
                             </div>

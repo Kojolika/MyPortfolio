@@ -12,9 +12,12 @@ export class MainPage extends LitElement {
 			display: flex;
 			justify-content: center;
 		}
-		@media screen and (max-width: 832px){
-			nav-column{
+		nav-column{
 				display: none;
+		}
+		@media screen and (min-width: 832px){
+			nav-column{
+				display: flex;
 			}
 		}
 	`;

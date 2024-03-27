@@ -20,12 +20,11 @@ export class ContactMe extends LitElement {
             max-width: 400px;
             font-size: 24px;
         }
-        .black-background
+        .rounded
         {
             border-radius: 8px;
-            background-color: rgba(0, 0, 0, 0.75);
-            color: white;
             box-sizing: border-box;
+            background-color: white;
         }
         .input-container {
             display:flex;
@@ -34,7 +33,6 @@ export class ContactMe extends LitElement {
             color: white;
         }
         .input-container > input{
-            color: white;
             max-width: 252px;
             border: none;
             height: 40px;
@@ -43,8 +41,7 @@ export class ContactMe extends LitElement {
             max-width: 100%;
             height: 100%;
             min-height: 160px;
-            max-height: 600px;
-            color: white;
+            max-height: 400px;
             border: none;
         }
         button {
@@ -65,21 +62,20 @@ export class ContactMe extends LitElement {
 
                 <div class="input-container">
                     <label for="name">Name:</label>
-                    <input class="black-background white-shadow-hover" type="text" name="name" id="name" required>
+                    <input class="rounded white-shadow-hover" type="text" name="name" id="name" required>
                 </div>
                 <div class="input-container">
                     <label for="email">Your email:</label>
-                    <input class="black-background white-shadow-hover" type="email" name="email" id="email" required>
+                    <input class="rounded white-shadow-hover" type="email" name="email" id="email" required>
                 </div>
                 <div class="input-container">
                     <label for="message">Message:</label>
-                    <textarea class="black-background white-shadow-hover" name="message" id="message" required>
-                    </textarea>
+                    <textarea class="rounded white-shadow-hover" name="message" id="message" required></textarea>
                 </div>
 
                 <div class="h-captcha" data-captcha="true"></div>
 
-                <button class="black-background" type="submit">Submit Form</button>
+                <button class="rounded" type="submit">Send Form</button>
             </form>
         `;
     }
