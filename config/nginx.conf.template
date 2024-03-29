@@ -21,3 +21,11 @@ server {
             root   /usr/share/nginx/html;
     }
 }
+
+server{
+    listen 443;
+    listen [::]:443;
+    server_name andrewmyshok.com www.andrewmyshok.com *.andrewmyshok.com;
+
+    
+}
