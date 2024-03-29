@@ -34,12 +34,12 @@ jobs:
       
       - name: get verison and build number
       - id: get-version-build
-      - run: |
+        run: |
           echo "version=$( yq '.app-version' ${{ env.VERSION_CONFIG }} )" >> "$GITHUB_OUTPUT"
           echo "build=$( yq '.build' ${{ env.VERSION_CONFIG }} )" >> "$GITHUB_OUTPUT"
 
       - name: send post request
-      - run: |
+        run: |
           curl -L \
           -X POST \
           -H "Accept: application/vnd.github+json" \
