@@ -33,7 +33,7 @@ jobs:
           sparse-checkout-cone-mode: false
       
       - name: get verison and build number
-      - id: get-version-build
+        id: get-version-build
         run: |
           echo "version=$( yq '.app-version' ${{ env.VERSION_CONFIG }} )" >> "$GITHUB_OUTPUT"
           echo "build=$( yq '.build' ${{ env.VERSION_CONFIG }} )" >> "$GITHUB_OUTPUT"
