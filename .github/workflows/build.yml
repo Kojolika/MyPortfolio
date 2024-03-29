@@ -8,9 +8,8 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
 
-    outputs:
-      build: ${{ steps.get_build_version.outputs.BUILD }}
-      version: ${{ steps.get_build_version.outputs.VERSION }}
+    env:
+      ENV_REPO: ${{ secrets.DOCKER_REPO_URL }}
 
     steps:
       - name: Set up Docker Buildx
@@ -37,13 +36,12 @@ jobs:
         
         env:
           VERSION_FILE: version.yml
-          ENV_REPO: ${{ secrets.DOCKER_REPO_URL }}
 
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ env.LATEST_IMAGE }},:latest
+          tags: ${{ env.LATEST_IMAGE }},${ENV_REPO}:latest
           file: ./Dockerfile.web
         
         env:
