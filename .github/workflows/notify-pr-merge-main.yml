@@ -9,6 +9,9 @@ on:
     types:
       - closed
 
+permissions:
+  contents: write
+
 jobs:
   post-to-env-repo:
     if: ${{ github.event.pull_request.merged == true }}
@@ -18,7 +21,6 @@ jobs:
       VERSION_CONFIG: version.yml
 
     steps:
-
       # uses yq to read yml files
       - name: setup yq
         uses: mikefarah/yq@master
