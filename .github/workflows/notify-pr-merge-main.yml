@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "version=$( yq '.app-version' ${{ env.VERSION_CONFIG }} )" >> "$GITHUB_OUTPUT"
           echo "build=$( yq '.build' ${{ env.VERSION_CONFIG }} )" >> "$GITHUB_OUTPUT"
-"
+
       - name: send post request
       - run: |
           curl -L \
