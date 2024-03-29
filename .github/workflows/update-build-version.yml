@@ -1,12 +1,10 @@
 name: Update Build Version
 
-# Only trigger, when the build workflow succeeded
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed
+  workflow_run:
+    workflows: ["Notify PR Merged To Main"]
+    types: [completed]
+
 
 permissions:
   contents: write
