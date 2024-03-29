@@ -7,3 +7,5 @@
 # no need to commit builds
 **/dist
 **.bundle.js
+
+**.pem
