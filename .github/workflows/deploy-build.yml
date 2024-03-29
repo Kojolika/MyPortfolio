@@ -44,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ env.LATEST_IMAGE }}
+          tags: ${{ env.LATEST_IMAGE }},:latest
           file: ./Dockerfile.web
         
         env:
