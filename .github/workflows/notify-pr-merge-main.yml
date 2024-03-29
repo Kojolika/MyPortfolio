@@ -51,4 +51,4 @@ jobs:
         env:
           BUILD: ${{ steps.get-version-build.outputs.build }}
           VERSION: ${{ steps.get-version-build.outputs.version }}
-          TOKEN: ${{ secrets.ENVIRONMENT_REPO_ACCESS_TOKEN }}
+          TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
