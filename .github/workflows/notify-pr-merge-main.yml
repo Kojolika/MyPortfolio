@@ -52,3 +52,4 @@ jobs:
           BUILD: ${{ steps.get-version-build.outputs.build }}
           VERSION: ${{ steps.get-version-build.outputs.version }}
           TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
