@@ -32,7 +32,7 @@ jobs:
           BUILD=$(yq '.build' ./${VERSION_FILE})
           echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
           echo "BUILD=$BUILD" >> "$GITHUB_OUTPUT"
-          echo "LATEST_IMAGE=${ENV_REPO}:latest-${VERSION}-${BUILD}" >> "$GITHUB_OUTPUT"
+          echo "LATEST_IMAGE=${ENV_REPO}:${VERSION}-${BUILD}" >> "$GITHUB_OUTPUT"
         
         env:
           VERSION_FILE: version.yml
