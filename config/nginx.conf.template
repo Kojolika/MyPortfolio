@@ -25,6 +25,8 @@ server {
 server{
     listen 443 ssl;
     server_name andrewmyshok.com www.andrewmyshok.com *.andrewmyshok.com;
+    ssl_certificate     ${DOMAIN}.crt;
+    ssl_certificate_key ${DOMAIN}.key;
 
     location / {
         proxy_pass  http://172.17.0.1:${PORT};
