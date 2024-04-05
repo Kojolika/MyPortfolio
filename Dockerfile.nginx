@@ -1,2 +1,5 @@
 FROM nginx:latest
+WORKDIR /etc/nginx/
+RUN touch ${DOMAIN}.key
+RUN touch ${DOMAIN}.crt
 COPY config/nginx.conf.template /etc/nginx/templates/default.conf.template
