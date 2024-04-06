@@ -10,7 +10,7 @@ chmod 700 getssl && \
 sed -i -E "s/#ACCOUNT_EMAIL=\"[^\"]*\"/ACCOUNT_EMAIL=${DOMAIN_EMAIL}/" ~/.getssl/getssl.cfg && \
 if [[ "$ENVIRONMENT" = "production" ]]; then \
 sed -i 's/CA="https://acme-staging-v02.api.letsencrypt.org"/#CA="https://acme-staging-v02.api.letsencrypt.org"/' ~/.getssl/getssl.cfg && \
-sed -i 's/#CA="https://acme-v02.api.letsencrypt.org"/CA="https://acme-v02.api.letsencrypt.org"/' ~/.getssl/getssl.cfg \
+sed -i 's/#CA="https://acme-v02.api.letsencrypt.org"/CA="https://acme-v02.api.letsencrypt.org"/' ~/.getssl/getssl.cfg; \
 fi && \
 sed -i -E "s/#ACL=\(.*/ACL=(\"${ACL}\")/" ~/.getssl/$DOMAIN/getssl.cfg && \
 sed -i -E 's/#USE_SINGLE_ACL="[^"]*"/USE_SINGLE_ACL="true"/' ~/.getssl/$DOMAIN/getssl.cfg && \
