@@ -4,7 +4,8 @@ COPY config/nginx.conf.template /etc/nginx/templates/default.conf.template
 # HTTPS configuration
 WORKDIR /https-setup
 ARG DOMAIN_EMAIL
-RUN apt-get install dnsutils && \
+RUN sudo apt-get update && \
+sudo apt-get install --assume-yes dnsutils && \
 curl --silent https://raw.githubusercontent.com/srvrco/getssl/latest/getssl > getssl && \
 chmod 700 getssl && \
 ./getssl -c $DOMAIN && \
