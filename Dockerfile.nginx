@@ -4,7 +4,8 @@ COPY config/nginx.conf.template /etc/nginx/templates/default.conf.template
 # HTTPS configuration
 WORKDIR /https-setup
 ARG DOMAIN_EMAIL
-RUN curl --silent https://raw.githubusercontent.com/srvrco/getssl/latest/getssl > getssl && \
+RUN apt-get install dnsutils && \
+curl --silent https://raw.githubusercontent.com/srvrco/getssl/latest/getssl > getssl && \
 chmod 700 getssl && \
 ./getssl -c $DOMAIN && \
 sed -i -E "s/#ACCOUNT_EMAIL=\"[^\"]*\"/ACCOUNT_EMAIL=${DOMAIN_EMAIL}/" ~/.getssl/getssl.cfg && \
