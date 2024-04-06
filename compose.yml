@@ -6,11 +6,19 @@ services:
     ports:
       - ${PORT}:${PORT}
   nginx:
+    image: myshoka/nginx:${DOMAIN}
+    pull_policy: always
     build: 
       context: .
       dockerfile: ./Dockerfile.nginx
+      args: 
+        - DOMAIN_EMAIL=${DOMAIN_EMAIL}
     ports:
       - 80:80
+      - 443:443
     environment:
       - PORT=${PORT}
       - DOMAIN=${DOMAIN}
+      - ACL=${ACL}
+      - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
+      - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}

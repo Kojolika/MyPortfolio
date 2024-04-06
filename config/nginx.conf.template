@@ -1,7 +1,11 @@
 server {
     listen       80;
     listen  [::]:80;
-    server_name andrewmyshok.com www.andrewmyshok.com *.andrewmyshok.com;
+    server_name ${DOMAIN} www.${DOMAIN};
+
+    location ^~ /.well-known/acme-challenge/ {
+        alias ${ACL};
+    }
 
     location / {
         proxy_pass  https://172.17.0.1:443;
@@ -13,9 +17,9 @@ server {
 
 server {
     listen 443 ssl;
-    server_name andrewmyshok.com www.andrewmyshok.com *.andrewmyshok.com;
-    ssl_certificate     ${DOMAIN}.crt;
-    ssl_certificate_key ${DOMAIN}.key;
+    server_name ${DOMAIN} www.${DOMAIN};
+    ssl_certificate     ${SSL_CERT_DIRECTORY}${DOMAIN}.crt;
+    ssl_certificate_key ${SSL_KEY_DIRECTORY}${DOMAIN}.key;
 
     location / {
         proxy_pass  http://172.17.0.1:${PORT};
