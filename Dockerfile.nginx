@@ -20,6 +20,9 @@ fi && \
 sed -i -E "s/#USE_SINGLE_ACL=\"[^\"]*\"/USE_SINGLE_ACL=\"true\"/" $SSL_DOMAIN_SPECIFIC_CONFIG && \
 sed -i -E "s/SANS=\"[^\"]*\"/SANS=\"\"/" $SSL_DOMAIN_SPECIFIC_CONFIG && \
 # we need to escape the forward slashes for sed to properly understand the pattern
+ACL=${ACL//\//\\\/} && \
+SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY//\//\\\/} && \
+SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY//\//\\\/} && \
 sed -i -E "s/#ACL=\(.*/ACL=(\"${ACL}\")/" $SSL_DOMAIN_SPECIFIC_CONFIG && \
 sed -i -E "s/#DOMAIN_CERT_LOCATION=\"[^\"]*\"/DOMAIN_CERT_LOCATION=\"${SSL_CERT_DIRECTORY}\"/" $SSL_DOMAIN_SPECIFIC_CONFIG && \
 sed -i -E "s/#DOMAIN_KEY_LOCATION=\"[^\"]*\"/DOMAIN_KEY_LOCATION=\"${SSL_KEY_DIRECTORY}\"/" $SSL_DOMAIN_SPECIFIC_CONFIG && \
@@ -27,6 +30,3 @@ sed -i -E "s/#DOMAIN_KEY_LOCATION=\"[^\"]*\"/DOMAIN_KEY_LOCATION=\"${SSL_KEY_DIR
 COPY ${ACL} ${ACL}
 COPY ${SSL_CERT_DIRECTORY} ${SSL_CERT_DIRECTORY}
 COPY ${SSL_KEY_DIRECTORY} ${SSL_KEY_DIRECTORY}
-ACL=${ACL//\//\\\/} && \
-SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY//\//\\\/} && \
-SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY//\//\\\/} && \
