@@ -12,14 +12,12 @@ services:
       context: .
       dockerfile: ./Dockerfile.nginx
       args: 
-        - DOMAIN_EMAIL=${DOMAIN_EMAIL}
-        - DOMAIN=${DOMAIN}
+        - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
+        - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
+        - SSL_ACME_DIRECTORY=${SSL_ACME_DIRECTORY} 
     ports:
       - 80:80
       - 443:443
     environment:
       - PORT=${PORT}
       - DOMAIN=${DOMAIN}
-      - ACL=${ACL}
-      - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
-      - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
