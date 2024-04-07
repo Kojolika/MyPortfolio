@@ -6,8 +6,8 @@ WORKDIR /https-setup
 ARG DOMAIN_EMAIL
 RUN apt-get update && \
 apt-get install --assume-yes dnsutils && \
-SSL_CONFIG="$HOME/.getssl/getssl.cfg" && \
-SSL_DOMAIN_SPECIFIC_CONFIG="$HOME/.getssl/${DOMAIN}/getssl.cfg" && \
+SSL_CONFIG=~/.getssl/getssl.cfg && \
+SSL_DOMAIN_SPECIFIC_CONFIG=~/.getssl/${DOMAIN}/getssl.cfg && \
 cd ~ && \
 curl --silent https://raw.githubusercontent.com/srvrco/getssl/latest/getssl > getssl && \
 chmod 700 getssl && \
