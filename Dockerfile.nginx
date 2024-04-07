@@ -7,6 +7,7 @@ ARG DOMAIN_EMAIL
 ARG DOMAIN
 RUN apt-get update && \
 apt-get install --assume-yes dnsutils && \
+set -x && \
 SSL_CONFIG=~/.getssl/getssl.cfg && \
 SSL_DOMAIN_SPECIFIC_CONFIG=~/.getssl/${DOMAIN}/getssl.cfg && \
 cd ~ && \
