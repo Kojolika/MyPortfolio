@@ -13,6 +13,7 @@ services:
       dockerfile: ./Dockerfile.nginx
       args: 
         - DOMAIN_EMAIL=${DOMAIN_EMAIL}
+        - DOMAIN=${DOMAIN}
     ports:
       - 80:80
       - 443:443
