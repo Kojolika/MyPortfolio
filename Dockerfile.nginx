@@ -2,7 +2,6 @@ FROM nginx:latest
 COPY config/nginx.conf.template /etc/nginx/templates/default.conf.template
 ARG SSL_CERT_DIRECTORY
 ARG SSL_KEY_DIRECTORY
-ARG SSL_ACME_DIRECTORY
-COPY $SSL_CERT_DIRECTORY $SSL_CERT_DIRECTORY
-COPY $SSL_KEY_DIRECTORY $SSL_KEY_DIRECTORY
-COPY $SSL_ACME_DIRECTORY $SSL_ACME_DIRECTORY
+# Create a fake crt as nginx doesn't allow us to start without a crt file
+# For our deployment we install a real cert after starting the server
+RUN openssl req -nodes -new -x509 -subj "/CN=localhost" -keyout ${SSL_KEY_DIRECTORY}${DOMAIN}.key -out ${SSL_CERT_DIRECTORY}${DOMAIN}.crt
