@@ -3,5 +3,6 @@ COPY config/nginx.conf.template /etc/nginx/templates/default.conf.template
 # ssl crt required in crt directory, ssl private key required in key directory
 ARG SSL_CERT_DIRECTORY
 ARG SSL_KEY_DIRECTORY
+ARG DOMAIN
 COPY ${SSL_CERT_DIRECTORY}${DOMAIN}.crt ${SSL_CERT_DIRECTORY}${DOMAIN}.crt
 COPY ${SSL_KEY_DIRECTORY}${DOMAIN}.key ${SSL_KEY_DIRECTORY}${DOMAIN}.key

@@ -14,6 +14,7 @@ services:
       args: 
         - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
         - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
+        - DOMAIN=${DOMAIN}
     ports:
       - 80:80
       - 443:443
