@@ -17,8 +17,8 @@ server {
     ssl_certificate /etc/ssl/certs/${DOMAIN}.crt;
     ssl_certificate_key /etc/ssl/private/${DOMAIN}.key;
 
-    location ^~ /\.well-known/acme-challenge/ {
-        root ~/${SSL_ACME_DIRECTORY};
+    location ^~ /.well-known/acme-challenge/(?<token>.+)$ {
+        root ~/${SSL_ACME_DIRECTORY}/$token;
     }
 
     location / {
