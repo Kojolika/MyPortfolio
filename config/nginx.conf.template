@@ -18,7 +18,7 @@ server {
     ssl_certificate_key /etc/ssl/private/${DOMAIN}.key;
 
     location ^~ /\.well-known/acme-challenge/ {
-        alias ${ACL};
+        alias ${SSL_ACME_DIRECTORY};
     }
 
     location / {
