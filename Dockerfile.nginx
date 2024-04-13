@@ -4,5 +4,5 @@ COPY config/nginx.conf.template /etc/nginx/templates/default.conf.template
 ARG SSL_CERT_DIRECTORY
 ARG SSL_KEY_DIRECTORY
 ARG DOMAIN
-COPY ${SSL_CERT_DIRECTORY}${DOMAIN}.crt /etc/ssl/certs/${DOMAIN}.crt
-COPY ${SSL_KEY_DIRECTORY}${DOMAIN}.key /etc/ssl/private/${DOMAIN}.key
+COPY ${SSL_CERT_DIRECTORY}/${DOMAIN}.crt /etc/ssl/certs/${DOMAIN}.crt
+COPY ${SSL_KEY_DIRECTORY}/${DOMAIN}.key /etc/ssl/private/${DOMAIN}.key
