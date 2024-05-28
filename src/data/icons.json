@@ -1,39 +1,39 @@
 {
   "icons": [
     {
-      "name": "unity",
+      "name": "Unity",
       "img_url": "media/icons/unity.png"
     },
     {
-      "name": "react",
+      "name": "React",
       "img_url": "media/icons/react.png"
     },
     {
-      "name": "node",
+      "name": "Node",
       "img_url": "media/icons/node.png"
     },
     {
-      "name": "csharp",
+      "name": "C#",
       "img_url": "media/icons/csharp.png"
     },
     {
-      "name": "js",
+      "name": "JavaScript",
       "img_url": "media/icons/js.png"
     },
     {
-      "name": "python",
+      "name": "Python",
       "img_url": "media/icons/python.png"
     },
     {
-      "name": "sql",
+      "name": "SQL",
       "img_url": "media/icons/sql.png"
     },
     {
-      "name": "html",
+      "name": "HTML",
       "img_url": "media/icons/html.png"
     },
     {
-      "name": "css",
+      "name": "CSS",
       "img_url": "media/icons/css.png"
     }
   ]

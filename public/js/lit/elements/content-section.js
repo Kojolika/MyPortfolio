@@ -12,18 +12,21 @@ export class ContentSection extends LitElement {
             align-items: center;
             flex-direction: column;
             border-radius: 10px;
-            box-shadow: rgba(0 0 0 / 0.6) 0px 0px 90px 10px;
+            box-shadow: rgba(0 0 0 / 0.3) 5px 10px 10px 5px;
             background-color: rgba(0, 0, 0, 0.75);
-            // background: linear-gradient(#9198e500,#eda1ab84 75%,#ca90bdca 90%, #AB93C9 99%);
             border-image: linear-gradient(to bottom, cyan, blue) 1;
             border-width: 20px;
             color: white;
-            padding: 28px;
-            
+            padding: 56px;
             flex-grow: 1;
             min-width: 300px;
             height: auto;
         }
+        @media screen and (max-width: 832px){
+			article {
+                padding: 28px;
+			}
+		}
     `];
 
     static properties = {

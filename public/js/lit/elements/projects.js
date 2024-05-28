@@ -16,7 +16,7 @@ export class Projects extends LitElement {
             font-size: 28px;
             color: black;
         }
-        .project-container{
+        .project-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -26,10 +26,11 @@ export class Projects extends LitElement {
             padding-left: 28px;
             padding-right: 28px;
         }
-        .project-container:hover{
-            box-shadow: white 0px 0px 15px;
+        .project-container:hover {
+            border: 5px outset wheat;
+            box-sizing: border-box;
         }
-        .thumbnail-container{
+        .thumbnail-container {
             min-height: 152px;
             min-width: 152px;
             display: flex;
@@ -38,7 +39,7 @@ export class Projects extends LitElement {
             flex-direction: column;
             text-align: center;
         }
-        p{
+        p {
             display: flex;
             color: black;
             justify-content: center;
@@ -65,10 +66,10 @@ export class Projects extends LitElement {
         a {
             margin-left: auto;
         }
-        .github-icon{
+        .github-icon {
             max-width: 64px;
         }
-        .title-container{
+        .title-container {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -100,7 +101,6 @@ export class Projects extends LitElement {
             complete: (data) => {
                 return data.projects.map((project) =>{
                     const techStack = project.tech.map((sentence) => html`<li>${sentence}</li>`);
-                    console.log(project.thumbnail_url);
                     return html`
                         <div class="project-container">
                             <div class="thumbnail-container">

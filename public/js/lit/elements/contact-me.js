@@ -61,21 +61,21 @@ export class ContactMe extends LitElement {
                 <input type="hidden" name="access_key" value="9b6bacfb-89ee-44d9-8642-ec3e1d1caa25">
 
                 <div class="input-container">
-                    <label for="name">Name:</label>
+                    <label for="name">Your Name:</label>
                     <input class="rounded white-shadow-hover" type="text" name="name" id="name" required>
                 </div>
                 <div class="input-container">
-                    <label for="email">Your email:</label>
+                    <label for="email">Your Email:</label>
                     <input class="rounded white-shadow-hover" type="email" name="email" id="email" required>
                 </div>
                 <div class="input-container">
-                    <label for="message">Message:</label>
+                    <label for="message">Your Message:</label>
                     <textarea class="rounded white-shadow-hover" name="message" id="message" required></textarea>
                 </div>
 
                 <div class="h-captcha" data-captcha="true"></div>
 
-                <button class="rounded" type="submit">Send Form</button>
+                <button class="rounded" type="submit">Send Email</button>
             </form>
         `;
     }

@@ -4,6 +4,7 @@ import './about-me-article.js';
 import './work-experience.js';
 import './projects.js';
 import './contact-me.js';
+import './skills.js';
 import {centerChildren} from '../styles/centerChildren.js';
 
 /**
@@ -16,10 +17,9 @@ export class InfoColumn extends LitElement {
 			display: flex;
 			flex-direction: column;
       		min-width: 320px;
-			width: 1280px;
-
-			gap: 120px;
-
+			max-width: 1280px;
+			gap: 28px;
+			width: auto;
 			padding-top: 28px;
 			padding-bottom: 28px;
 			padding-left: 8px;
@@ -46,15 +46,18 @@ export class InfoColumn extends LitElement {
 	*/
 	render() {
 		return html`
-				<content-section id="about" sectionHeader="Hi, I'm Andrew.">
-					<about-me></about-me>
-				</content-section>
-				<content-section id="projects" sectionHeader="Projects">
-					<my-projects></my-projects>
-				</content-section>
-				<content-section id="contact" sectionHeader="Contact me!">
-					<contact-me></contact-me>
-				</content-section>
+			<content-section sectionHeader="Hi, I'm Andrew.">
+				<about-me></about-me>
+			</content-section>
+			<content-section sectionHeader="Skills">
+				<my-skills></my-skills>
+			</content-section>
+			<content-section sectionHeader="Projects">
+				<my-projects></my-projects>
+			</content-section>
+			<content-section sectionHeader="Contact me!">
+				<contact-me></contact-me>
+			</content-section>
     	`;
 	};
 }

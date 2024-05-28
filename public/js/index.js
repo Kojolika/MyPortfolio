@@ -4,4 +4,4 @@
 
 import './lit/elements/main-page.js';
 import './lit/elements/env-var-info.js';
-import './pixi/background.js';
+// import './pixi/background.js';
