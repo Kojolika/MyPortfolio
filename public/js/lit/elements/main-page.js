@@ -34,9 +34,8 @@ export class MainPage extends LitElement {
 			width: 100%;
 			height: 100%;
 			clip-path: circle(62% at 85% 24%);
-			
 		}
-		#bg4-wrapper{
+		#bg4-wrapper {
 			width: 100%;
 			height: 100%;
 			filter: drop-shadow(0 0 75px rgba(255,250,205, 0.5));
