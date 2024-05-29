@@ -5,6 +5,10 @@ import {LitElement, html, css} from 'lit';
  */
 export class BackgroundStyle extends LitElement {
     static styles = css`
+		@keyframes appear {
+			0% { opacity: 0}
+			100% {opacity: 1}
+		}
 		#background {
 			background-color: #2465DB;
 			width: 100%;
@@ -15,6 +19,7 @@ export class BackgroundStyle extends LitElement {
 			display: flex;
 			justify-content: center;
 			z-index: -1;
+			animation: appear 1s ease-in;
 		}
 		#bg2-wrapper {
 			width: 100%;
@@ -30,7 +35,7 @@ export class BackgroundStyle extends LitElement {
 			width: 100%;
 			height: 100%;
 			clip-path: circle(85% at 60% 25%);
-			animation: slidein2 1.5s ease-in;
+			animation: slidein2 .9s ease-in;
 		}
 		#bg3-wrapper {
 			width: 100%;
@@ -46,7 +51,7 @@ export class BackgroundStyle extends LitElement {
 			width: 100%;
 			height: 100%;
 			clip-path: circle(70% at 60% 25%);
-			animation: slidein3 1.25s ease-in;
+			animation: slidein3 .75s ease-in;
 		}
 		#bg4-wrapper {
 			width: 100%;

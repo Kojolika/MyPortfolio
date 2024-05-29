@@ -38,6 +38,28 @@ export class InfoColumn extends LitElement {
 				width: 80%;
 			}
 		}
+		@keyframes slidein {
+  			0% {
+    			transform: translateY(100%);
+				opacity: 0;
+  			}
+			75% {
+				opacity: 0;
+			}
+  			100% {
+   				transform: translateY(0%);
+				opacity: 1;
+  			}
+		}
+		#about {
+			animation: slidein 1s ease-in;
+		}
+		#skills {
+			animation: slidein 1.25s ease-in;
+		}
+		#projects {
+			animation: slidein 1.5s ease-in;
+		}
     `];
 
 	/**
@@ -45,13 +67,13 @@ export class InfoColumn extends LitElement {
 	*/
 	render() {
 		return html`
-			<content-section sectionHeader="Hi, I'm Andrew.">
+			<content-section id="about" sectionHeader="Hi, I'm Andrew.">
 				<about-me></about-me>
 			</content-section>
-			<content-section sectionHeader="Skills">
+			<content-section id="skills" sectionHeader="Skills">
 				<my-skills></my-skills>
 			</content-section>
-			<content-section sectionHeader="Projects">
+			<content-section id="projects" sectionHeader="Projects">
 				<my-projects></my-projects>
 			</content-section>
     	`;
