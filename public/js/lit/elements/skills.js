@@ -1,35 +1,33 @@
 import {LitElement, html, css} from 'lit';
 import {Task} from '@lit/task';
+import {icon} from '../styles/icon.js';
+import {standardShadow} from '../styles/standardShadow.js';
 /**
  *
  */
 export class Skills extends LitElement {
-    static styles = css`
-    .icon {
-        max-width: 96px;
-        width: 100%;
-        border-radius: 10px;
-    }
-    .icon-container:hover {
-        box-shadow: white 0px 0px 15px;
-    }
-    .icon-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        font-size: 20px;
-    }
-    .icon-list-container { 
-        display: flex;
-        flex-wrap: wrap;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-content: center;
-        align-items: center;
-        gap: 28px;
-    }
-`;
+    static styles = [standardShadow, icon, css`
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+        .icon-list-container { 
+            display: flex;
+            flex-wrap: wrap;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+        }
+        #icon-name {
+            margin-top: 10px;
+        }
+    `];
+
     static properties={
         icons: {type: Object},
     };
@@ -53,8 +51,8 @@ export class Skills extends LitElement {
         data.icons.map((iconData) => {
             return html`
                 <div class="icon-container">
-                    <span> ${iconData.name} </span>
-                    <img class="icon" src=${iconData.img_url}>             
+                    <img class="icon standard-shadow-hover" src=${iconData.img_url}>
+                    <span id="icon-name"> ${iconData.name} </span>             
                 </div>
             `;
         });

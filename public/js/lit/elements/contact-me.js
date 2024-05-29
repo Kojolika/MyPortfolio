@@ -1,10 +1,11 @@
 import {LitElement, html, css} from 'lit';
+import {standardShadow} from '../styles/standardShadow.js';
 
 /**
  *
  */
 export class ContactMe extends LitElement {
-    static styles = css`
+    static styles = [standardShadow, css`
         :host{
             width: 100%;
             display: flex;
@@ -30,14 +31,15 @@ export class ContactMe extends LitElement {
             display:flex;
             flex-direction: column;
             width: 100%;
-            color: white;
+            border-color: gray;
         }
         .input-container > input{
-            max-width: 252px;
+            //max-width: 252px;
             border: none;
             height: 40px;
         }
         textarea {
+            min-width: 100%;
             max-width: 100%;
             height: 100%;
             min-height: 160px;
@@ -50,7 +52,7 @@ export class ContactMe extends LitElement {
         .white-shadow-hover:hover {
             box-shadow: white 0px 0px 8px;
         }
-    `;
+    `];
     /**
      *
      * @return {html}
@@ -60,15 +62,15 @@ export class ContactMe extends LitElement {
             <form action="https://api.web3forms.com/submit" method="post">
                 <input type="hidden" name="access_key" value="9b6bacfb-89ee-44d9-8642-ec3e1d1caa25">
 
-                <div class="input-container">
+                <div class="input-container standard-shadow">
                     <label for="name">Your Name:</label>
                     <input class="rounded white-shadow-hover" type="text" name="name" id="name" required>
                 </div>
-                <div class="input-container">
+                <div class="input-container standard-shadow" class="input-container">
                     <label for="email">Your Email:</label>
                     <input class="rounded white-shadow-hover" type="email" name="email" id="email" required>
                 </div>
-                <div class="input-container">
+                <div class="input-container standard-shadow" class="input-container">
                     <label for="message">Your Message:</label>
                     <textarea class="rounded white-shadow-hover" name="message" id="message" required></textarea>
                 </div>

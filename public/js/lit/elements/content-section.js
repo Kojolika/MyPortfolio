@@ -1,22 +1,22 @@
 import {LitElement, html, css} from 'lit';
 import {contentHeader} from '../styles/content-header.js';
+import {standardShadow} from '../styles/standardShadow.js';
 
 /**
  *
  */
 export class ContentSection extends LitElement {
-    static styles = [contentHeader, css`
+    static styles = [standardShadow, contentHeader, css`
         article {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             border-radius: 10px;
-            box-shadow: rgba(0 0 0 / 0.3) 5px 10px 10px 5px;
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: whitesmoke;
             border-image: linear-gradient(to bottom, cyan, blue) 1;
             border-width: 20px;
-            color: white;
+            color: black;
             padding: 56px;
             flex-grow: 1;
             min-width: 300px;
@@ -48,7 +48,7 @@ export class ContentSection extends LitElement {
      */
     render() {
         return html`
-            <article>
+            <article class="standard-shadow">
                 <h2 class="header">${this.sectionHeader}</h2>
                 <slot></slot>
             </article>

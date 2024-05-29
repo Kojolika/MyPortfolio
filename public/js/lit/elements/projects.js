@@ -1,11 +1,12 @@
 import {LitElement, html, css} from 'lit';
 import {Task} from '@lit/task';
+import {standardShadow} from '../styles/standardShadow.js';
 
 /**
  *
  */
 export class Projects extends LitElement {
-    static styles = css`
+    static styles = [standardShadow, css`
         :host {
             display: flex;
             flex-direction: column;
@@ -25,10 +26,6 @@ export class Projects extends LitElement {
             gap: 28px;
             padding-left: 28px;
             padding-right: 28px;
-        }
-        .project-container:hover {
-            border: 5px outset wheat;
-            box-sizing: border-box;
         }
         .thumbnail-container {
             min-height: 152px;
@@ -68,6 +65,7 @@ export class Projects extends LitElement {
         }
         .github-icon {
             max-width: 64px;
+            border-radius: 10px;
         }
         .title-container {
             display: flex;
@@ -75,7 +73,8 @@ export class Projects extends LitElement {
             align-items: center;
             width: 100%;
         }
-    `;
+    `];
+
     static properties = {
         projectsArray: {type: Object},
     };
@@ -102,12 +101,12 @@ export class Projects extends LitElement {
                 return data.projects.map((project) =>{
                     const techStack = project.tech.map((sentence) => html`<li>${sentence}</li>`);
                     return html`
-                        <div class="project-container">
+                        <div class="project-container standard-shadow-hover">
                             <div class="thumbnail-container">
                                 <div class="title-container">
                                     <h3>${project.title}</h3>
                                     <a href="${project.url}">
-                                        <img src="media/icons/github.png" class="github-icon">
+                                        <img class="github-icon standard-shadow-hover" src="media/icons/github.png" >
                                     </a>  
                                 </div>
                                 <img src=${project.thumbnail_url} width="100%">

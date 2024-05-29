@@ -1,7 +1,6 @@
 import {LitElement, html, css} from 'lit';
 import './content-section.js';
 import './about-me-article.js';
-import './work-experience.js';
 import './projects.js';
 import './contact-me.js';
 import './skills.js';
@@ -54,9 +53,6 @@ export class InfoColumn extends LitElement {
 			</content-section>
 			<content-section sectionHeader="Projects">
 				<my-projects></my-projects>
-			</content-section>
-			<content-section sectionHeader="Contact me!">
-				<contact-me></contact-me>
 			</content-section>
     	`;
 	};
