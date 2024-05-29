@@ -6,8 +6,9 @@ import {LitElement, html, css} from 'lit';
 export class BackgroundStyle extends LitElement {
     static styles = css`
 		@keyframes appear {
-			0% { opacity: 0}
-			100% {opacity: 1}
+			0% { background-color: white }
+			75% { background-color: white }
+			100% { background-color: #2465DB; }
 		}
 		#background {
 			background-color: #2465DB;
