@@ -1,18 +1,19 @@
 import {LitElement, html, css} from 'lit';
 import './info-column.js';
 import './background-style.js';
+import {centerChildren} from '../styles/centerChildren.js';
 
 /**
  * This is the main page for the website, everything else is rendered inside these elements.
  */
 export class MainPage extends LitElement {
-	static styles = css`
+	static styles = [centerChildren, css`
 		main {
 			box-sizing: border-box;
 			display: flex;
 			justify-content: center;
 		}
-	`;
+	`];
 
 	/**
 	 * Returns the rendered html for this element.
@@ -22,7 +23,7 @@ export class MainPage extends LitElement {
 		return html`
 			<background-style></background-style>
 			<main>
-      			<info-column></info-column>
+      			<info-column class="center-children"></info-column>
     		</main>
 		`;
 	}

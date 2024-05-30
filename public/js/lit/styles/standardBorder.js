@@ -7,6 +7,6 @@ export const standardBorder = css`
         border-color: grey;
     }
     .standard-border-radius {
-        border-radius: 10px;
+        border-radius: 8px;
     }
 `;

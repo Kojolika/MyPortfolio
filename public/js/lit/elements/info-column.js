@@ -3,14 +3,13 @@ import './content-section.js';
 import './about-me-article.js';
 import './projects.js';
 import './skills.js';
-import {centerChildren} from '../styles/centerChildren.js';
 import {standardSpacing} from '../styles/standardSpacing.js';
 
 /**
  * This is the main column of content for the website.
  */
 export class InfoColumn extends LitElement {
-	static styles = [standardSpacing, centerChildren, css`
+	static styles = [standardSpacing, css`
 		.main-content {
 			box-sizing: border-box;
 			display: flex;

@@ -10,11 +10,10 @@ import {standardBorder} from '../styles/standardBorder.js';
  */
 export class Projects extends LitElement {
     static styles = [standardBorder, standardSpacing, standardShadow, css`
-        :host {
+        .main-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 28px;
         }
         h3 {
             font-size: 28px;
@@ -56,7 +55,6 @@ export class Projects extends LitElement {
         li {
             font-size: 20px;
             background-color: lightblue;
-            border-radius: 8px;
             padding-left: 8px;
             padding-right: 8px;
             color: black;
@@ -66,7 +64,6 @@ export class Projects extends LitElement {
         }
         .github-icon {
             max-width: 64px;
-            border-radius: 10px;
         }
         .title-container {
             display: flex;
@@ -96,18 +93,20 @@ export class Projects extends LitElement {
      * @return {html}
      */
     render() {
-        return this._projectsArray.render({
+        return html`
+        <div class="main-content standard-gap">
+            ${this._projectsArray.render({
             pending: () => html`<p>Loading projects...</p>`,
             complete: (data) => {
                 return data.projects.map((project) =>{
-                    const techStack = project.tech.map((sentence) => html`<li>${sentence}</li>`);
+                    const techStack = project.tech.map((sentence) => html`<li class="standard-border-radius">${sentence}</li>`);
                     return html`
                         <div class="project-container standard-gap standard-shadow-hover standard-border standard-border-radius">
                             <div class="thumbnail-container">
                                 <div class="title-container">
                                     <h3>${project.title}</h3>
                                     <a href="${project.url}">
-                                        <img class="github-icon standard-shadow-hover" src="media/icons/github.png" >
+                                        <img class="github-icon standard-shadow-hover standard-border-radius" src="media/icons/github.png" >
                                     </a>  
                                 </div>
                                 <img src=${project.thumbnail_url} width="100%">
@@ -119,7 +118,8 @@ export class Projects extends LitElement {
                 });
             },
             error: (e) => html`<p>Error: ${e}</p>`,
-        });
+        })}
+        </div>`;
     }
 }
 customElements.define('my-projects', Projects);
