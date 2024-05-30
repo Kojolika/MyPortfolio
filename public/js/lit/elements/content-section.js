@@ -1,23 +1,21 @@
 import {LitElement, html, css} from 'lit';
-import {contentHeader} from '../styles/content-header.js';
+import {contentHeader} from '../styles/contentHeader.js';
 import {standardShadow} from '../styles/standardShadow.js';
+import {standardSpacing} from '../styles/standardSpacing.js';
+import {standardBorder} from '../styles/standardBorder.js';
 
 /**
- *
+ * This is the standard content section for each different type of content on the home page of the portfolio.
  */
 export class ContentSection extends LitElement {
-    static styles = [standardShadow, contentHeader, css`
+    static styles = [standardBorder, standardSpacing, standardShadow, contentHeader, css`
         article {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            border-radius: 10px;
             background-color: whitesmoke;
-            border-image: linear-gradient(to bottom, cyan, blue) 1;
-            border-width: 20px;
             color: black;
-            padding: 56px;
             flex-grow: 1;
             min-width: 300px;
             height: auto;
@@ -43,12 +41,12 @@ export class ContentSection extends LitElement {
     }
 
     /**
-     *
+     * Returns the rendered html for this element.
      * @return {html}
      */
     render() {
         return html`
-            <article class="standard-shadow">
+            <article class="standard-shadow standard-double-padding standard-border standard-border-radius">
                 <h2 class="header">${this.sectionHeader}</h2>
                 <slot></slot>
             </article>

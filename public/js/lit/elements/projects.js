@@ -1,12 +1,15 @@
+/* eslint-disable max-len */
 import {LitElement, html, css} from 'lit';
 import {Task} from '@lit/task';
 import {standardShadow} from '../styles/standardShadow.js';
+import {standardSpacing} from '../styles/standardSpacing.js';
+import {standardBorder} from '../styles/standardBorder.js';
 
 /**
- *
+ * This element displays my current relevant programming projects.
  */
 export class Projects extends LitElement {
-    static styles = [standardShadow, css`
+    static styles = [standardBorder, standardSpacing, standardShadow, css`
         :host {
             display: flex;
             flex-direction: column;
@@ -22,8 +25,6 @@ export class Projects extends LitElement {
             flex-direction: column;
             justify-content: center;
             background-color: white;
-            border-radius: 8px;
-            gap: 28px;
             padding-left: 28px;
             padding-right: 28px;
         }
@@ -91,7 +92,7 @@ export class Projects extends LitElement {
     });
 
     /**
-     *
+     * Returns the rendered html for this element.
      * @return {html}
      */
     render() {
@@ -101,7 +102,7 @@ export class Projects extends LitElement {
                 return data.projects.map((project) =>{
                     const techStack = project.tech.map((sentence) => html`<li>${sentence}</li>`);
                     return html`
-                        <div class="project-container standard-shadow-hover">
+                        <div class="project-container standard-gap standard-shadow-hover standard-border standard-border-radius">
                             <div class="thumbnail-container">
                                 <div class="title-container">
                                     <h3>${project.title}</h3>

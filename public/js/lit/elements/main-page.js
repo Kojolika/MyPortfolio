@@ -1,10 +1,9 @@
 import {LitElement, html, css} from 'lit';
 import './info-column.js';
-import './nav-column.js';
 import './background-style.js';
 
 /**
- * Test element
+ * This is the main page for the website, everything else is rendered inside these elements.
  */
 export class MainPage extends LitElement {
 	static styles = css`
@@ -16,7 +15,7 @@ export class MainPage extends LitElement {
 	`;
 
 	/**
-	 *
+	 * Returns the rendered html for this element.
 	 * @return {html} html for the main page
 	 */
 	render() {

@@ -9,7 +9,7 @@ export class EnvVarInfo extends LitElement {
   };
 
   /**
- *
+ * Returns the rendered html for this element.
  * @return {html} for which lists env vars
  */
   render() {

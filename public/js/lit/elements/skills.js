@@ -2,11 +2,14 @@ import {LitElement, html, css} from 'lit';
 import {Task} from '@lit/task';
 import {icon} from '../styles/icon.js';
 import {standardShadow} from '../styles/standardShadow.js';
+import {standardSpacing} from '../styles/standardSpacing.js';
+import {standardBorder} from '../styles/standardBorder.js';
+
 /**
- *
+ * This element displays icons of my relevant skills.
  */
 export class Skills extends LitElement {
-    static styles = [standardShadow, icon, css`
+    static styles = [standardBorder, standardSpacing, standardShadow, icon, css`
         .icon-container {
             display: flex;
             flex-direction: column;
@@ -21,7 +24,6 @@ export class Skills extends LitElement {
             grid-template-columns: 1fr 1fr 1fr;
             justify-content: center;
             align-items: center;
-            gap: 28px;
         }
         #icon-name {
             margin-top: 10px;
@@ -45,20 +47,24 @@ export class Skills extends LitElement {
     /**
      *
      * @param {JSON} data
+     * Associated data for each icon.
      * @return {Array<html>}
+     * Returns the html for each icon.
      */
     iconList = (data) =>
         data.icons.map((iconData) => {
             return html`
                 <div class="icon-container">
-                    <img class="icon standard-shadow-hover" src=${iconData.img_url}>
+                    <a href=${iconData.url}>
+                        <img class="icon-clickable standard-shadow-hover standard-border" src=${iconData.img_url}>
+                    </a>
                     <span id="icon-name"> ${iconData.name} </span>             
                 </div>
             `;
         });
 
     /**
-     *
+     * Returns the rendered html for this element.
      * @return {html}
      */
     render() {
@@ -66,7 +72,7 @@ export class Skills extends LitElement {
             pending: () => html`<p>Loading images...</p>`,
             complete: (data) => {
                 return html`
-                    <div class="icon-list-container">
+                    <div class="icon-list-container standard-gap">
                         ${this.iconList(data)}
                     </div>
                 `;

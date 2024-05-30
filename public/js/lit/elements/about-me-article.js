@@ -1,15 +1,14 @@
 import {LitElement, html, css} from 'lit';
 import {standardShadow} from '../styles/standardShadow.js';
 import {icon} from '../styles/icon.js';
+import {standardSpacing} from '../styles/standardSpacing.js';
+import {standardBorder} from '../styles/standardBorder.js';
+
 /**
- *
+ * This element is the about me section at the top of the portfolio with links to my relevant social media.
  */
 export class AboutMe extends LitElement {
-    static styles = [standardShadow, icon, css`
-        .icon:hover
-        {
-            cursor: pointer;
-        }
+    static styles = [standardBorder, standardSpacing, standardShadow, icon, css`
         :host{
             display: flex;
             flex-direction: column;
@@ -36,7 +35,6 @@ export class AboutMe extends LitElement {
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 28px;
         }
         @media screen and (min-width: 832px){
             .icon {
@@ -49,27 +47,26 @@ export class AboutMe extends LitElement {
     topSection = html`
         <div>
             <p>
-               I'm a passionate software developer with experience in 
-               machine learning, web development, and game development.
+               I'm a passionate software developer.
                <br>
-               My core skills are C#, Unity, JavaScript, Node.js and Python.
+               My core compentencies are AI/machine learning, databases, web development, and game development.
                <br>
                <br>
-               Visit my LinkedIn and Github if you'd like to contact me or see my work!
+               Visit my LinkedIn and Github if you'd like to connect or see my work!
             </p>
-            <div class="icon-container">
+            <div class="icon-container standard-gap">
                 <a href="https://www.linkedin.com/in/andrew-myshok-55106822a/">
-                    <img class="icon standard-shadow-hover" src="media/icons/linkedin.png">
+                    <img class="icon-clickable standard-shadow-hover standard-border" src="media/icons/linkedin.png">
                 </a>
                 <a href="https://github.com/Kojolika">
-                    <img class="icon standard-shadow-hover" src="media/icons/github.png">
+                    <img class="icon-clickable standard-shadow-hover standard-border" src="media/icons/github.png">
                 </a>
             </div>
         </div>
     `;
 
     /**
-     *
+     * Returns the rendered html for this element.
      * @return {html}
      */
     render() {
