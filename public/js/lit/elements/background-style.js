@@ -68,7 +68,7 @@ export class BackgroundStyle extends LitElement {
     `;
 
     /**
-     *
+     * Returns the rendered html for this element.
      * @return {html}
      */
     render() {
