@@ -1,32 +1,27 @@
 import {LitElement, html, css} from 'lit';
 import './content-section.js';
 import './about-me-article.js';
-import './work-experience.js';
 import './projects.js';
-import './contact-me.js';
 import './skills.js';
-import {centerChildren} from '../styles/centerChildren.js';
+import {standardSpacing} from '../styles/standardSpacing.js';
 
 /**
- *
+ * This is the main column of content for the website.
  */
 export class InfoColumn extends LitElement {
-	static styles = [centerChildren, css`
-		:host{
+	static styles = [standardSpacing, css`
+		.main-content {
 			box-sizing: border-box;
 			display: flex;
 			flex-direction: column;
       		min-width: 320px;
 			max-width: 1280px;
-			gap: 28px;
 			width: auto;
-			padding-top: 28px;
-			padding-bottom: 28px;
 			padding-left: 8px;
 			padding-right: 8px;
 		}
 		@media screen and (max-width: 832px){
-			:host {
+			.main-content {
 				width: 96%;
 				padding-top: 20px;
 				padding-bottom: 20px;
@@ -35,29 +30,51 @@ export class InfoColumn extends LitElement {
 			}
 		}
 		@media screen and (max-width: 1468px) and (min-width: 832px){
-			:host {
+			.main-content {
 				width: 80%;
 			}
+		}
+		@keyframes slidein {
+  			0% {
+    			transform: translateY(100%);
+				opacity: 0;
+  			}
+			75% {
+				opacity: 0;
+			}
+  			100% {
+   				transform: translateY(0%);
+				opacity: 1;
+  			}
+		}
+		#about {
+			animation: slidein 1s ease-in;
+		}
+		#skills {
+			animation: slidein 1.25s ease-in;
+		}
+		#projects {
+			animation: slidein 1.5s ease-in;
 		}
     `];
 
 	/**
-	* @return {html}
-	*/
+	 * Returns the rendered html for this element.
+	 * @return {html}
+	 */
 	render() {
 		return html`
-			<content-section sectionHeader="Hi, I'm Andrew.">
-				<about-me></about-me>
-			</content-section>
-			<content-section sectionHeader="Skills">
-				<my-skills></my-skills>
-			</content-section>
-			<content-section sectionHeader="Projects">
-				<my-projects></my-projects>
-			</content-section>
-			<content-section sectionHeader="Contact me!">
-				<contact-me></contact-me>
-			</content-section>
+			<div class="main-content standard-gap standard-padding">
+				<content-section id="about" sectionHeader="Hi, I'm Andrew.">
+					<about-me></about-me>
+				</content-section>
+				<content-section id="skills" sectionHeader="Skills">
+					<my-skills></my-skills>
+				</content-section>
+				<content-section id="projects" sectionHeader="Projects">
+					<my-projects></my-projects>
+				</content-section>
+			</div>
     	`;
 	};
 }

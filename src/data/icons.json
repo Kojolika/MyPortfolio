@@ -2,39 +2,48 @@
   "icons": [
     {
       "name": "Unity",
-      "img_url": "media/icons/unity.png"
+      "img_url": "media/icons/unity.png",
+      "url" :"https://unity.com/"
     },
     {
       "name": "React",
-      "img_url": "media/icons/react.png"
+      "img_url": "media/icons/react.png",
+      "url" :"https://react.dev/"
     },
     {
       "name": "Node",
-      "img_url": "media/icons/node.png"
+      "img_url": "media/icons/node.png",
+      "url" :"https://nodejs.org/en"
     },
     {
       "name": "C#",
-      "img_url": "media/icons/csharp.png"
+      "img_url": "media/icons/csharp.png",
+      "url" :"https://learn.microsoft.com/en-us/dotnet/csharp/"
     },
     {
       "name": "JavaScript",
-      "img_url": "media/icons/js.png"
+      "img_url": "media/icons/js.png",
+      "url" :"https://developer.mozilla.org/en-US/docs/Web/JavaScript"
     },
     {
       "name": "Python",
-      "img_url": "media/icons/python.png"
+      "img_url": "media/icons/python.png",
+      "url" :"https://www.python.org/"
     },
     {
       "name": "SQL",
-      "img_url": "media/icons/sql.png"
+      "img_url": "media/icons/sql.png",
+      "url" :"https://en.wikipedia.org/wiki/SQL"
     },
     {
       "name": "HTML",
-      "img_url": "media/icons/html.png"
+      "img_url": "media/icons/html.png",
+      "url" :"https://developer.mozilla.org/en-US/docs/Web/HTML"
     },
     {
       "name": "CSS",
-      "img_url": "media/icons/css.png"
+      "img_url": "media/icons/css.png",
+      "url" :"https://developer.mozilla.org/en-US/docs/Web/CSS"
     }
   ]
 }

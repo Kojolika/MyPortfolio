@@ -1,35 +1,35 @@
 import {LitElement, html, css} from 'lit';
 import {Task} from '@lit/task';
+import {icon} from '../styles/icon.js';
+import {standardShadow} from '../styles/standardShadow.js';
+import {standardSpacing} from '../styles/standardSpacing.js';
+import {standardBorder} from '../styles/standardBorder.js';
+
 /**
- *
+ * This element displays icons of my relevant skills.
  */
 export class Skills extends LitElement {
-    static styles = css`
-    .icon {
-        max-width: 96px;
-        width: 100%;
-        border-radius: 10px;
-    }
-    .icon-container:hover {
-        box-shadow: white 0px 0px 15px;
-    }
-    .icon-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        font-size: 20px;
-    }
-    .icon-list-container { 
-        display: flex;
-        flex-wrap: wrap;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-content: center;
-        align-items: center;
-        gap: 28px;
-    }
-`;
+    static styles = [standardBorder, standardSpacing, standardShadow, icon, css`
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+        .icon-list-container { 
+            display: flex;
+            flex-wrap: wrap;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-content: center;
+            align-items: center;
+        }
+        #icon-name {
+            margin-top: 10px;
+        }
+    `];
+
     static properties={
         icons: {type: Object},
     };
@@ -47,20 +47,24 @@ export class Skills extends LitElement {
     /**
      *
      * @param {JSON} data
+     * Associated data for each icon.
      * @return {Array<html>}
+     * Returns the html for each icon.
      */
     iconList = (data) =>
         data.icons.map((iconData) => {
             return html`
                 <div class="icon-container">
-                    <span> ${iconData.name} </span>
-                    <img class="icon" src=${iconData.img_url}>             
+                    <a href=${iconData.url}>
+                        <img class="icon-clickable standard-shadow-hover standard-border" src=${iconData.img_url}>
+                    </a>
+                    <span id="icon-name"> ${iconData.name} </span>             
                 </div>
             `;
         });
 
     /**
-     *
+     * Returns the rendered html for this element.
      * @return {html}
      */
     render() {
@@ -68,7 +72,7 @@ export class Skills extends LitElement {
             pending: () => html`<p>Loading images...</p>`,
             complete: (data) => {
                 return html`
-                    <div class="icon-list-container">
+                    <div class="icon-list-container standard-gap">
                         ${this.iconList(data)}
                     </div>
                 `;

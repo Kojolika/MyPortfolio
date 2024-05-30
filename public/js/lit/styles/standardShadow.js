@@ -1,0 +1,7 @@
+import {css} from 'lit';
+
+export const standardShadow = css`
+    .standard-shadow, .standard-shadow-hover:hover {
+        box-shadow: rgba(0 0 0 / 0.3) -4px 6px 8px 4px;
+    }
+`;
