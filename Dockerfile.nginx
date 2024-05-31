@@ -1,5 +1,8 @@
 FROM nginx:latest
 COPY config/nginx.conf.template /etc/nginx/templates/default.conf.template
 # ssl crt required in crt directory, ssl private key required in key directory
+ENV SSL_CERT_DIRECTORY=/etc/ssl/certs
+ENV SSL_KEY_DIRECTORY=/etc/ssl/private
+ENV DOMAIN=andrewmyshok.com
 COPY ${SSL_CERT_DIRECTORY}/${DOMAIN}.crt /etc/ssl/certs/${DOMAIN}.crt
 COPY ${SSL_KEY_DIRECTORY}/${DOMAIN}.key /etc/ssl/private/${DOMAIN}.key
