@@ -52,6 +52,28 @@ export class InfoColumn extends LitElement {
 				padding-right: 8px;
 			}
 		}
+		@keyframes slidein {
+  			0% {
+    			transform: translateY(100%);
+				opacity: 0;
+  			}
+			75% {
+				opacity: 0;
+			}
+  			100% {
+   				transform: translateY(0%);
+				opacity: 1;
+  			}
+		}
+		#about {
+			animation: slidein 1s ease-in;
+		}
+		#skills {
+			animation: slidein 1.25s ease-in;
+		}
+		#projects {
+			animation: slidein 1.5s ease-in;
+		}
     `];
 
 	/**
