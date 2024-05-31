@@ -19,13 +19,13 @@ export class ContentSection extends LitElement {
             flex-grow: 1;
             height: auto;
         }
-        @media screen and (max-width: 832px){
+/*         @media screen and (max-width: 832px){
 			.standard-double-padding {
                 padding: 28px;
 			}
-		}
+		} */
         @media screen and (max-width: 640px){
-			.standard-double-padding {
+			.standard-padding {
                 padding: 12px;
 			}
 		}
@@ -50,7 +50,7 @@ export class ContentSection extends LitElement {
      */
     render() {
         return html`
-            <article class="standard-shadow standard-double-padding standard-border standard-border-radius">
+            <article class="standard-shadow standard-padding standard-border standard-border-radius">
                 <h2 class="header">${this.sectionHeader}</h2>
                 <slot></slot>
             </article>
