@@ -10,8 +10,6 @@ export class MainPage extends LitElement {
 	static styles = [centerChildren, css`
 		main {
 			box-sizing: border-box;
-			display: flex;
-			justify-content: center;
 		}
 	`];
 

@@ -17,12 +17,16 @@ export class ContentSection extends LitElement {
             background-color: whitesmoke;
             color: black;
             flex-grow: 1;
-            min-width: 300px;
             height: auto;
         }
         @media screen and (max-width: 832px){
-			article {
+			.standard-double-padding {
                 padding: 28px;
+			}
+		}
+        @media screen and (max-width: 640px){
+			.standard-double-padding {
+                padding: 12px;
 			}
 		}
     `];
