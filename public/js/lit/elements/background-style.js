@@ -48,7 +48,7 @@ export class BackgroundStyle extends LitElement {
   			100% { clip-path: circle(70% at 60% 25%); }
 		}
 		#background3 {
-			background-color: #B1D8F7;
+			background-color: #e3f2ff;
 			width: 100%;
 			height: 100%;
 			clip-path: circle(70% at 60% 25%);
