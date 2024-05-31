@@ -14,9 +14,4 @@ services:
     ports:
       - 80:80
       - 443:443
-    environment:
-      - PORT=${PORT}
-      - DOMAIN=${DOMAIN}
-      - SSL_ACME_DIRECTORY=${SSL_ACME_DIRECTORY}
-      - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
-      - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
+    env_file: .env
