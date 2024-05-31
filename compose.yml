@@ -21,6 +21,4 @@ services:
     environment:
       - PORT=${PORT}
       - DOMAIN=${DOMAIN}
-      - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
-      - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
       - SSL_ACME_DIRECTORY=${SSL_ACME_DIRECTORY}
