@@ -11,10 +11,6 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile.nginx
-      args: 
-        - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
-        - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
-        - DOMAIN=${DOMAIN}
     ports:
       - 80:80
       - 443:443
@@ -22,3 +18,5 @@ services:
       - PORT=${PORT}
       - DOMAIN=${DOMAIN}
       - SSL_ACME_DIRECTORY=${SSL_ACME_DIRECTORY}
+      - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
+      - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
