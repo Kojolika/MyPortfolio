@@ -17,12 +17,11 @@ export class ContentSection extends LitElement {
             background-color: whitesmoke;
             color: black;
             flex-grow: 1;
-            min-width: 300px;
             height: auto;
         }
-        @media screen and (max-width: 832px){
-			article {
-                padding: 28px;
+        @media screen and (max-width: 640px){
+			.standard-padding {
+                padding: 12px;
 			}
 		}
     `];
@@ -32,7 +31,7 @@ export class ContentSection extends LitElement {
     };
 
     /**
-     *
+     * This will be the title of the section.
      * @param {String} sectionHeader
      */
     constructor(sectionHeader) {
@@ -46,7 +45,7 @@ export class ContentSection extends LitElement {
      */
     render() {
         return html`
-            <article class="standard-shadow standard-double-padding standard-border standard-border-radius">
+            <article class="standard-shadow standard-padding standard-border standard-border-radius">
                 <h2 class="header">${this.sectionHeader}</h2>
                 <slot></slot>
             </article>

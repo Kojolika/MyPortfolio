@@ -101,7 +101,7 @@ export class Projects extends LitElement {
                 return data.projects.map((project) =>{
                     const techStack = project.tech.map((sentence) => html`<li class="standard-border-radius">${sentence}</li>`);
                     return html`
-                        <div class="project-container standard-gap standard-shadow-hover standard-border standard-border-radius">
+                        <div class="project-container standard-shadow-hover standard-border standard-border-radius">
                             <div class="thumbnail-container">
                                 <div class="title-container">
                                     <h3>${project.title}</h3>

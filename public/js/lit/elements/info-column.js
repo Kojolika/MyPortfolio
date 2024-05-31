@@ -14,24 +14,42 @@ export class InfoColumn extends LitElement {
 			box-sizing: border-box;
 			display: flex;
 			flex-direction: column;
-      		min-width: 320px;
+			min-width: 320px;
 			max-width: 1280px;
-			width: auto;
-			padding-left: 8px;
-			padding-right: 8px;
+			width: 100%;
 		}
-		@media screen and (max-width: 832px){
-			.main-content {
-				width: 96%;
-				padding-top: 20px;
-				padding-bottom: 20px;
-				padding-left: 4px;
-				padding-right: 4px;
+		@keyframes slidein {
+  			0% {
+    			transform: translateY(100%);
+				opacity: 0;
+  			}
+			75% {
+				opacity: 0;
+			}
+  			100% {
+   				transform: translateY(0%);
+				opacity: 1;
+  			}
+		}
+		#about {
+			animation: slidein 1s ease-in;
+		}
+		#skills {
+			animation: slidein 1.25s ease-in;
+		}
+		#projects {
+			animation: slidein 1.5s ease-in;
+		}
+		@media screen and (max-width: 640px){
+			.standard-padding {
+                padding-left: 12px;
+				padding-right: 12px;
 			}
 		}
-		@media screen and (max-width: 1468px) and (min-width: 832px){
-			.main-content {
-				width: 80%;
+		@media screen and (max-width: 340px){
+			.standard-padding {
+                padding-left: 8px;
+				padding-right: 8px;
 			}
 		}
 		@keyframes slidein {
