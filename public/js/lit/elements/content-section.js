@@ -19,11 +19,6 @@ export class ContentSection extends LitElement {
             flex-grow: 1;
             height: auto;
         }
-/*         @media screen and (max-width: 832px){
-			.standard-double-padding {
-                padding: 28px;
-			}
-		} */
         @media screen and (max-width: 640px){
 			.standard-padding {
                 padding: 12px;
@@ -36,7 +31,7 @@ export class ContentSection extends LitElement {
     };
 
     /**
-     *
+     * This will be the title of the section.
      * @param {String} sectionHeader
      */
     constructor(sectionHeader) {
