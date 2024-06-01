@@ -2,9 +2,9 @@ services:
   nginx-proxy:
     image: nginxproxy/nginx-proxy:1.5
     volumes:
-      - ./certs:/etc/nginx/certs
-      - ./vhost:/etc/nginx/vhost.d
-      - ./html:/usr/share/nginx/html 
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html 
       - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
       - 80:80
