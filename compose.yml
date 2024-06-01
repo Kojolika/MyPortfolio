@@ -21,8 +21,8 @@ services:
   nginx:
     image: nginx
     environment:
-      - VIRTUAL_HOST=${DOMAIN}.tld
-      - LETSENCRYPT_HOST=${DOMAIN}.tld
+      - VIRTUAL_HOST=${DOMAIN}
+      - LETSENCRYPT_HOST=${DOMAIN}
   web:
     image: ${LATEST_IMAGE}
     pull_policy: always
@@ -30,7 +30,7 @@ services:
     ports:
       - ${PORT}:${PORT}
     environment:
-      - VIRTUAL_HOST=${DOMAIN}.tld
+      - VIRTUAL_HOST=${DOMAIN}
       - VIRTUAL_PORT=${PORT}
-      - LETSENCRYPT_HOST=${DOMAIN}.tld
+      - LETSENCRYPT_HOST=${DOMAIN}
       - LETSENCRYPT_EMAIL=${DOMAIN_EMAIL}
