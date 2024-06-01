@@ -11,7 +11,8 @@ services:
       - 443:443
   nginx-proxy-acme:
     image: nginxproxy/acme-companion
-    volumes_from: nginx-proxy
+    volumes_from: 
+      - nginx-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - acme:/etc/acme.sh
