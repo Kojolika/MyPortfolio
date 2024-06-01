@@ -1,24 +1,30 @@
 services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:1.5
+    volumes:
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html 
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - 80:80
+      - 443:443
+  nginx-proxy-acme:
+    image: nginxproxy/acme-companion
+    volumes_from: nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
+    environment:
+      - DEFAULT_EMAIL=${DOMAIN_EMAIL}
   web:
     image: ${LATEST_IMAGE}
     pull_policy: always
     env_file: .env
     ports:
       - ${PORT}:${PORT}
-  nginx:
-    image: myshoka/nginx:${DOMAIN}
-    pull_policy: always
-    build: 
-      context: .
-      dockerfile: ./Dockerfile.nginx
-      args:
-        - SSL_CERT_DIRECTORY=${SSL_CERT_DIRECTORY}
-        - SSL_KEY_DIRECTORY=${SSL_KEY_DIRECTORY}
-        - DOMAIN=${DOMAIN}
-    ports:
-      - 80:80
-      - 443:443
     environment:
-      - PORT=${PORT}
-      - DOMAIN=${DOMAIN}
-      - SSL_ACME_DIRECTORY=${SSL_ACME_DIRECTORY}
+      - VIRTUAL_HOST=${DOMAIN}.tld
+      - VIRTUAL_PORT=${PORT}
+      - LETSENCRYPT_HOST=${DOMAIN}.tld
+      - LETSENCRYPT_EMAIL=${DOMAIN_EMAIL}
