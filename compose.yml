@@ -20,7 +20,7 @@ services:
       - DEFAULT_EMAIL=${DOMAIN_EMAIL}
   web:
     image: ${LATEST_IMAGE}
-    pull_policy: always
+    pull_policy: build
     env_file: .env
     ports:
       - ${PORT}:${PORT}
