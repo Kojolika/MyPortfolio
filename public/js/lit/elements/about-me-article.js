@@ -54,7 +54,7 @@ export class AboutMe extends LitElement {
             <p>
                I'm a passionate software developer who loves creating things and solving problems.
                <br>
-               My core compentencies are with AI/machine learning, databases, web development, and game development.
+               I have work experience with client applications, web applications, server applications, databases and machine learning, let's get in touch if you're looking for someone with these skills!
                <br>
                <br>
                Visit my LinkedIn and Github if you'd like to connect or see my work!
