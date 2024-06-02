@@ -19,10 +19,18 @@ export class ContentSection extends LitElement {
             flex-grow: 1;
             height: auto;
         }
+        .header {
+            word-wrap: nowrap;
+		}
         @media screen and (max-width: 640px){
 			.standard-padding {
                 padding: 12px;
 			}
+		}
+        @media screen and (max-width: 832px){
+            .header {
+                font-size: 32px;
+		    }
 		}
     `];
 
