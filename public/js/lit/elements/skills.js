@@ -21,13 +21,23 @@ export class Skills extends LitElement {
         .icon-list-container { 
             display: flex;
             flex-wrap: wrap;
-            grid-template-columns: 1fr 1fr 1fr;
             justify-content: center;
             align-items: center;
         }
         #icon-name {
             margin-top: 10px;
         }
+        @media screen and (max-width: 832px){
+            #icon-name {
+                font-size: 16px;
+		    }
+		}
+        @media screen and (max-width: 420px){
+            .icon-list-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+		    }
+		}
     `];
 
     static properties={

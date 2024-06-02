@@ -9,21 +9,21 @@ import {standardBorder} from '../styles/standardBorder.js';
  */
 export class AboutMe extends LitElement {
     static styles = [standardBorder, standardSpacing, standardShadow, icon, css`
-        :host{
+        :host {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-        img{
+        img {
             width: 100%;
             border-radius: 10px;
         }
-        p{
+        p {
             font-size: 24px;
             margin: 0 0 30px 0;
         }
-        div{
+        div {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -36,9 +36,14 @@ export class AboutMe extends LitElement {
             justify-content: center;
             align-items: center;
         }
-        @media screen and (min-width: 832px){
+        @media screen and (min-width: 832px) {
             .icon {
                 max-width: 128px;
+            }
+		}
+        @media screen and (max-width: 832px) {
+            p {
+                font-size: 16px;
             }
 		}
     `];
@@ -47,9 +52,9 @@ export class AboutMe extends LitElement {
     topSection = html`
         <div>
             <p>
-               I'm a passionate software developer.
+               I'm a passionate software developer who loves creating things and solving problems.
                <br>
-               My core compentencies are AI/machine learning, databases, web development, and game development.
+               My core compentencies are with AI/machine learning, databases, web development, and game development.
                <br>
                <br>
                Visit my LinkedIn and Github if you'd like to connect or see my work!

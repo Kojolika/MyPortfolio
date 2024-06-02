@@ -71,6 +71,11 @@ export class Projects extends LitElement {
             align-items: center;
             width: 100%;
         }
+        @media screen and (max-width: 832px){
+            p {
+                font-size: 16px;
+		    }
+		}
     `];
 
     static properties = {
