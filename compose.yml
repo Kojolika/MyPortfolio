@@ -18,11 +18,6 @@ services:
       - ./acme:/etc/acme.sh
     environment:
       - DEFAULT_EMAIL=${DOMAIN_EMAIL}
-  nginx:
-    image: nginx
-    environment:
-      - VIRTUAL_HOST=${DOMAIN}
-      - LETSENCRYPT_HOST=${DOMAIN}
   web:
     image: ${LATEST_IMAGE}
     pull_policy: always
