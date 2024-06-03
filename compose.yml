@@ -20,10 +20,12 @@ services:
       - DEFAULT_EMAIL=${DOMAIN_EMAIL}
   web:
     image: ${LATEST_IMAGE}
-    pull_policy: build
     env_file: .env
     ports:
       - ${PORT}:${PORT}
+    build:
+      args:
+        - ENVIRONMENT=${NODE_ENV}
     environment:
       - VIRTUAL_HOST=${DOMAIN}
       - VIRTUAL_PORT=${PORT}
