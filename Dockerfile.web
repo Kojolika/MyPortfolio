@@ -3,7 +3,8 @@ ENV NODE_ENV=development
 WORKDIR /build
 COPY . .
 RUN npm ci
-RUN npm run build --environment=${NODE_ENV}
+RUN npm run build:client -- --env environment=${NODE_ENV}
+RUN npm run build:server -- --env environment=${NODE_ENV}
 
 FROM node:21.6.1-alpine3.18
 ENV PORT=3000
