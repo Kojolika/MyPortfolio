@@ -17,7 +17,6 @@ export class Projects extends LitElement {
         }
         h3 {
             font-size: 28px;
-            color: black;
         }
         .project-container {
             display: flex;
@@ -38,7 +37,6 @@ export class Projects extends LitElement {
         }
         p {
             display: flex;
-            color: black;
             justify-content: center;
             align-items: center;
             font-size: 20px;
@@ -75,6 +73,9 @@ export class Projects extends LitElement {
             p {
                 font-size: 16px;
 		    }
+            h3 {
+                font-size: 20px;
+            }
 		}
     `];
 
