@@ -24,6 +24,8 @@ services:
     ports:
       - ${PORT}:${PORT}
     build:
+      context: .
+      dockerfile: Dockerfile.web
       args:
         - ENVIRONMENT=${NODE_ENV}
     environment:
