@@ -35,6 +35,9 @@ const env = {
   port: process.env.PORT,
   zone: process.env.AWS_ZONE,
   build: process.env.BUILD,
+  image: process.env.LATEST_IMAGE,
+  domain: process.env.DOMAIN,
+  domain_email: process.env.DOMAIN_EMAIL,
 };
 
 app.get('/', (req, res) => {
