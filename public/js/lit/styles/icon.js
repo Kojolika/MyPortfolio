@@ -10,4 +10,9 @@ export const icon = css`
     {
         cursor: pointer;
     }
+    @media screen and (max-width: 420px){
+        .icon, .icon-clickable {
+            max-width: 64px;
+        }
+	}
 `;

@@ -30,6 +30,7 @@ export class Skills extends LitElement {
         @media screen and (max-width: 832px){
             #icon-name {
                 font-size: 16px;
+                margin-top: 0;
 		    }
 		}
         @media screen and (max-width: 420px){
