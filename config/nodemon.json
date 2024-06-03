@@ -1,6 +1,6 @@
 {
     "events": {
-        "start": "npm run build"
+        "start": "npm run build:client && npm run build:server"
     },
     "ext": "js,json,html,css"
 }

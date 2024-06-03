@@ -20,8 +20,9 @@
   "scripts": {
     "start": "node ./src/dist/node-bundle",
     "about:start": "Runs the node server. Rememeber to build the application first with the build script before using this command.",
-    "build": "webpack build --config ./config/webpack.config.js --config-name server --stats-error-details --env mode=%npm_config_environment% && webpack build --config ./config/webpack.config.js --config-name client --stats-error-details --env mode=%npm_config_environment%",
-    "about:build": "Builds the server and then the client bundles. When running 'npm run build' use '--environment=<production or development>' to specify build mode. Defaults to development.",
+    "build:client": "webpack build --config ./config/webpack.config.js --config-name server --stats-error-details",
+    "build:server": "webpack build --config ./config/webpack.config.js --config-name client --stats-error-details",
+    "about:build": "Builds the server and then the client bundles. When running 'npm run build' use '-- --env environment=<production or development>' to specify build mode. Defaults to development.",
     "dev": "nodemon --ignore '*/dist/*.js' --config config/nodemon.json start",
     "about:dev": "Runs the server, but watches for changes in files and restarts when detected any. You'll need to rebuild to see changes as well.",
     "test": "mocha --recursive",

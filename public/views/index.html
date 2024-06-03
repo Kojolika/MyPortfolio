@@ -9,6 +9,9 @@
 
 <body>
     <main-page></main-page>
+    <% if (JSON.parse(env)?.environment != 'production') { %>
+        <env-var-info envObject=<%= env %>></env-var-info>
+    <% } %>
 </body>
 
 </html>
