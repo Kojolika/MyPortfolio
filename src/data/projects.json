@@ -40,7 +40,7 @@
         {
             "title": "Fullstack Weather Website",
             "thumbnail_url": "media/w_thumbnail.png",
-            "media_url": "",
+            "media_url": "media/placeholder.mp4",
             "url": "https://github.com/Kojolika/fullstackapp",
             "tech": [
                 "React",
