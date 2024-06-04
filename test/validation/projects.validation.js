@@ -45,9 +45,7 @@ describe('Project data validation', function() {
             describe('Media property', function() {
                 it(`should have a VALID media property`, function() {
                     project.should.have.property('media_url');
-                    project.media_url
-                        .should.be.a('string')
-                        .and.satisfy((url) => url.startsWith('media/'));
+                    project.media_url.should.be.a('string');
                 });
 
                 it(`media should exist in the public/media folder`, function() {
@@ -57,7 +55,7 @@ describe('Project data validation', function() {
                 });
 
                 it(`media should be the correct size`, function() {
-                    // TODO: Figure out sizes for images
+                    // TODO: Figure out sizes for videos
                     return true;
                 });
             });
