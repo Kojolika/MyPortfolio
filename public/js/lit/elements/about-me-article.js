@@ -68,6 +68,9 @@ export class AboutMe extends LitElement {
                 <a href="https://github.com/Kojolika">
                     <img class="icon-clickable standard-shadow-hover standard-border" src="media/icons/github.png">
                 </a>
+                <a href="mailto:amm982@live.com">
+                    <img class="icon-clickable standard-shadow-hover standard-border" src="media/icons/email.png">
+                </a>
             </div>
         </div>
     `;
